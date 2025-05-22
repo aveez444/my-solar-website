@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+
 const BiPV = () => {
   useEffect(() => {
     AOS.init({
@@ -440,6 +441,7 @@ const BiPV = () => {
           </motion.div>
         </div>
       </section>
+      
     </div>
   );
 };

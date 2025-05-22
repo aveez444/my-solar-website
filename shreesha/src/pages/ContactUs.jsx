@@ -10,6 +10,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import emailjs from '@emailjs/browser';
 
 
 const ContactUs = () => {
@@ -61,13 +62,25 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormStatus('Submitting...');
-    setTimeout(() => {
+    
+    // Send email using EmailJS
+    emailjs.send(
+      'service_e0owvxr', // EmailJS Service ID
+      'template_gwdd29g', // EmailJS Template ID
+      formData,
+      'Wh7iX-UXO1TeE9sgj' // EmailJS Public Key
+    )
+    .then((result) => {
+      console.log('Email successfully sent!', result.text);
       setFormStatus('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus(''), 3000);
-    }, 1000);
+      setFormData({ name: '', email: '', message: '' }); // Reset form
+      setTimeout(() => setFormStatus(''), 5000); // Clear status after 5 seconds
+    }, (error) => {
+      console.error('Failed to send email:', error.text);
+      setFormStatus('Failed to send message. Please try again.');
+    });
   };
+
 
   return (
     <div className="bg-gray-50">
@@ -306,94 +319,94 @@ const ContactUs = () => {
       </div>
 
       {/* Right side - Glass form */}
-      <motion.div
-        className="w-full"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+       <motion.div
+      className="w-full"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.form
+        onSubmit={handleSubmit}
+        className="bg-white/10 backdrop-blur-lg p-10 rounded-2xl shadow-2xl border border-white/20"
+        variants={itemVariants}
       >
-        <motion.form
-          onSubmit={handleSubmit}
-          className="bg-white/10 backdrop-blur-lg p-10 rounded-2xl shadow-2xl border border-white/20"
-          variants={itemVariants}
-        >
-          <div data-aos="fade-up" className="text-center mb-10">
-            <h2 className="text-4xl font-bold text-white mb-3">Send a Message</h2>
-            <div className="w-20 h-1 bg-green-400 mx-auto"></div>
-          </div>
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-bold text-white mb-3">Send a Message</h2>
+          <div className="w-20 h-1 bg-green-400 mx-auto"></div>
+        </div>
 
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="name" className="block text-white/90 font-medium mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
-                  placeholder="Your name"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-white/90 font-medium mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-            </div>
-
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="message" className="block text-white/90 font-medium mb-2">
-                Message
+              <label htmlFor="name" className="block text-white/90 font-medium mb-2">
+                Name
               </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
                 className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
-                rows="5"
-                placeholder="How can we help you?"
+                placeholder="Your name"
                 required
-              ></textarea>
+              />
             </div>
-
-            <motion.button
-              type="submit"
-              className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all shadow-lg"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Send Message
-            </motion.button>
+            <div>
+              <label htmlFor="email" className="block text-white/90 font-medium mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
           </div>
 
-          {formStatus && (
-            <motion.p
-              className="mt-6 text-center text-green-300 font-medium"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              {formStatus}
-            </motion.p>
-          )}
-        </motion.form>
-      </motion.div>
+          <div>
+            <label htmlFor="message" className="block text-white/90 font-medium mb-2">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
+              rows="5"
+              placeholder="How can we help you?"
+              required
+            ></textarea>
+          </div>
+
+          <motion.button
+            type="submit"
+            className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all shadow-lg"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Send Message
+          </motion.button>
+        </div>
+
+        {formStatus && (
+          <motion.p
+            className="mt-6 text-center text-green-300 font-medium"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {formStatus}
+          </motion.p>
+        )}
+      </motion.form>
+    </motion.div>
     </div>
   </div>
 </section>

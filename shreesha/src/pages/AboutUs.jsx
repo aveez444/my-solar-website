@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import AOS from 'aos';
 import Navbar from '../components/Navbar';
+import Talktous from '../components/TalkToUs';
 import 'aos/dist/aos.css';
 
 const AboutUs = () => {
@@ -526,6 +527,7 @@ const AboutUs = () => {
               Get in Touch
             </motion.a>
           </motion.div>
+          < Talktous/>
         </div>
       </section>
     </div>

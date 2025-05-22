@@ -78,76 +78,100 @@ const SolarNightLamp = () => {
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white text-gray-800 overflow-hidden">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10">
-          <div className="absolute top-20 left-1/4 w-48 h-48 rounded-full bg-green-300 blur-3xl"></div>
-          <div className="absolute bottom-10 right-1/4 w-64 h-64 rounded-full bg-blue-400 blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <motion.div 
-              className="lg:w-1/2"
-              initial="hidden"
-              animate="visible"
-              variants={fadeInUp}
-            >
-              <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-6">
-                <span className="text-green-700 font-medium">Eco-Friendly Lighting</span>
-              </div>
-              <motion.h1 
-                className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6"
-                variants={fadeInUp}
-                transition={{ delay: 0.2 }}
-              >
-                Solar <span className="text-green-500">Night Lamps</span>
-              </motion.h1>
-              <motion.p 
-                className="text-xl text-gray-600 mb-8 max-w-lg"
-                variants={fadeInUp}
-                transition={{ delay: 0.4 }}
-              >
-                Illuminate your nights with renewable energy. Our solar-powered lamps provide soft, ambient lighting while reducing your carbon footprint.
-              </motion.p>
-              <motion.div
-                className="flex flex-wrap gap-4 mb-8"
-                variants={fadeInUp}
-                transition={{ delay: 0.6 }}
-              >
-                {variants.map(variant => (
-                  <button
-                    key={variant.id}
-                    onClick={() => setActiveVariant(variant.id)}
-                    className={`px-6 py-3 rounded-full font-medium transition-all ${activeVariant === variant.id ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
-                  >
-                    {variant.name}
-                  </button>
-                ))}
-              </motion.div>
-              <motion.div
-                variants={fadeInUp}
-                transition={{ delay: 0.8 }}
-              >
-                <button 
-                  onClick={() => setLightOn(!lightOn)}
-                  className="inline-flex items-center px-8 py-4 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  {lightOn ? 'Turn Off Light' : 'Turn On Light'}
-                  <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={lightOn ? "M13 10V3L4 14h7v7l9-11h-7z" : "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"} />
-                  </svg>
-                </button>
-              </motion.div>
-            </motion.div>
+     <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+  <div className="absolute inset-0 z-0">
+    <video 
+      autoPlay 
+      loop 
+      muted 
+      playsInline 
+      className="w-full h-full object-cover"
+      poster="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1504&q=80"
+    >
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-on-the-roof-of-a-house-39800-large.mp4" type="video/mp4" />
+    </video>
+    <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
+  </div>
+  
+  <div className="container mx-auto px-6 relative z-10">
+    <motion.div 
+      className="max-w-2xl"
+      initial="hidden"
+      animate="visible"
+      variants={fadeInUp}
+    >
+      <div className="inline-flex items-center px-4 py-2 bg-green-500/20 rounded-full mb-6">
+        <span className="text-green-400 font-medium">Eco-Friendly Night Lighting</span>
+      </div>
+      <motion.h1 
+        className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6"
+        variants={fadeInUp}
+        transition={{ delay: 0.2 }}
+      >
+        Illuminate Your Nights with <span className="text-green-400">Solar Power</span>
+      </motion.h1>
+      <motion.p 
+        className="text-xl md:text-2xl text-gray-200 mb-8 max-w-lg"
+        variants={fadeInUp}
+        transition={{ delay: 0.4 }}
+      >
+        Experience the beauty of soft, ambient lighting while reducing your carbon footprint with our solar night lamps.
+      </motion.p>
+      <motion.div
+        variants={fadeInUp}
+        transition={{ delay: 0.6 }}
+      >
+        <a 
+          href="#contact" 
+          className="inline-flex items-center px-8 py-4 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Shop Solar Night Lamps
+          <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </motion.div>
+    </motion.div>
+  </div>
 
-            <motion.div 
-              className="lg:w-1/2 flex justify-center"
+  <motion.div 
+    className="absolute bottom-10 left-0 right-0 flex justify-center"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 1 }}
+  >
+    <div className="animate-bounce">
+      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </motion.div>
+</section>
+
+
+            {/* Decorative Section */}
+      <section className="relative py-20 md:py-32 flex items-center justify-center overflow-hidden">
+  <div className="absolute inset-0 z-0 opacity-10">
+    <div className="absolute top-20 left-1/4 w-48 h-48 rounded-full bg-green-300 blur-3xl"></div>
+    <div className="absolute bottom-10 right-1/4 w-64 h-64 rounded-full bg-blue-400 blur-3xl"></div>
+  </div>
+  
+  <div className="container mx-auto px-6 relative z-10">
+    <div className="flex flex-col lg:flex-row items-start gap-12">
+      <motion.div 
+        className="pr-16"
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+      >
+        <motion.div 
+              className="flex justify-center"
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
               transition={{ delay: 0.4 }}
             >
-              <div className="relative">
+              <div className="relative pb-12">
                 {/* Lamp image with transparent background */}
                 <div className="relative">
                   <img 
@@ -187,6 +211,116 @@ const SolarNightLamp = () => {
                 )}
               </div>
             </motion.div>
+        <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-6">
+          <span className="inline-flex items-center text-green-700 font-medium">Eco-Friendly Lighting</span>
+        </div>
+              <motion.h1 
+                className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6"
+                variants={fadeInUp}
+                transition={{ delay: 0.2 }}
+              >
+                Solar <span className="text-green-500">Night Lamps</span>
+              </motion.h1>
+              <motion.p 
+                className="text-xl text-gray-600 mb-8 max-w-xl"
+                variants={fadeInUp}
+                transition={{ delay: 0.4 }}
+              >
+                Illuminate your nights with renewable energy. Our solar-powered lamps provide soft, ambient lighting while reducing your carbon footprint.
+              </motion.p>
+              <motion.div
+                className="flex flex-wrap gap-4 mb-8"
+                variants={fadeInUp}
+                transition={{ delay: 0.6 }}
+              >
+                <button 
+                  onClick={() => setLightOn(!lightOn)}
+                  className="inline-flex items-center px-8 py-4 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  {lightOn ? 'Turn Off Light' : 'Turn On Light'}
+                  <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={lightOn ? "M13 10V3L4 14h7v7l9-11h-7z" : "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"} />
+                  </svg>
+                </button>
+                {variants.map(variant => (
+                  <button
+                    key={variant.id}
+                    onClick={() => setActiveVariant(variant.id)}
+                    className={`px-6 py-3 rounded-full font-medium transition-all ${activeVariant === variant.id ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                  >
+                    {variant.name}
+                  </button>
+                ))}
+              </motion.div>
+            </motion.div>
+{/* Sidebar - perfectly aligned with image */}
+      <div className="lg:w-1/3 pl-16">
+        <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 sticky">
+          <h3 className="text-2xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-200">
+            Our Offerings In Products
+          </h3>
+
+          <div className="space-y-4 mb-8">
+            {[
+              {name: "Solar Night Lamps", link: "/lamp", active: true},
+              {name: "Off Grid Solar System", link: "/off-grid"}
+            ].map((item, index) => (
+              <a 
+                key={index}
+                href={item.link}
+                className="block px-4 py-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors duration-200 group"
+              >
+                <div className="flex items-center">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 transition-colors duration-200 ${
+                    item.active ? "bg-green-200 group-hover:bg-green-300" : "bg-green-100 group-hover:bg-green-200"
+                  }`}>
+                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <span className={`font-medium transition-colors duration-200 ${
+                    item.active ? "text-green-700" : "text-gray-700 group-hover:text-green-600"
+                  }`}>
+                    {item.name}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+          
+          <div className="pt-6 border-t border-gray-200">
+            <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              Need Help?
+            </h4>
+            
+            <div className="space-y-3 text-gray-600">
+              <p className="flex items-start">
+                <svg className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Shreesha Energy Solutions,<br/>Wanowrie, Pune, India
+              </p>
+              <p className="flex items-center">
+                <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                +91 70209 86306
+              </p>
+              <p className="flex items-center">
+                <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                adheer.joshi@shreeshaenergy.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+            
           </div>
         </div>
       </section>
