@@ -1,10 +1,19 @@
-# React / Node / Django common ignores
-node_modules
+# Node.js dependencies
+node_modules/
+
+# Vite build output
+dist/
+
+# Environment variables
 .env
-__pycache__/
-db.sqlite3
-*.pyc
-/staticfiles
-/media
-/dist
-/build
+.env.local
+.env.development
+.env.production
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Vite cache
+.vite/

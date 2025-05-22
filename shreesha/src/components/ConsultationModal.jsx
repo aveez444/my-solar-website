@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
-import emailjs from "emailjs-com";
+import emailjs from '@emailjs/browser';
 
 const ConsultationModal = ({ isOpen, onClose }) => {
   const [form, setForm] = useState({

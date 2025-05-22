@@ -1,0 +1,15 @@
+{
+    "build": {
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "framework": "vite",
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
+    ]
+  }
+  
