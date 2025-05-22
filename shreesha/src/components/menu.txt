@@ -1,0 +1,15 @@
+On Grid / Grid-Connected
+Off Grid
+Hybrid System
+Rooftop PV Systems
+Ground Mounted PV
+Solar Carport
+BiPV
+Water Pumping
+Off Site / Solar Farm
+Third-Party PPAs
+Captive / Group Captive
+CAPEX
+RESCO / OPEX / PPA
+EMI Model
+Deferred CAPEX

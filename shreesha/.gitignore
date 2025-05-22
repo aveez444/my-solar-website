@@ -1,0 +1,10 @@
+# React / Node / Django common ignores
+node_modules
+.env
+__pycache__/
+db.sqlite3
+*.pyc
+/staticfiles
+/media
+/dist
+/build
