@@ -22,6 +22,11 @@ import resco from '../assets/images/resco-min.png';
 import emi from '../assets/images/emi-min.png';
 import deferred from '../assets/images/deferred-min.png';
 
+import lamp from '../assets/images/Products/Lamp/Big-Lamp.png';
+import samai from '../assets/images/Products/Samai/navbar.png';
+
+
+
 const itemRoutes = {
   "On Grid / Grid-Connected": "/on-grid",
   "Off Grid": "/off-grid",
@@ -185,8 +190,8 @@ const Navbar = () => {
                         { name: "EMI Model", img: emi },
                         { name: "Deferred CAPEX", img: deferred }
                       ] : [
-                        { name: "Solar Night Lamp", img: farm },
-                        { name: "Solar Samai", img: ppas }
+                        { name: "Solar Night Lamp", img: lamp },
+                        { name: "Solar Samai", img: samai }
                       ]).map((item, idx) => {
                         const route = itemRoutes[item.name];
                         const CardContent = (

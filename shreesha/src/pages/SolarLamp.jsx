@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import biglamp from '../assets/images/Products/Lamp/Big-Lamp.png';
+import smalllamp from '../assets/images/Products/Lamp/Small-Lamp.png';
+
 const SolarNightLamp = () => {
   const [activeVariant, setActiveVariant] = useState('small');
   const [lightOn, setLightOn] = useState(false);
@@ -46,7 +49,8 @@ const SolarNightLamp = () => {
         'IP54 weather resistance',
         'Adjustable brightness'
       ],
-      color: 'from-teal-400 to-blue-500'
+      color: 'from-green-400 to-blue-500',
+      image: smalllamp // Replace with your actual image URL
     },
     {
       id: 'big',
@@ -59,7 +63,8 @@ const SolarNightLamp = () => {
         'Multi-color modes',
         'Smart light sensor'
       ],
-      color: 'from-amber-400 to-orange-500'
+      color: 'from-amber-400 to-orange-500',
+      image: biglamp // Replace with your actual image URL
     }
   ];
 
@@ -75,7 +80,7 @@ const SolarNightLamp = () => {
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10">
-          <div className="absolute top-20 left-1/4 w-48 h-48 rounded-full bg-teal-300 blur-3xl"></div>
+          <div className="absolute top-20 left-1/4 w-48 h-48 rounded-full bg-green-300 blur-3xl"></div>
           <div className="absolute bottom-10 right-1/4 w-64 h-64 rounded-full bg-blue-400 blur-3xl"></div>
         </div>
         
@@ -87,15 +92,15 @@ const SolarNightLamp = () => {
               animate="visible"
               variants={fadeInUp}
             >
-              <div className="inline-flex items-center px-4 py-2 bg-teal-100 rounded-full mb-6">
-                <span className="text-teal-700 font-medium">Eco-Friendly Lighting</span>
+              <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-6">
+                <span className="text-green-700 font-medium">Eco-Friendly Lighting</span>
               </div>
               <motion.h1 
                 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6"
                 variants={fadeInUp}
                 transition={{ delay: 0.2 }}
               >
-                Solar <span className="text-teal-500">Night Lamps</span>
+                Solar <span className="text-green-500">Night Lamps</span>
               </motion.h1>
               <motion.p 
                 className="text-xl text-gray-600 mb-8 max-w-lg"
@@ -113,7 +118,7 @@ const SolarNightLamp = () => {
                   <button
                     key={variant.id}
                     onClick={() => setActiveVariant(variant.id)}
-                    className={`px-6 py-3 rounded-full font-medium transition-all ${activeVariant === variant.id ? 'bg-teal-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                    className={`px-6 py-3 rounded-full font-medium transition-all ${activeVariant === variant.id ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
                   >
                     {variant.name}
                   </button>
@@ -125,7 +130,7 @@ const SolarNightLamp = () => {
               >
                 <button 
                   onClick={() => setLightOn(!lightOn)}
-                  className="inline-flex items-center px-8 py-4 bg-teal-500 text-white font-semibold rounded-full hover:bg-teal-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center px-8 py-4 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   {lightOn ? 'Turn Off Light' : 'Turn On Light'}
                   <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,31 +148,18 @@ const SolarNightLamp = () => {
               transition={{ delay: 0.4 }}
             >
               <div className="relative">
-                {/* Lamp visualization */}
-                <div className={`relative ${activeVariant === 'small' ? 'w-64 h-64' : 'w-80 h-80'} rounded-full ${lightOn ? 'bg-gradient-to-br from-amber-100 to-amber-50' : 'bg-gray-100'} shadow-2xl border-8 border-white flex items-center justify-center`}>
-                  {/* Solar panel */}
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-24 h-8 bg-gray-800 rounded-md shadow-md">
-                    <div className="absolute inset-0.5 bg-blue-900 rounded-sm grid grid-cols-4 gap-0.5 p-0.5">
-                      {[...Array(16)].map((_, i) => (
-                        <div key={i} className="bg-blue-700 rounded-xs"></div>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* Light effect when on */}
-                  {lightOn && (
-                    <motion.div 
-                      className="absolute inset-0 rounded-full bg-gradient-to-b from-amber-200/30 to-transparent"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  )}
+                {/* Lamp image with transparent background */}
+                <div className="relative">
+                  <img 
+                    src={variants.find(v => v.id === activeVariant)?.image} 
+                    alt={activeVariant === 'small' ? 'Small Solar Lamp' : 'Large Solar Lamp'}
+                    className={`${activeVariant === 'small' ? 'w-64 h-64' : 'w-80 h-80'} object-contain`}
+                  />
                   
                   {/* Battery indicator */}
                   <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-gray-200 rounded-full overflow-hidden">
                     <div 
-                      className={`h-full ${batteryLevel > 20 ? 'bg-teal-500' : 'bg-amber-500'} rounded-full transition-all duration-500`}
+                      className={`h-full ${batteryLevel > 20 ? 'bg-green-500' : 'bg-amber-500'} rounded-full transition-all duration-500`}
                       style={{ width: `${batteryLevel}%` }}
                     ></div>
                     <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white">
@@ -176,10 +168,20 @@ const SolarNightLamp = () => {
                   </div>
                 </div>
                 
-                {/* Glow effect */}
+                {/* Glow effect when light is on */}
                 {lightOn && (
                   <motion.div 
-                    className={`absolute inset-0 rounded-full ${activeVariant === 'small' ? 'w-64 h-64' : 'w-80 h-80'} bg-amber-200/20 blur-xl`}
+                    className={`absolute inset-0 ${activeVariant === 'small' ? 'w-64 h-64' : 'w-80 h-80'} rounded-full bg-amber-200/30 blur-xl`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                )}
+                
+                {/* Additional glow effect with pulse animation */}
+                {lightOn && (
+                  <motion.div 
+                    className={`absolute inset-0 ${activeVariant === 'small' ? 'w-64 h-64' : 'w-80 h-80'} rounded-full bg-amber-200/20 blur-xl`}
                     variants={pulse}
                   />
                 )}
@@ -194,17 +196,17 @@ const SolarNightLamp = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <motion.div 
-              className="inline-block px-4 py-2 bg-teal-100 rounded-full mb-4"
+              className="inline-block px-4 py-2 bg-green-100 rounded-full mb-4"
               data-aos="fade-up"
             >
-              <span className="text-teal-700 font-medium">Why Choose Our Lamps</span>
+              <span className="text-green-700 font-medium">Why Choose Our Lamps</span>
             </motion.div>
             <motion.h2 
               className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              Designed for <span className="text-teal-600">Comfort</span> & <span className="text-teal-600">Sustainability</span>
+              Designed for <span className="text-green-600">Comfort</span> & <span className="text-green-600">Sustainability</span>
             </motion.h2>
           </div>
 
@@ -231,17 +233,17 @@ const SolarNightLamp = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <motion.div 
-              className="inline-block px-4 py-2 bg-teal-100 rounded-full mb-4"
+              className="inline-block px-4 py-2 bg-green-100 rounded-full mb-4"
               data-aos="fade-up"
             >
-              <span className="text-teal-700 font-medium">Our Collection</span>
+              <span className="text-green-700 font-medium">Our Collection</span>
             </motion.div>
             <motion.h2 
               className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              Find Your Perfect <span className="text-teal-600">Solar Lamp</span>
+              Find Your Perfect <span className="text-green-600">Solar Lamp</span>
             </motion.h2>
           </div>
 
@@ -288,17 +290,17 @@ const SolarNightLamp = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <motion.div 
-              className="inline-block px-4 py-2 bg-teal-100 rounded-full mb-4"
+              className="inline-block px-4 py-2 bg-green-100 rounded-full mb-4"
               data-aos="fade-up"
             >
-              <span className="text-teal-700 font-medium">Simple Operation</span>
+              <span className="text-green-700 font-medium">Simple Operation</span>
             </motion.div>
             <motion.h2 
               className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              How Our <span className="text-teal-600">Solar Lamp</span> Works
+              How Our <span className="text-green-600">Solar Lamp</span> Works
             </motion.h2>
           </div>
 
@@ -339,7 +341,7 @@ const SolarNightLamp = () => {
                   data-aos-delay={index * 150}
                   className="relative pl-16 md:pl-24"
                 >
-                  <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-xl z-10">
+                  <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xl z-10">
                     {step.step}
                   </div>
                   <div className="bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
@@ -355,7 +357,7 @@ const SolarNightLamp = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-500 to-blue-500 text-white">
+      <section className="py-20 bg-gradient-to-r from-green-500 to-blue-500 text-white">
         <div className="container mx-auto px-6 text-center">
           <motion.div 
             className="max-w-3xl mx-auto"
@@ -370,7 +372,7 @@ const SolarNightLamp = () => {
               whileTap={{ scale: 0.95 }}
             >
               <button
-                className="inline-flex items-center px-8 py-4 bg-white text-teal-600 font-bold rounded-full hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center px-8 py-4 bg-white text-green-600 font-bold rounded-full hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Shop Solar Lamps
                 <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
