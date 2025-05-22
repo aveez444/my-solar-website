@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Navbar from '../components/Navbar';
 
 const CaptiveGroupCaptive = () => {
   useEffect(() => {
@@ -98,6 +99,7 @@ const CaptiveGroupCaptive = () => {
   return (
     <div className="bg-white text-gray-800 overflow-hidden">
       {/* Hero Section */}
+      <Navbar />
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video 

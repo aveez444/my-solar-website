@@ -14,7 +14,6 @@ import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
 
 
 
-
 const LandingPage = () => {
   // Initialize AOS
   useEffect(() => {
@@ -214,11 +213,8 @@ const LandingPage = () => {
 
     <div className="bg-gray-50">
       {/* Hero Section - Modern & Dynamic */}
-  <div 
-    id="hero-section"
-    className="relative min-h-screen h-[calc(100vh-4rem)] bg-black">
-      <Navbar/>
-  {/* Multi-image background with responsive grid layout */}
+      <div id="hero-section" className="relative min-h-screen h-[calc(100vh-4rem)] bg-black">
+  <Navbar />
   <div className="relative h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 z-0">
     {/* Image 1 */}
     <motion.div 
@@ -290,21 +286,21 @@ const LandingPage = () => {
 
   {/* Animated light rays effect */}
   <motion.div
-    className="absolute inset-0 z-6"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 0.4 }}
-    transition={{ duration: 3, ease: "easeInOut" }}
-  >
-    <motion.div
-      className="absolute top-0 left-0 w-full h-full bg-gradient-radial from-yellow-300/20 to-transparent blur-3xl"
-      animate={{ 
-        scale: [1, 1.3, 1],
-        x: [-50, 50, -50],
-        y: [-30, 30, -30]
-      }}
-      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-    />
-  </motion.div>
+  className="absolute inset-0 z-6 overflow-hidden"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 0.4 }}
+  transition={{ duration: 3, ease: "easeInOut" }}
+>
+  <motion.div
+    className="absolute top-0 left-0 w-full h-full bg-gradient-radial from-yellow-300/20 to-transparent blur-3xl"
+    animate={{ 
+      scale: [1, 1.3, 1],
+      x: [-50, 50, -50],
+      y: [-30, 30, -30]
+    }}
+    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+  />
+</motion.div>
 
   {/* Centered Content */}
   <div className="absolute inset-0 flex items-center justify-center z-10 px-6 text-center">
