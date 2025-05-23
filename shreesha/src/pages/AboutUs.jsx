@@ -4,6 +4,8 @@ import AOS from 'aos';
 import Navbar from '../components/Navbar';
 import Talktous from '../components/TalkToUs';
 import 'aos/dist/aos.css';
+import { FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+
 
 const AboutUs = () => {
   // Initialize AOS
@@ -41,23 +43,23 @@ const AboutUs = () => {
 
   // Testimonials data
   const testimonials = [
-    {
+     {
       id: 1,
-      name: 'Ankit Gaikwad',
-      image: 'https://randomuser.me/api/portraits/men/32.jpg',
-      testimonial: 'Exceptional service at unbeatable prices!',
+      name: 'Bhupendra Joshi',
+      image: 'https://media.licdn.com/dms/image/v2/D5603AQHQsbiUQ9C7HQ/profile-displayphoto-shrink_800_800/B56ZRHT6ivGQAc-/0/1736363190938?e=1753315200&v=beta&t=GDU0Jz5ZyqfvJWclJI5j8LMo8gvKLahyRa2g6P1Z5QY',
+     testimonial: 'Wow, more power to you for this amazing venture...there is such a need for sustainable energy! Aadhir Jjoshi Shreesha Energy Solutions #solarpower #environment',
     },
     {
       id: 2,
-      name: 'Harish Sharma',
-      image: 'https://randomuser.me/api/portraits/men/68.jpg',
-      testimonial: 'Reliable and affordable solar solutions.',
+      name: 'Jaikumar Gidwani',
+      image: 'https://media.licdn.com/dms/image/v2/C5103AQH9dSYdyCs_iw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1535550799107?e=1753315200&v=beta&t=R7x6EFI38YMBDBG9vwLC2bGOa19u6F5mYBZwvRmo5tQ',
+      testimonial: 'Thank you Aadhir Jjoshi and team at @Shreesha Energy Solutions for working through patiently and tirelessly in getting the solar plant setup. Appreciate your professionalism and dedication, thank you.',
     },
     {
       id: 3,
-      name: 'Priya Desai',
-      image: 'https://randomuser.me/api/portraits/women/45.jpg',
-      testimonial: 'Transformed our energy costs with ease!',
+      name: 'Kavita Sharma Joshi',
+      image: 'https://media.licdn.com/dms/image/v2/C5603AQFfVLfjiinhfw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1591029347967?e=1753315200&v=beta&t=n0IYtSCW3asasRw6W5H7aqg0TgsvuQTT2XLoFwGIpkA',
+      testimonial: 'Amazing Products.',
     },
   ];
 
@@ -76,9 +78,9 @@ const AboutUs = () => {
         'Channel Management',
       ],
       socialLinks: {
-        linkedin: '#',
-        twitter: '#',
-        instagram: '#',
+        linkedin: 'https://www.linkedin.com/in/adheerjoshi/',
+        twitter: 'https://x.com/adhirjoshi1',
+        instagram: 'https://www.instagram.com/aadhirjjoshi?igsh=MXR1cjY1ZzZpa254dw==',
       },
     },
     {
@@ -93,9 +95,9 @@ const AboutUs = () => {
         'Performance Management',
       ],
       socialLinks: {
-        linkedin: '#',
-        twitter: '#',
-        instagram: '#',
+        linkedin: 'https://www.linkedin.com/in/kavita-sharma-joshi-68b14a18',
+        
+        instagram: 'https://www.instagram.com/kavitajsharma?igshid=136wuo9sy1dn0',
       },
     },
   ];
@@ -387,6 +389,7 @@ const AboutUs = () => {
         </div>
       </section>
    {/* Team Section */}
+ 
 <section className="py-20 bg-gray-50">
   <div className="container mx-auto px-6">
     <div data-aos="fade-up" className="text-center mb-16">
@@ -397,17 +400,13 @@ const AboutUs = () => {
       <div className="w-20 h-1 bg-green-500 mx-auto mt-6"></div>
     </div>
     
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
       {teamMembers?.map((member) => (
         <motion.div
           key={member.id}
           data-aos="fade-up"
           data-aos-delay={member.id * 100}
-          className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          whileHover={{ y: -10, transition: { duration: 0.3 } }}
+          className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col items-center"
         >
           <div className="p-6">
             <div className="flex flex-col items-center mb-6">
@@ -422,17 +421,6 @@ const AboutUs = () => {
             </div>
             
             <div className="mb-5">
-              <div className="flex justify-center space-x-2 mb-4">
-                {member.skills?.map((skill, idx) => (
-                  <span 
-                    key={idx}
-                    className="px-3 py-1 bg-gray-100 text-gray-800 text-sm rounded-full"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-              
               <p className="text-gray-600 text-center mb-5">{member.description}</p>
               
               <div className="mb-4">
@@ -449,29 +437,32 @@ const AboutUs = () => {
             </div>
             
             <div className="flex justify-center space-x-6 pt-4 border-t border-gray-100">
-              {member.socialLinks && Object.entries(member.socialLinks).map(([platform, url]) => (
-                <a
-                  key={platform}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-2xl transition-colors hover:text-green-600 ${
-                    platform === 'twitter' ? 'text-blue-400' :
-                    platform === 'linkedin' ? 'text-blue-600' :
-                    platform === 'github' ? 'text-gray-800' :
-                    'text-green-500'
-                  }`}
-                >
-                  <i className={`fab fa-${platform}`}></i>
-                </a>
-              ))}
-            </div>
+  {member.socialLinks && Object.entries(member.socialLinks).map(([platform, url]) => {
+    let IconComponent;
+    if (platform === 'twitter') IconComponent = FaTwitter;
+    else if (platform === 'linkedin') IconComponent = FaLinkedin;
+    else if (platform === 'instagram') IconComponent = FaInstagram;
+    else return null;
+    return (
+      <a
+        key={platform}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 transition-colors hover:bg-green-500"
+      >
+        <IconComponent className="text-gray-800 hover:text-white" />
+      </a>
+    );
+  })}
+</div>
           </div>
         </motion.div>
       ))}
     </div>
   </div>
 </section>
+
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white">
@@ -507,7 +498,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Partners Section */}
            {/* Partners Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
@@ -528,7 +518,7 @@ const AboutUs = () => {
                     duration: partners.length * 1,
                     ease: "linear",
                     repeat: Infinity,
-                    repeatDelay: 1
+                    repeatDelay: 5
                   }}
                 >
                   {/* Double the array to create seamless loop */}
