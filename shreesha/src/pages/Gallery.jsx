@@ -1,6 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
+
+import Talktous from '../components/TalkToUs';
 import bgimage from '../assets/images/sam.jpg';
 import bg1image from '../assets/images/sam.jpg';
 
@@ -588,7 +590,9 @@ useEffect(() => {
         ))}
       </div>
     </div>
-
+<div className="pt-8 pb-8">
+            <Talktous/>
+          </div>
 
 
     </div>

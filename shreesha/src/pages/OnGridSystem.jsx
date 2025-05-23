@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Talktous from '../components/TalkToUs';
 
 const OnGridSystem = () => {
   useEffect(() => {
@@ -76,7 +77,7 @@ const OnGridSystem = () => {
             muted 
             playsInline 
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1504&q=80"
+            poster="/src/assets/images/On Grid  Solar System_1.jpg"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-on-the-roof-of-a-house-39800-large.mp4" type="video/mp4" />
           </video>
@@ -152,7 +153,7 @@ const OnGridSystem = () => {
   className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
 >
   <img
-      src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      src="/src/assets/images/On Grid  Solar System_2.jpg"
       alt="On Grid Solar System"
       className="w-full h-auto"
     />
@@ -205,10 +206,10 @@ const OnGridSystem = () => {
           <h3 className="text-2xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-200">
             Our Offerings In Solar Energy System
           </h3>
-
+          
           <div className="space-y-4 mb-8">
             {[
-              {name: "On Grid / Grid-Connected Solar System", link: "/on-grid", active: true},
+              {name: "On Grid / Grid-Connected Solar System", link: "/on-grid"},
               {name: "Off Grid Solar System", link: "/off-grid"},
               {name: "Hybrid Solar System", link: "/hybrid-system"}
             ].map((item, index) => (
@@ -218,16 +219,12 @@ const OnGridSystem = () => {
                 className="block px-4 py-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors duration-200 group"
               >
                 <div className="flex items-center">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 transition-colors duration-200 ${
-                    item.active ? "bg-green-200 group-hover:bg-green-300" : "bg-green-100 group-hover:bg-green-200"
-                  }`}>
+                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors duration-200">
                     <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
-                  <span className={`font-medium transition-colors duration-200 ${
-                    item.active ? "text-green-700" : "text-gray-700 group-hover:text-green-600"
-                  }`}>
+                  <span className="font-medium text-gray-700 group-hover:text-green-600 transition-colors duration-200">
                     {item.name}
                   </span>
                 </div>
@@ -486,6 +483,9 @@ const OnGridSystem = () => {
           </motion.div>
         </div>
       </section>
+            <div className="pt-8 pb-8">
+                        <Talktous/>
+                      </div>
     </div>
   );
 };

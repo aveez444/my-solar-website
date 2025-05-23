@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
+import Talktous from '../components/TalkToUs';
 
 const BiPV = () => {
   useEffect(() => {
@@ -80,7 +80,7 @@ const BiPV = () => {
             muted 
             playsInline 
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=500"
+            poster="/src/assets/images/Building integrated_1.jpg"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-on-a-modern-building-39804-large.mp4" type="video/mp4" />
           </video>
@@ -152,7 +152,7 @@ const BiPV = () => {
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=500"
+                  src="/src/assets/images/Building integrated_3.jpg"
                   alt="Building-integrated Photovoltaic System"
                   className="w-full h-auto"
                 />
@@ -441,7 +441,9 @@ const BiPV = () => {
           </motion.div>
         </div>
       </section>
-      
+     <div className="pt-8 pb-8">
+            <Talktous/>
+          </div>
     </div>
   );
 };

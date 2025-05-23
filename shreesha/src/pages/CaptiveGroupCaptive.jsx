@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Talktous from '../components/TalkToUs';
 
 const CaptiveGroupCaptive = () => {
   useEffect(() => {
@@ -106,7 +107,7 @@ const CaptiveGroupCaptive = () => {
             muted 
             playsInline 
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1504&q=80"
+            poster="/src/assets/images/Group Captive_1.jpg"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-in-a-solar-power-plant-39802-large.mp4" type="video/mp4" />
           </video>
@@ -178,9 +179,9 @@ const CaptiveGroupCaptive = () => {
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1504&q=80"
+                  src="/src/assets/images/Group Captive_2.jpg"
                   alt="Captive Solar Plant"
-                  className="w-full h-80 object-cover object-center"
+                  className="w-full h-90 object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-2xl font-bold text-white">
@@ -471,6 +472,9 @@ const CaptiveGroupCaptive = () => {
           </motion.div>
         </div>
       </section>
+      <div className="pt-8 pb-8">
+                  <Talktous/>
+                </div>
     </div>
   );
 };

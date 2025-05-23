@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import emailjs from '@emailjs/browser';
 
+import Talktous from '../components/TalkToUs';
+
 
 const ContactUs = () => {
   // Initialize AOS
@@ -443,7 +445,7 @@ const ContactUs = () => {
             </div>
             <div>
               <h4 className="font-bold text-gray-800">Our Address</h4>
-              <p className="text-gray-600">Wanowrie, Pune, Maharashtra 411040, India</p>
+              <p className="text-gray-600">Shreesha Energy Solutions, Wanowrie, Pune - 411040, Maharashtra, India</p>
             </div>
           </motion.div>
 
@@ -488,23 +490,30 @@ const ContactUs = () => {
             </motion.div>
             <div>
               <h4 className="font-bold text-gray-800">Contact Us</h4>
-              <p className="text-gray-600">+91 XXXX XXX XXX</p>
-              <p className="text-gray-600">info@shreeshaenergy.com</p>
+              <p className="text-gray-600">+91 98220 33636 <br />+91 98908 44477</p>
+              <p className="text-gray-600">shreesha.energy@gmail.com <br />adheer.joshi@shreeshaenergy.com</p>
             </div>
           </motion.div>
         </div>
 
-        <motion.button
-          className="w-full mt-6 px-6 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition-all flex items-center justify-center"
-          whileHover={{ 
-            scale: 1.03,
-            boxShadow: "0 10px 20px -5px rgba(74, 222, 128, 0.5)"
-          }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <i className="fas fa-directions mr-2"></i>
-          Get Directions
-        </motion.button>
+        <a 
+  href="https://www.google.com/maps/dir//Shreesha+Energy+Solutions,+Near+Jagtap+Chowk,+Wanowrie,+Pune,+Maharashtra+411040/@18.4922772,73.8999351,17z/data=!4m17!1m7!3m6!1s0x3bc2c1cb623f70bf:0x16021a1ebd7c34a!2sShreesha+Energy+Solutions!8m2!3d18.4922772!4d73.8999351!16s%2Fg%2F11n05q25w2!4m8!1m0!1m5!1m1!1s0x3bc2c1cb623f70bf:0x16021a1ebd7c34a!2m2!1d73.8999351!2d18.4922772!3e2?entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoASAFQAw%3D%3D" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <motion.button
+    className="w-full mt-6 px-6 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition-all flex items-center justify-center"
+    whileHover={{ 
+      scale: 1.03,
+      boxShadow: "0 10px 20px -5px rgba(74, 222, 128, 0.5)"
+    }}
+    whileTap={{ scale: 0.98 }}
+  > 
+    <i className="fas fa-directions mr-2"></i>
+    Get Directions
+  </motion.button>
+</a>
+
       </motion.div>
 
       {/* Right side - Enhanced Map Container */}
@@ -574,16 +583,20 @@ const ContactUs = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link
-                to="/contact"
+
+              <a
+                href="#contact-form"
                 className="inline-block px-10 py-4 bg-white text-black rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors"
               >
                 Request a Quote
-              </Link>
+              </a>
             </motion.div>
           </motion.div>
         </div>
       </section>
+      <div className="pt-8 pb-8">
+                  <Talktous/>
+                </div>
     </div>
   );
 };

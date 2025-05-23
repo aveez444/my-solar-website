@@ -186,48 +186,48 @@ const SolarEcommerce = () => {
   };
 
 
-   const sendOrderEmail = (orderDetails) => {
-    setIsSending(true);
-    
-    const emailParams = {
-      to_name: 'Shreesha Solar Team',
-      from_name: formData.fullName,
-      contact_number: formData.contact,
-      shipping_address: `${formData.address}, ${formData.city}, ${formData.zip}`,
-      order_details: orderDetails,
-      total_amount: totalPrice.toFixed(2),
-      order_date: new Date().toLocaleDateString()
-    };
+const sendOrderEmail = (orderItems) => {
+  setIsSending(true);
+  
+  // Format order items as plain text
+  const orderItemsText = orderItems.map(item => 
+    `- ${item.name} (Qty: 1) - ₹${getDiscountedPrice(item.price)}`
+  ).join('\n');
 
-    emailjs.send(
-      "service_e0owvxr",
-      "template_luya5li",
-      emailParams,
-      "Wh7iX-UXO1TeE9sgj" 
-    )
-    .then((response) => {
-      console.log('Email sent successfully!', response.status, response.text);
-      setCheckoutStep('confirmation');
-    })
-    .catch((err) => {
-      console.error('Failed to send email:', err);
-      alert('Failed to send order confirmation. Please try again.');
-    })
-    .finally(() => {
-      setIsSending(false);
-    });
+  const emailParams = {
+    customer_name: formData.fullName,
+    customer_phone: formData.contact,
+    shipping_address: `${formData.address}, ${formData.city}, ${formData.zip}`,
+    order_items: orderItemsText,  // Now sending as plain text
+    order_total: `₹${totalPrice.toFixed(2)}`,
+    order_date: new Date().toLocaleDateString('en-IN')
   };
+
+  console.log("Sending email with params:", emailParams); // Debug log
+
+  emailjs.send(
+    "service_e0owvxr",
+    "template_luya5li",
+    emailParams,
+    "Wh7iX-UXO1TeE9sgj"
+  )
+  .then(() => {
+    console.log("Email sent successfully!");
+    setCheckoutStep('confirmation');
+  })
+  .catch((err) => {
+    console.error("Email failed to send:", err);
+    alert("Order placed! Email confirmation failed. Please note your order details.");
+    setCheckoutStep('confirmation');
+  })
+  .finally(() => setIsSending(false));
+};
 
   const completeOrder = () => {
-    if (validateForm()) {
-      // Prepare order details
-      const orderDetails = cart.map(item => 
-        `${item.name} (Qty: 1) - ₹${getDiscountedPrice(item.price)}`
-      ).join('\n');
-      
-      sendOrderEmail(orderDetails);
-    }
-  };
+  if (validateForm()) {
+    sendOrderEmail(cart); // Pass the cart array directly
+  }
+};
 
   const validateForm = () => {
     const newErrors = {};

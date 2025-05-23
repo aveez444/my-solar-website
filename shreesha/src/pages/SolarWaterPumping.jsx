@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Talktous from '../components/TalkToUs';
 
 const SolarWaterPumping = () => {
   useEffect(() => {
@@ -79,7 +80,7 @@ const SolarWaterPumping = () => {
             muted 
             playsInline 
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1598889348739-a6d7dc98f408?w=500"
+            poster="/src/assets/images/water pumping_1.jpg"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-in-a-green-field-42696-large.mp4" type="video/mp4" />
           </video>
@@ -151,7 +152,7 @@ const SolarWaterPumping = () => {
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1598889348739-a6d7dc98f408?w=500"
+                  src="/src/assets/images/water pumping_2.jpg"
                   alt="Solar Water Pumping System"
                   className="w-full h-auto"
                 />
@@ -440,6 +441,9 @@ const SolarWaterPumping = () => {
           </motion.div>
         </div>
       </section>
+            <div className="pt-8 pb-8">
+                        <Talktous/>
+                      </div>
     </div>
   );
 };

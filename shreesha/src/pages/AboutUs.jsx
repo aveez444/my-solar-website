@@ -102,11 +102,44 @@ const AboutUs = () => {
 
   // Associate partners data
   const partners = [
-    { id: 1, name: 'KOR Energy', logo: 'https://via.placeholder.com/150x80?text=KOR+Energy' },
-    { id: 2, name: 'U-SOLAR', logo: 'https://via.placeholder.com/150x80?text=U-SOLAR' },
-    { id: 3, name: 'Namaste Credit', logo: 'https://via.placeholder.com/150x80?text=Namaste+Credit' },
-    { id: 4, name: 'ORBITTAL', logo: 'https://via.placeholder.com/150x80?text=ORBITTAL' },
-  ];
+  {
+    id: 1,
+    name: 'Avante Spaces Limited - Kirloskar Industries',
+    logo: 'https://www.kirloskarindustries.com/image/layout_set_logo?img_id=779730&t=1747873768691',
+    url: 'https://www.kirloskarindustries.com/',
+  },
+  {
+    id: 2,
+    name: 'Siemens Healthineers',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Siemens_Healthineers_logo.svg/2560px-Siemens_Healthineers_logo.svg.png',
+    url: 'https://www.siemens-healthineers.com/',
+  },
+  {
+    id: 3,
+    name: 'Varian',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Varian_company_logo_2017.png',
+    url: 'https://www.varian.com/',
+  },
+  {
+    id: 4,
+    name: 'ESDS Software Solution Limited',
+    logo: 'https://stockify.net.in/wp-content/uploads/2024/11/ESDS.jpg',
+    url: 'https://www.esds.co.in/',
+  },
+  {
+    id: 5,
+    name: 'Namaste Credit',
+    logo: 'https://www.amicuscapital.in/wp-content/uploads/2021/03/Namaste-Creditjpg-Copy-1.jpg',
+    url: 'https://app.namastecredit.com/login',
+  },
+  {
+    id: 6,
+    name: 'Orbittal',
+    logo: 'https://www.orbittalgreenenergy.com/images/logo.png',
+    url: 'https://www.orbittalgreenenergy.com/',
+  },
+];
+
 
   // Animation variants
   const textVariants = {
@@ -475,34 +508,66 @@ const AboutUs = () => {
       </section>
 
       {/* Partners Section */}
+           {/* Partners Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div data-aos="fade-up" className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800">Our Trusted Partners</h2>
             <div className="w-20 h-1 bg-green-500 mx-auto mt-4"></div>
           </div>
-          <div className="flex flex-wrap justify-center gap-8">
-            {partners.map((partner) => (
-              <motion.div
-                key={partner.id}
-                data-aos="fade-up"
-                data-aos-delay={partner.id * 100}
-                className="w-40"
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
-              >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="w-full h-auto filter grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </motion.div>
-            ))}
+          
+          <div className="relative overflow-hidden">
+            <div className="flex items-center justify-center">
+              <div className="w-full max-w-5xl overflow-hidden">
+                <motion.div
+                  className="flex"
+                  animate={{
+                    x: ['0%', '-25%', '-50%', '-75%', '-100%', '-125%', '-150%', '-175%', '0%'],
+                  }}
+                  transition={{
+                    duration: partners.length * 1,
+                    ease: "linear",
+                    repeat: Infinity,
+                    repeatDelay: 1
+                  }}
+                >
+                  {/* Double the array to create seamless loop */}
+                  {[...partners, ...partners].map((partner, index) => (
+                    <motion.div
+                      key={`${partner.id}-${index}`}
+                      className="flex-shrink-0 px-8"
+                      style={{ width: `${100 / 4}%` }} // Show 4 logos at a time
+                    >
+                      <a
+                        href={partner.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-center group"
+                      >
+                        <div className="w-full h-20 mx-auto flex items-center justify-center bg-white shadow rounded">
+                          <img
+                            src={partner.logo}
+                            alt={partner.name}
+                            className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                          />
+                        </div>
+                        <p className="mt-3 text-sm font-medium text-gray-700 group-hover:text-green-600 transition">
+                          {partner.name}
+                        </p>
+                      </a>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+            </div>
+            
+            {/* Gradient fade effects on sides */}
+            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
+            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
           </div>
         </div>
       </section>
+
 
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-r from-green-700 to-green-900 text-white">
@@ -527,7 +592,9 @@ const AboutUs = () => {
               Get in Touch
             </motion.a>
           </motion.div>
-          < Talktous/>
+          <div className="pt-8 pb-8">
+            < Talktous/>
+          </div>
         </div>
       </section>
     </div>

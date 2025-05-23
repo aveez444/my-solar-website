@@ -4,6 +4,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import SolarRoof from '../assets/images/solar-roof.jpg';
 
+import Talktous from '../components/TalkToUs';
+
 const OnSiteDistributedSolar = () => {
   // Initialize AOS
   useEffect(() => {
@@ -563,6 +565,10 @@ const OnSiteDistributedSolar = () => {
           </motion.div>
         </div>
       </section>
+      
+            <div className="pt-8 pb-8">
+                        <Talktous/>
+                      </div>
     </div>
   );
 };
