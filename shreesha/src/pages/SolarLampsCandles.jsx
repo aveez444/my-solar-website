@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Talktous from '../components/TalkToUs';
 
 import s from '../assets/images/Products/Lamp/Small-Lamp.png';
 import b from '../assets/images/Products/Lamp/Big-Lamp.png';
@@ -100,6 +101,9 @@ const SolarLamps = () => {
           </div>
         ))}
       </div>
+      <div className="pt-8 pb-8">
+                  <Talktous/>
+                </div>
     </div>
   );
 };

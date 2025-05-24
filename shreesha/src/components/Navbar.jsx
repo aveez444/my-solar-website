@@ -47,13 +47,19 @@ const Navbar = () => {
   const appointmentRef = useRef();
 
     useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target) && 
-          (!dropdownRef.current || !dropdownRef.current.contains(event.target))) {
-        setActiveMenu(null);
-        setClickLocked(false);
-      }
-    };
+      const handleClickOutside = (event) => {
+        if (
+          menuRef.current && 
+          !menuRef.current.contains(event.target) && 
+          (!dropdownRef.current || !dropdownRef.current.contains(event.target))
+        ) {
+          // Only close if the click is not on a Link within the dropdown
+          if (!event.target.closest('a')) {
+            setActiveMenu(null);
+            setClickLocked(false);
+          }
+        }
+      };
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -204,14 +210,20 @@ const Navbar = () => {
                     "hover:bg-gray-100 hover:text-black hover:shadow-md cursor-pointer"
                   )}
                   onMouseEnter={() => {
-                    if (item.subMenu) setActiveMenu(item.label);
+                    if (item.subMenu) {
+                      setActiveMenu(item.label);
+                      setClickLocked(false); // Unlock when just hovering
+                    }
                   }}
                   onMouseLeave={() => {
-                    if (!clickLocked && item.subMenu) setActiveMenu(null);
+                    if (!clickLocked && item.subMenu) {
+                      setActiveMenu(null);
+                    }
                   }}
                   onClick={() => {
                     if (item.subMenu) {
-                      handleMenuInteraction(item.label);
+                      setActiveMenu(item.label);
+                      setClickLocked(true); // Lock only on click
                     }
                   }}
                 >
@@ -253,15 +265,20 @@ const Navbar = () => {
       </header>
 
       {/* Desktop Dropdown */}
-       {activeMenu && (
-        <div 
-          ref={dropdownRef}
-          className="fixed left-0 top-[64px] w-full bg-white/80 backdrop-blur-md shadow-2xl px-12 py-8 text-sm animate-slideDown z-40 text-black"
-          onMouseEnter={() => setActiveMenu("Offerings")}
-          onMouseLeave={() => {
-            if (!clickLocked) setActiveMenu(null);
-          }}
-        >
+      {activeMenu && (
+          <div 
+            ref={dropdownRef}
+            className="fixed left-0 top-[64px] w-full bg-white/80 backdrop-blur-md shadow-2xl px-12 py-8 text-sm animate-slideDown z-40 text-black"
+            onMouseEnter={() => {
+              setActiveMenu("Offerings");
+              setClickLocked(true); // Keep it locked when mouse enters dropdown
+            }}
+            onMouseLeave={() => {
+              if (!clickLocked) {
+                setActiveMenu(null);
+              }
+            }}
+          >
           <div className="flex justify-center gap-10 mb-8">
             {["Solar Energy System", "Off-Grid", "On-Site Distributed Solar", "Financing & Models"].map((cat, idx) => (
               <button
@@ -285,7 +302,7 @@ const Navbar = () => {
 
           <div
             key={activeSub}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 px-6 animate-fadeSlide"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 px-6 animate-fadeSlide"
           >
             {getSubMenuItems(activeSub).map((item, idx) => (
               <div 

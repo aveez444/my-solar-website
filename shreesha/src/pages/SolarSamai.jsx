@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Talktous from '../components/TalkToUs';
 
 // Images import with relative paths
 import ds from '../assets/images/Products/Samai/ds.jpeg';
@@ -124,6 +125,9 @@ const SolarSamaiDiya = () => {
           </div>
         ))}
       </div>
+<div className="pt-8 pb-8">
+                  <Talktous/>
+                </div>
     </div>
   );
 };

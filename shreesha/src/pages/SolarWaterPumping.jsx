@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
+import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
 import Talktous from '../components/TalkToUs';
 
@@ -71,6 +72,8 @@ const SolarWaterPumping = () => {
 
   return (
     <div className="bg-white text-gray-800 overflow-hidden">
+
+      < Navbar/>
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -152,7 +155,7 @@ const SolarWaterPumping = () => {
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="/src/assets/images/water pumping_2.jpg"
+                  src="/src/assets/images/water pumping_2.jpeg"
                   alt="Solar Water Pumping System"
                   className="w-full h-auto"
                 />
