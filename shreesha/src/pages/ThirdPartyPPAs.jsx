@@ -183,7 +183,7 @@ const ThirdPartyPPAs = () => {
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="/src/assets/images/Third-Party_2.jpg"
+                  src="/src/assets/images/Solar Panel 8.jpg"
                   alt="Third-Party PPA Solar Installation"
                   className="w-full h-86 object-cover object-center"
                 />

@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
-
+import Navbar from '../components/Navbar';
 import Talktous from '../components/TalkToUs';
 import bgimage from '../assets/images/sam.jpg';
 import bg1image from '../assets/images/sam.jpg';
@@ -28,6 +28,7 @@ import e2 from '../assets/images/Gallery/e2.jpeg';
 
 import f1 from '../assets/images/Gallery/f1.jpeg';
 import f2 from '../assets/images/Gallery/f2.jpeg';
+
 
 
 const galleryItems = [
@@ -310,6 +311,7 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <Navbar/>
       {/* Hero Section with Diagonal Half-Cross Image */}
       <section
         ref={heroRef}
