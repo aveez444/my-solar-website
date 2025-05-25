@@ -4,6 +4,7 @@ import AOS from 'aos';
 import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
 import Talktous from '../components/TalkToUs';
+import capexImage from '/src/assets/images/CAPEX Solar_1.jpg';
 
 const CAPEX = () => {
   useEffect(() => {
@@ -99,79 +100,72 @@ const CAPEX = () => {
 
   return (
     <div className="bg-white text-gray-800 overflow-hidden">
-
         < Navbar/>
+{/* Hero Section */}
+<section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+  <div className="absolute inset-0 z-0">
+    <img 
+      src={capexImage} 
+      alt="CAPEX Solar" 
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
+  </div>
 
-      {/* Hero Section */}
-      <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="w-full h-full object-cover"
-            poster="/src/assets/images/CAPEX Solar_1.jpg"
-          >
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-on-the-roof-of-a-house-39800-large.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
-        </div>
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div 
-            className="max-w-2xl"
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-          >
-            <div className="inline-block px-4 py-2 bg-green-500/20 rounded-full mb-6">
-              <span className="text-green-400 font-medium">Invest in Solar</span>
-            </div>
-            <motion.h1 
-              className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6"
-              variants={fadeInUp}
-              transition={{ delay: 0.2 }}
-            >
-              CAPEX <span className="text-green-400">Solar Model</span>
-            </motion.h1>
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-200 mb-8 max-w-lg"
-              variants={fadeInUp}
-              transition={{ delay: 0.4 }}
-            >
-              Own your solar power system for maximum savings
-            </motion.p>
-            <motion.div
-              variants={fadeInUp}
-              transition={{ delay: 0.6 }}
-            >
-              <a 
-                href="#contact" 
-                className="inline-flex items-center px-8 py-4 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                Start Your Solar Journey
-                <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </a>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        <motion.div 
-          className="absolute bottom-10 left-0 right-0 flex justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
+  <div className="container mx-auto px-6 relative z-10">
+    <motion.div 
+      className="max-w-2xl"
+      initial="hidden"
+      animate="visible"
+      variants={fadeInUp}
+    >
+      <div className="inline-block px-4 py-2 bg-green-500/20 rounded-full mb-6">
+        <span className="text-green-400 font-medium">Invest in Solar</span>
+      </div>
+      <motion.h1 
+        className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6"
+        variants={fadeInUp}
+        transition={{ delay: 0.2 }}
+      >
+        CAPEX <span className="text-green-400">Solar Model</span>
+      </motion.h1>
+      <motion.p 
+        className="text-xl md:text-2xl text-gray-200 mb-8 max-w-lg"
+        variants={fadeInUp}
+        transition={{ delay: 0.4 }}
+      >
+        Own your solar power system for maximum savings
+      </motion.p>
+      <motion.div
+        variants={fadeInUp}
+        transition={{ delay: 0.6 }}
+      >
+        <a 
+          href="#contact" 
+          className="inline-flex items-center px-8 py-4 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl"
         >
-          <div className="animate-bounce">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
-        </motion.div>
-      </section>
+          Start Your Solar Journey
+          <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </motion.div>
+    </motion.div>
+  </div>
+
+  <motion.div 
+    className="absolute bottom-10 left-0 right-0 flex justify-center"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 1 }}
+  >
+    <div className="animate-bounce">
+      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </motion.div>
+</section>
 
       {/* Definition Section */}
       <section className="relative py-24 bg-gradient-to-br from-white to-green-50 overflow-hidden">
