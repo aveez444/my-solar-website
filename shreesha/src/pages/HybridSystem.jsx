@@ -190,7 +190,6 @@ const HybridSystem = () => {
   className="w-full h-auto"
 />
 
-
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
          <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
                 <div className="text-3xl font-bold text-green-600">24/7</div>
