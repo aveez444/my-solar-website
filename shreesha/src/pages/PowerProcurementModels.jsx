@@ -399,7 +399,11 @@ const PowerProcurementModels = () => {
             </motion.a>
           </motion.div>
         </div>
+        
       </section>
+            <div className="pt-8 pb-8">
+                        <Talktous/>
+                      </div>
     </div>
   );
 };

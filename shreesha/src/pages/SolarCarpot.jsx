@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
+import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
+import Talktous from '../components/TalkToUs';
 
 const SolarCarport = () => {
   useEffect(() => {
@@ -70,6 +72,8 @@ const SolarCarport = () => {
 
   return (
     <div className="bg-white text-gray-800 overflow-hidden">
+
+      < Navbar/>
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -79,7 +83,7 @@ const SolarCarport = () => {
             muted 
             playsInline 
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1612821744237-7bc7b6283aa3?w=500"
+            poster="/src/assets/images/Solar carpot_1.jpg"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-in-a-parking-lot-39803-large.mp4" type="video/mp4" />
           </video>
@@ -151,7 +155,7 @@ const SolarCarport = () => {
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1612821744237-7bc7b6283aa3?w=500"
+                  src="/src/assets/images/Solar carpot_2.jpg"
                   alt="Solar Carport System"
                   className="w-full h-auto"
                 />
@@ -440,6 +444,9 @@ const SolarCarport = () => {
           </motion.div>
         </div>
       </section>
+            <div className="pt-8 pb-8">
+                        <Talktous/>
+                      </div>
     </div>
   );
 };

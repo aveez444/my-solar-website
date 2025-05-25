@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
+import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
 import SolarRoof from '../assets/images/solar-roof.jpg';
+
+import Talktous from '../components/TalkToUs';
 
 const OnSiteDistributedSolar = () => {
   // Initialize AOS
@@ -165,6 +168,8 @@ const OnSiteDistributedSolar = () => {
 
   return (
     <div className="bg-gray-50">
+
+      < Navbar/>
       {/* Hero Section */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -563,6 +568,10 @@ const OnSiteDistributedSolar = () => {
           </motion.div>
         </div>
       </section>
+      
+            <div className="pt-8 pb-8">
+                        <Talktous/>
+                      </div>
     </div>
   );
 };

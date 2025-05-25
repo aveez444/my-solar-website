@@ -18,7 +18,6 @@ import {
   FaLinkedin, 
   FaInstagram, 
   FaYoutube,
-  FaPinterest,
   FaWhatsapp,
   FaPhone, 
   FaEnvelope, 
@@ -40,6 +39,14 @@ const Footer = () => {
       }
     }
   };
+
+  const products = [
+  { name: "Solar Night Lamp", link: "/lamp" },
+  { name: "Solar Samai", link: "/samai" },
+  // { name: "Solar Diya", link: "/diya" },
+  // { name: "Solar Candle", link: "/candle" },
+  // { name: "Solar Outdoor Light", link: "/outdoor" },
+];
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -124,11 +131,10 @@ const Footer = () => {
             <div className="flex flex-wrap gap-3">
               {[
                 { icon: <FaFacebook size={18} />, link: "https://www.facebook.com/shreeshaenergy" },
-                { icon: <FaTwitter size={18} />, link: "https://twitter.com/shreeshaenergy" },
-                { icon: <FaLinkedin size={18} />, link: "https://www.linkedin.com/company/shreesha-energy" },
-                { icon: <FaInstagram size={18} />, link: "https://www.instagram.com/shreeshaenergy" },
-                { icon: <FaYoutube size={18} />, link: "https://www.youtube.com/shreeshaenergy" },
-                { icon: <FaPinterest size={18} />, link: "https://www.pinterest.com/shreeshaenergy" },
+                { icon: <FaTwitter size={18} />, link: "https://twitter.com/ShreeshaE" },
+                { icon: <FaLinkedin size={18} />, link: "https://www.linkedin.com/company/shreesha-energy-solutions/" },
+                { icon: <FaInstagram size={18} />, link: "https://www.instagram.com/shreesha_energy_solutions/" },
+                { icon: <FaYoutube size={18} />, link: "https://www.youtube.com/channel/UCEJCN-8Dy5izvZGoywmkuHw" },
                 { icon: <FaWhatsapp size={18} />, link: "https://wa.me/919822033636" }
               ].map((social, index) => (
                 <motion.a
@@ -177,9 +183,8 @@ const Footer = () => {
               {[
                 { name: "Home", link: "/" },
                 { name: "About Us", link: "/about" },
-                { name: "Products", link: "/products" },
-                { name: "Services", link: "/services" },
-                { name: "Projects", link: "/projects" },
+                { name: "Gallery", link: "/gallery" },
+                { name: "Cart", link: "/solar-ecommerce" },
                 { name: "Contact Us", link: "/contact" }
               ].map((item, index) => (
                 <motion.li 
@@ -208,53 +213,43 @@ const Footer = () => {
           </motion.div>
 
           {/* Products */}
-          <motion.div variants={itemVariants}>
-            <motion.div
-              className="mb-6"
-              whileHover="hover"
-              initial="normal"
+           <motion.div variants={itemVariants}>
+      <motion.div className="mb-6" whileHover="hover" initial="normal">
+        <motion.h3
+          className="text-lg font-semibold mb-2 inline-block"
+          variants={titleVariants}
+        >
+          Our Products
+        </motion.h3>
+        <motion.div className="h-0.5 bg-green-600" variants={lineVariants} />
+      </motion.div>
+
+      <ul className="space-y-3">
+        {products.map((product, index) => (
+          <motion.li
+            key={index}
+            custom={index * 0.1 + 0.4}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerItems}
+            whileHover={{
+              x: 8,
+              color: "#4ade80",
+            }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <a
+              href={product.link}
+              className="text-gray-300 hover:text-green-400 transition-colors flex items-center"
             >
-              <motion.h3 
-                className="text-lg font-semibold mb-2 inline-block"
-                variants={titleVariants}
-              >
-                Our Products
-              </motion.h3>
-              <motion.div 
-                className="h-0.5 bg-green-600"
-                variants={lineVariants}
-              />
-            </motion.div>
-            <ul className="space-y-3">
-              {[
-                "Solar Panels",
-                "Solar Inverters",
-                "Solar Batteries",
-                "Solar Water Pumps",
-                "Solar Street Lights",
-                "Solar Water Heaters"
-              ].map((product, index) => (
-                <motion.li 
-                  key={index}
-                  custom={index * 0.1 + 0.4}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={staggerItems}
-                  whileHover={{ 
-                    x: 8,
-                    color: "#4ade80"
-                  }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <a href="#" className="text-gray-300 hover:text-green-400 transition-colors flex items-center">
-                    <span className="w-2 h-2 bg-green-600 rounded-full mr-3 transition-all duration-300 group-hover:mr-4"></span>
-                    {product}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+              <span className="w-2 h-2 bg-green-600 rounded-full mr-3 transition-all duration-300 group-hover:mr-4"></span>
+              {product.name}
+            </a>
+          </motion.li>
+        ))}
+      </ul>
+    </motion.div>
 
           {/* Contact Info */}
           <motion.div variants={itemVariants}>
@@ -275,9 +270,10 @@ const Footer = () => {
               />
             </motion.div>
             <ul className="space-y-4">
+              
               <motion.li 
-                className="flex items-start"
-                custom={0.5}
+                className="flex items-center"
+                custom={0.6}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -285,10 +281,13 @@ const Footer = () => {
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <FaMapMarkerAlt className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                <span className="text-gray-300">
-                  Office No. 4, Shreeji Complex, Near S.T. Stand, Barshi Road, Latur - 413512, Maharashtra, India
-                </span>
+<FaMobileAlt className="text-green-500 mr-3" />
+                <div className="flex flex-col">
+                  <a href="tel:+919822033636" className="text-gray-300 hover:text-green-400 mb-1">
+                    +91 98220 33636
+                  </a>
+                  
+                </div>
               </motion.li>
               <motion.li 
                 className="flex items-center"
@@ -302,9 +301,7 @@ const Footer = () => {
               >
 <FaPhoneSquareAlt className="text-green-500 mr-3" />
                 <div className="flex flex-col">
-                  <a href="tel:+919822033636" className="text-gray-300 hover:text-green-400 mb-1">
-                    +91 98220 33636
-                  </a>
+                 
                   <a href="tel:+919890844477" className="text-gray-300 hover:text-green-400">
                     +91 98908 44477
                   </a>
@@ -322,12 +319,44 @@ const Footer = () => {
               >
                 <FaEnvelope className="text-green-500 mr-3" />
                 <a href="mailto:shreeshaenergy@gmail.com" className="text-gray-300 hover:text-green-400">
-                  shreeshaenergy@gmail.com
+                  shreesha.energy@gmail.com
                 </a>
               </motion.li>
+              <motion.li 
+                className="flex items-center"
+                custom={0.7}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerItems}
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <FaEnvelope className="text-green-500 mr-3" />
+                
+                <a href="mailto:adheer.joshi@shreeshaenergy.com" className="text-gray-300 hover:text-green-400">
+                  adheer.joshi@shreeshaenergy.com
+                </a>
+              </motion.li>
+              <motion.li 
+                className="flex items-start"
+                custom={0.5}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerItems}
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <FaMapMarkerAlt className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                <span className="text-gray-300">
+                  Shreesha Energy Solutions, Wanowrie, Pune - 411040, Maharashtra, India
+                </span>
+              </motion.li>
             </ul>
+            
             <motion.a
-              href="https://goo.gl/maps/examplelocation"
+              href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x3bc2c1cb623f70bf:0x16021a1ebd7c34a?source=g.page.m"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center text-green-400 hover:text-green-300 group"
@@ -366,9 +395,7 @@ const Footer = () => {
             transition={{ staggerChildren: 0.1, delayChildren: 0.9 }}
           >
             {[
-              { name: "Privacy Policy", link: "/privacy-policy" },
-              { name: "Terms of Service", link: "/terms" },
-              { name: "Sitemap", link: "/sitemap" }
+              { name: "Privacy Policy", link: "/privacy-policy" }
             ].map((item, index) => (
               <motion.a
                 key={index}

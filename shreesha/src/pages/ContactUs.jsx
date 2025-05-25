@@ -10,6 +10,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import emailjs from '@emailjs/browser';
+
+import Talktous from '../components/TalkToUs';
 
 
 const ContactUs = () => {
@@ -61,13 +64,25 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormStatus('Submitting...');
-    setTimeout(() => {
+    
+    // Send email using EmailJS
+    emailjs.send(
+      'service_e0owvxr', // EmailJS Service ID
+      'template_gwdd29g', // EmailJS Template ID
+      formData,
+      'Wh7iX-UXO1TeE9sgj' // EmailJS Public Key
+    )
+    .then((result) => {
+      console.log('Email successfully sent!', result.text);
       setFormStatus('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus(''), 3000);
-    }, 1000);
+      setFormData({ name: '', email: '', message: '' }); // Reset form
+      setTimeout(() => setFormStatus(''), 5000); // Clear status after 5 seconds
+    }, (error) => {
+      console.error('Failed to send email:', error.text);
+      setFormStatus('Failed to send message. Please try again.');
+    });
   };
+
 
   return (
     <div className="bg-gray-50">
@@ -306,94 +321,94 @@ const ContactUs = () => {
       </div>
 
       {/* Right side - Glass form */}
-      <motion.div
-        className="w-full"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+       <motion.div
+      className="w-full"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.form
+        onSubmit={handleSubmit}
+        className="bg-white/10 backdrop-blur-lg p-10 rounded-2xl shadow-2xl border border-white/20"
+        variants={itemVariants}
       >
-        <motion.form
-          onSubmit={handleSubmit}
-          className="bg-white/10 backdrop-blur-lg p-10 rounded-2xl shadow-2xl border border-white/20"
-          variants={itemVariants}
-        >
-          <div data-aos="fade-up" className="text-center mb-10">
-            <h2 className="text-4xl font-bold text-white mb-3">Send a Message</h2>
-            <div className="w-20 h-1 bg-green-400 mx-auto"></div>
-          </div>
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-bold text-white mb-3">Send a Message</h2>
+          <div className="w-20 h-1 bg-green-400 mx-auto"></div>
+        </div>
 
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="name" className="block text-white/90 font-medium mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
-                  placeholder="Your name"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-white/90 font-medium mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-            </div>
-
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="message" className="block text-white/90 font-medium mb-2">
-                Message
+              <label htmlFor="name" className="block text-white/90 font-medium mb-2">
+                Name
               </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
                 className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
-                rows="5"
-                placeholder="How can we help you?"
+                placeholder="Your name"
                 required
-              ></textarea>
+              />
             </div>
-
-            <motion.button
-              type="submit"
-              className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all shadow-lg"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Send Message
-            </motion.button>
+            <div>
+              <label htmlFor="email" className="block text-white/90 font-medium mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
           </div>
 
-          {formStatus && (
-            <motion.p
-              className="mt-6 text-center text-green-300 font-medium"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              {formStatus}
-            </motion.p>
-          )}
-        </motion.form>
-      </motion.div>
+          <div>
+            <label htmlFor="message" className="block text-white/90 font-medium mb-2">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              className="w-full p-4 bg-white/20 text-white placeholder-white/50 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
+              rows="5"
+              placeholder="How can we help you?"
+              required
+            ></textarea>
+          </div>
+
+          <motion.button
+            type="submit"
+            className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all shadow-lg"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Send Message
+          </motion.button>
+        </div>
+
+        {formStatus && (
+          <motion.p
+            className="mt-6 text-center text-green-300 font-medium"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {formStatus}
+          </motion.p>
+        )}
+      </motion.form>
+    </motion.div>
     </div>
   </div>
 </section>
@@ -430,7 +445,7 @@ const ContactUs = () => {
             </div>
             <div>
               <h4 className="font-bold text-gray-800">Our Address</h4>
-              <p className="text-gray-600">Wanowrie, Pune, Maharashtra 411040, India</p>
+              <p className="text-gray-600">Shreesha Energy Solutions, Wanowrie, Pune - 411040, Maharashtra, India</p>
             </div>
           </motion.div>
 
@@ -475,23 +490,30 @@ const ContactUs = () => {
             </motion.div>
             <div>
               <h4 className="font-bold text-gray-800">Contact Us</h4>
-              <p className="text-gray-600">+91 XXXX XXX XXX</p>
-              <p className="text-gray-600">info@shreeshaenergy.com</p>
+              <p className="text-gray-600">+91 98220 33636 <br />+91 98908 44477</p>
+              <p className="text-gray-600">shreesha.energy@gmail.com <br />adheer.joshi@shreeshaenergy.com</p>
             </div>
           </motion.div>
         </div>
 
-        <motion.button
-          className="w-full mt-6 px-6 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition-all flex items-center justify-center"
-          whileHover={{ 
-            scale: 1.03,
-            boxShadow: "0 10px 20px -5px rgba(74, 222, 128, 0.5)"
-          }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <i className="fas fa-directions mr-2"></i>
-          Get Directions
-        </motion.button>
+        <a 
+  href="https://www.google.com/maps/dir//Shreesha+Energy+Solutions,+Near+Jagtap+Chowk,+Wanowrie,+Pune,+Maharashtra+411040/@18.4922772,73.8999351,17z/data=!4m17!1m7!3m6!1s0x3bc2c1cb623f70bf:0x16021a1ebd7c34a!2sShreesha+Energy+Solutions!8m2!3d18.4922772!4d73.8999351!16s%2Fg%2F11n05q25w2!4m8!1m0!1m5!1m1!1s0x3bc2c1cb623f70bf:0x16021a1ebd7c34a!2m2!1d73.8999351!2d18.4922772!3e2?entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoASAFQAw%3D%3D" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <motion.button
+    className="w-full mt-6 px-6 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition-all flex items-center justify-center"
+    whileHover={{ 
+      scale: 1.03,
+      boxShadow: "0 10px 20px -5px rgba(74, 222, 128, 0.5)"
+    }}
+    whileTap={{ scale: 0.98 }}
+  > 
+    <i className="fas fa-directions mr-2"></i>
+    Get Directions
+  </motion.button>
+</a>
+
       </motion.div>
 
       {/* Right side - Enhanced Map Container */}
@@ -561,16 +583,20 @@ const ContactUs = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link
-                to="/contact"
+
+              <a
+                href="#contact-form"
                 className="inline-block px-10 py-4 bg-white text-black rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors"
               >
                 Request a Quote
-              </Link>
+              </a>
             </motion.div>
           </motion.div>
         </div>
       </section>
+      <div className="pt-8 pb-8">
+                  <Talktous/>
+                </div>
     </div>
   );
 };

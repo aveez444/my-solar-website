@@ -1,62 +1,117 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
+
+import Talktous from '../components/TalkToUs';
 import bgimage from '../assets/images/sam.jpg';
 import bg1image from '../assets/images/sam.jpg';
 
-import stick from '../assets/images/stick.png';
-import cctv from '../assets/images/cctv.png';
-import repellent from '../assets/images/repellent.png';
-import charger from '../assets/images/charger.png';
-import stills from '../assets/images/stills.png';
-import fridge from '../assets/images/fridge.png';
+import a1 from '../assets/images/Gallery/a1.jpeg';
+import a2 from '../assets/images/Gallery/a2.jpeg';
+import a3 from '../assets/images/Gallery/a3.jpeg';
+import a4 from '../assets/images/Gallery/a4.jpeg';
+
+import b1 from '../assets/images/Gallery/b1.jpeg';
+import b2 from '../assets/images/Gallery/b2.jpeg';
+
+import c1 from '../assets/images/Gallery/c1.jpeg';
+import c2 from '../assets/images/Gallery/c2.jpeg';
+import c3 from '../assets/images/Gallery/c3.jpeg';
+
+import d1 from '../assets/images/Gallery/d1.jpeg';
+import d2 from '../assets/images/Gallery/d2.jpeg';
+import d3 from '../assets/images/Gallery/d3.jpeg';
+import d4 from '../assets/images/Gallery/d4.jpeg';
+
+import e1 from '../assets/images/Gallery/e1.jpeg';
+import e2 from '../assets/images/Gallery/e2.jpeg';
+
+import f1 from '../assets/images/Gallery/f1.jpeg';
+import f2 from '../assets/images/Gallery/f2.jpeg';
+
 
 const galleryItems = [
   {
-    title: "Solar Mobile Charger",
-        desc: `
-          Solar Mobile Charger is an array of unbreakable solar panels, foldable like a wallet, lightweight, and easy to carry. It can be used directly for charging mobile devices or power banks by placing it under sunlight.
-        `,
-        img: charger
-      },
-      {
-        title: "Solar CCTV",
-        desc: `
-          The Solar CCTV system provides reliable, uninterrupted surveillance powered by renewable energy. Equipped with high-efficiency solar panels, it ensures 24/7 monitoring without the need for electrical wiring. With smart night vision, weatherproof durability, and remote access, this security solution keeps your property safe while reducing energy costs.
-        `,
-        img: cctv
-      
+    title: "Residential - 5kW On-Grid Terrace Installation",
+    date: "22 Apr 2025",
+    desc: `
+      5kW on-grid solar system installed on residential terrace in Pune.
+      Uses JA Solar 540W panels with Microtek inverter for optimal efficiency.
+      System generates approximately 600 units monthly, covering 90% of household needs.
+      Annual savings of ₹45,000 with simple payback period of 5 years.
+      Net metering allows exporting excess power to grid.
+    `,
+    images: [  
+      a1,a2,a3,a4
+    ]
   },
   {
-    title: "Solar Smart Stick",
+    title: "Residential - 3kW Off-Grid Terrace System",
     desc: `
-      High-risk terrains like forests, mountain ranges, and snow-clad areas pose threats from predators and lack mainstream communication. Solar Smart Stick is designed to support those visiting such areas by enhancing safety, providing SOS functionality, and offering basic medical aid for comfort and security.
+      3kW off-grid solar installation for  residence with battery backup.
+      Includes Luminous 150Ah batteries providing 8 hours backup.
+      Uses Vikram Solar 330W panels with Luminous inverter-charger.
+      Completely eliminates power outages, ideal for areas with frequent cuts.
+      System designed for easy expansion if energy needs increase.
     `,
-    img: stick
+    images: [
+      b1,b2
+    ]
   },
   {
-    title: "Solar-based Animal Repellent",
+    title: "Business - 20kW On-Grid Commercial Installation",
     desc: `
-      It is a solar-based animal repellent that detects the movement of animals from a distance and repels them with the help of alarm and light signals—without harming animals. As a completely solar-powered device, it requires no electrification for operation.
+      20kW on-grid solar plant for Pune-based small business.
+      Features Waaree 450W bifacial panels with Fronius inverter.
+      Covers 70% of daytime energy needs, reducing operational costs.
+      Annual savings of ₹1.8 lakhs with 5-year ROI.
+      Robust mounting structure designed for Pune's monsoon conditions.
     `,
-    img: repellent
+    images: [
+      c1,c2,c3
+    ]
   },
   {
-    title: "Solar Stills",
+    title: "Residential - 10kW Rooftop Solar Plant",
+    date: "20 Feb 2025",
     desc: `
-      A solar still distills water with substances dissolved in it by using the heat of the Sun to evaporate water so that it may be cooled and collected, thereby purifying it. They are used in areas where drinking water is unavailable, allowing clean water to be obtained from dirty water or even plants by exposing them to sunlight. The process replicates the way nature makes rain, leaving behind impurities such as salts, heavy metals, and microbiological organisms to produce pure, potable water.
+      10kW premium rooftop installation for Pune villa.
+      Uses Canadian Solar HiDM 420W panels with Huawei inverter.
+      Smart monitoring system provides real-time performance data.
+      Annual generation of 14,000 units with 25-year performance warranty.
+      Elegant black-on-black panels blend with roof aesthetics.
     `,
-    img: stills
+    images: [
+      d1,d2,d3,d4
+    ]
   },
   {
-    title: "Solar-Powered Refrigerator",
+    title: "Residential - Solar Garden Lighting",
     desc: `
-      A solar-powered refrigerator is a refrigerator that runs on energy directly provided by the sun. Solar-powered refrigerators can keep perishable goods such as meat and dairy cool in hot climates and are used to maintain vaccines at appropriate temperatures to prevent spoilage. They are typically used in off-grid locations where utility-provided AC power is unavailable. Traditionally, solar-powered refrigerators and vaccine coolers use a combination of solar panels and lead batteries to store energy for cloudy days and nighttime, ensuring their contents remain cool.
+      Complete solar lighting solution for Pune residence garden.
+      Includes 12 pathway lights (10W each) and 8 decorative flowerpot lights.
+      All fixtures with automatic dusk-to-dawn operation.
+      Eliminates wiring needs and reduces outdoor electricity bill to zero.
+      Weatherproof design suitable for Pune's climate.
     `,
-    img: fridge
+    images: [
+      e1,e2
+    ]
+  },
+  {
+    title: "Solar Street Light Installation",
+    desc: `
+      Solar street lighting project in Pune neighborhood.
+      15 units installed with 30W panels and 20Ah batteries each.
+      Provides 12 hours illumination with motion sensing capability.
+      Pole-mounted design withstands winds up to 120kmph.
+      Maintenance-free solution with 5-year warranty.
+    `,
+    images: [
+      f1,f2
+    ]
   }
 ];
-
 // Blog posts data with full descriptions
 const blogPosts = [
   {
@@ -105,6 +160,24 @@ const SolarEx = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [energySaved, setEnergySaved] = useState(0);
   const [expandedPosts, setExpandedPosts] = useState({});
+  const [currentImageIndices, setCurrentImageIndices] = useState(
+    galleryItems.reduce((acc, _, index) => ({ ...acc, [index]: 0 }), {})
+  );
+
+  // Auto-rotate images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndices(prevIndices => {
+        const newIndices = {};
+        galleryItems.forEach((item, index) => {
+          newIndices[index] = (prevIndices[index] + 1) % item.images.length;
+        });
+        return newIndices;
+      });
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
 useEffect(() => {
     const observer = new IntersectionObserver(
@@ -446,7 +519,21 @@ useEffect(() => {
         </div>
       </section>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24">
+
+           <div className="min-h-screen bg-black text-white">
+      {/* ... other sections ... */}
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24">
+        <motion.h2
+            className="text-3xl font-bold text-center text-green-400 mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+          Our Projects
+        </motion.h2>
+
         {galleryItems.map((item, index) => (
           <motion.div
             key={index}
@@ -458,13 +545,41 @@ useEffect(() => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="w-full lg:w-1/2">
-              <img
-                src={item.img}
-                alt={item.title}
-                className="w-full aspect-[3/2] object-cover shadow-lg"
-              />
+            <div className="w-full lg:w-1/2 relative group">
+              {/* Image Carousel */}
+              <div className="relative w-full aspect-[3/2] overflow-hidden shadow-lg">
+                {item.images.map((image, imgIndex) => (
+                  <img
+                    key={imgIndex}
+                    src={image}
+                    alt={`${item.title} - ${imgIndex + 1}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                      imgIndex === currentImageIndices[index] ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                ))}
+              </div>
+              
+              {/* Navigation Dots */}
+              <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                {item.images.map((_, dotIndex) => (
+                  <button
+                    key={dotIndex}
+                    onClick={() => setCurrentImageIndices(prev => ({
+                      ...prev,
+                      [index]: dotIndex
+                    }))}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      dotIndex === currentImageIndices[index] 
+                        ? 'bg-white' 
+                        : 'bg-white/50 hover:bg-white/80'
+                    }`}
+                    aria-label={`Go to slide ${dotIndex + 1}`}
+                  />
+                ))}
+              </div>
             </div>
+
             <div className="w-full lg:w-1/2 text-center lg:text-left">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 {item.title}
@@ -474,7 +589,10 @@ useEffect(() => {
           </motion.div>
         ))}
       </div>
-
+    </div>
+<div className="pt-8 pb-8">
+            <Talktous/>
+          </div>
 
 
     </div>

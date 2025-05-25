@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef} from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import Navbar from '../components/Navbar';
@@ -11,10 +11,34 @@ import Solar5 from '../assets/images/SolarPanel3.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fullStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
+import emailjs from '@emailjs/browser';
 
 
 
 const LandingPage = () => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_e0owvxr",     // Replace with your EmailJS Service ID
+      "template_gwdd29g",// Replace with your EmailJS template ID
+      form.current,
+      "Wh7iX-UXO1TeE9sgj"  // Replace with your EmailJS public key
+    )
+      
+    .then((result) => {
+      console.log(result.text);
+      alert('Message sent successfully!');
+      form.current.reset();
+    }, (error) => {
+      console.log(error.text);
+      alert('Failed to send message. Please try again.');
+    });
+  };
+
   // Initialize AOS
   useEffect(() => {
     AOS.init({
@@ -89,6 +113,46 @@ const LandingPage = () => {
       rating: 5.0,
       quote: 'Amazing Products.',
     },
+      {
+    id: 4,
+    name: 'Rajesh Mehta',
+    position: 'Factory Owner, Surat',
+    image: 'https://randomuser.me/api/portraits/men/7.jpg',
+    rating: 4.5,
+    quote: 'Shreesha Energy installed a 50kW system at our textile unit. We\'ve seen 40% reduction in electricity bills within first 3 months. Their after-sales support is excellent.'
+  },
+  {
+    id: 5,
+    name: 'Priya Patel',
+    position: 'Homeowner, Bangalore',
+    image: 'https://randomuser.me/api/portraits/women/47.jpg',
+    rating: 5,
+    quote: 'The team was professional and completed installation ahead of schedule. Our 5kW home system now covers 90% of our electricity needs. Highly recommend!'
+  },
+  {
+    id: 6,
+    name: 'Vikram Singh',
+    position: 'Hotel Manager, Goa',
+    image: 'https://randomuser.me/api/portraits/men/67.jpg',
+    rating: 4.7,
+    quote: 'Our 100kW commercial solar plant has been running flawlessly for 2 years. Shreesha\'s maintenance team is always prompt for quarterly checkups.'
+  },
+  {
+    id: 7,
+    name: 'Ananya Reddy',
+    position: 'School Principal, Hyderabad',
+    image: 'https://randomuser.me/api/portraits/women/15.jpg',
+    rating: 4.9,
+    quote: 'We installed solar panels for our school campus. The children love learning about renewable energy, and we\'ve saved ₹1.2 lakh annually on electricity.'
+  },
+  {
+    id: 8,
+    name: 'Sanjay Gupta',
+    position: 'Agricultural Cooperative Head, Punjab',
+    image: 'https://randomuser.me/api/portraits/men/69.jpg',
+    rating: 5,
+    quote: 'The solar pumps have transformed our farming operations. Reliable daytime power has increased our crop yield by 15%. Thank you Shreesha team!'
+  },
   ];
 
   useEffect(() => {
@@ -211,10 +275,13 @@ const LandingPage = () => {
 
   return (
 
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 min-h-screen overflow-y-auto">
       {/* Hero Section - Modern & Dynamic */}
-      <div id="hero-section" className="relative min-h-screen h-[calc(100vh-4rem)] bg-black">
-  <Navbar />
+  <div 
+    id="hero-section"
+    className="relative min-h-screen h-[calc(100vh-4rem)] bg-black">
+      <Navbar/>
+  {/* Multi-image background with responsive grid layout */}
   <div className="relative h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 z-0">
     {/* Image 1 */}
     <motion.div 
@@ -302,16 +369,16 @@ const LandingPage = () => {
   />
 </motion.div>
 
-  {/* Centered Content */}
-  <div className="absolute inset-0 flex items-center justify-center z-10 px-6 text-center">
+  {/* Centered Content - Improved for mobile */}
+  <div className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 text-center">
     <motion.div
-      className="max-w-3xl"
+      className="max-w-3xl w-full px-4"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
       <motion.span 
-        className="inline-block px-4 py-2 bg-green-500/20 text-green-400 rounded-full font-medium mb-4"
+        className="inline-block px-4 py-2 bg-green-500/20 text-green-400 rounded-full font-medium mb-3 sm:mb-4 text-sm sm:text-base"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
@@ -320,7 +387,7 @@ const LandingPage = () => {
       </motion.span>
 
       <motion.h1 
-        className="text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-4 sm:mb-6 leading-tight"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
@@ -336,7 +403,7 @@ const LandingPage = () => {
       </motion.h1>
 
       <motion.p 
-        className="text-xl text-gray-300 mb-8"
+        className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8 }}
@@ -346,30 +413,30 @@ const LandingPage = () => {
       </motion.p>
 
       <motion.div 
-        className="flex flex-wrap justify-center gap-4"
+        className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.8 }}
       >
         <motion.a
           href="#contact"
-          className="px-8 py-4 bg-green-500 text-black font-semibold rounded-full hover:bg-green-600 transition-colors shadow-lg hover:shadow-green-500/30 flex items-center"
+          className="px-6 py-3 sm:px-8 sm:py-4 bg-green-500 text-black font-semibold rounded-full hover:bg-green-600 transition-colors shadow-lg hover:shadow-green-500/30 flex items-center justify-center"
           whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(74, 222, 128, 0.5)" }}
           whileTap={{ scale: 0.95 }}
         >
           <span>Get Free Consultation</span>
-          <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
           </svg>
         </motion.a>
         <motion.a
           href="#services"
-          className="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-colors flex items-center"
+          className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
           whileHover={{ scale: 1.05, borderColor: "rgba(255, 255, 255, 0.5)" }}
           whileTap={{ scale: 0.95 }}
         >
           <span>Explore Solutions</span>
-          <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
           </svg>
         </motion.a>
@@ -377,34 +444,34 @@ const LandingPage = () => {
     </motion.div>
   </div>
 
-  {/* Animated bottom progress bar */}
+  {/* Animated bottom progress bar*/}
   <motion.div
-    className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-green-400 via-green-500 to-green-600 z-20"
+    className="relative bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-green-400 via-green-500 to-green-600 z-20"
     initial={{ scaleX: 0, originX: 0 }}
     animate={{ scaleX: 1 }}
     transition={{ duration: 2.5, ease: "easeInOut" }}
-  />
+  /> 
 
-  {/* Hero statistics */}
-  <div className="absolute bottom-0 left-0 right-0 py-8 bg-gradient-to-t from-black/80 to-transparent z-15">
-    <div className="container mx-auto px-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+  {/* Hero statistics - Improved for mobile */}
+  <div className="absolute bottom-0 left-0 right-0 py-4 sm:py-6 md:py-8 bg-gradient-to-t from-black/80 to-transparent z-15">
+    <div className="container mx-auto px-4 sm:px-6">
+      <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         {[
-          { value: count.projects, label: 'Projects Completed', icon: '🏆' },
-          { value: count.clients, label: 'Satisfied Clients', icon: '🤝' },
-          { value: count.savings, label: '% Average Cost Savings', icon: '💰' },
+          { value: count.projects, label: 'Projects', icon: '🏆' },
+          { value: count.clients, label: 'Clients', icon: '🤝' },
+          { value: count.savings, label: '% Savings', icon: '💰' },
         ].map((stat, index) => (
           <motion.div
             key={index}
-            className="flex items-center justify-center"
+            className="flex flex-col items-center justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 + (index * 0.2) }}
           >
-            <span className="text-3xl mr-3">{stat.icon}</span>
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">{stat.value}+</div>
-              <div className="text-sm text-gray-300">{stat.label}</div>
+            <span className="text-2xl sm:text-3xl mb-1">{stat.icon}</span>
+            <div className="text-center">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-0 sm:mb-1">{stat.value}+</div>
+              <div className="text-xs sm:text-sm text-gray-300">{stat.label}</div>
             </div>
           </motion.div>
         ))}
@@ -1143,6 +1210,7 @@ const LandingPage = () => {
       </span>
       <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
       <div className="w-24 h-1.5 bg-green-500 mx-auto"></div>
+      
     </motion.div>
 
     <motion.div
@@ -1151,8 +1219,7 @@ const LandingPage = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-    >
-      <div className="relative bg-white rounded-xl shadow-xl p-8 md:p-12 overflow-hidden">
+    ><div className="relative bg-white rounded-xl shadow-xl p-8 md:p-12 overflow-hidden min-h-[300px]">
         {/* Show only the active testimonial */}
         <div className="transition-opacity duration-500">
           <div className="flex flex-col md:flex-row items-center">
@@ -1372,6 +1439,7 @@ const LandingPage = () => {
                     height: openFaq === faq.id ? 'auto' : 0
                   }}
                   transition={{ duration: 0.3 }}
+                  layout
                 >
                   <p className="text-gray-600">{faq.answer}</p>
                 </motion.div>
@@ -1460,7 +1528,7 @@ const LandingPage = () => {
       ))}
     </motion.div>
 
-    <motion.div
+       <motion.div
       className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-10 max-w-4xl mx-auto shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -1468,11 +1536,15 @@ const LandingPage = () => {
       viewport={{ once: true }}
     >
       <h3 className="text-3xl font-bold mb-8 text-center">Schedule a Free Consultation</h3>
-      <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <form 
+        ref={form} 
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        onSubmit={sendEmail}
+      >
         {[
-          { label: "Full Name", id: "name", type: "text", placeholder: "Your name" },
-          { label: "Email Address", id: "email", type: "email", placeholder: "your.email@example.com" },
-          { label: "Phone Number", id: "phone", type: "tel", placeholder: "+91 98765 43210" },
+          { label: "Full Name", id: "name", name: "user_name", type: "text", placeholder: "Your name" },
+          { label: "Email Address", id: "email", name: "user_email", type: "email", placeholder: "your.email@example.com" },
+          { label: "Phone Number", id: "phone", name: "user_phone", type: "tel", placeholder: "+91 98765 43210" },
         ].map((field) => (
           <div key={field.id}>
             <label htmlFor={field.id} className="block text-sm font-medium mb-2">
@@ -1481,8 +1553,10 @@ const LandingPage = () => {
             <input
               type={field.type}
               id={field.id}
+              name={field.name}
               className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
               placeholder={field.placeholder}
+              required
             />
           </div>
         ))}
@@ -1491,13 +1565,14 @@ const LandingPage = () => {
           <label htmlFor="service" className="block text-sm font-medium mb-2">Service Interest</label>
           <select
             id="service"
+            name="service_interest"
             className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+            required
           >
-            <option value="">Select a service</option>
-            <option value="residential">Residential Solar</option>
-            <option value="commercial">Commercial Solar</option>
-            <option value="industrial">Industrial Solar</option>
-            <option value="other">Other</option>
+            <option value="residential" className="text-gray-900">Residential Solar</option>
+            <option value="commercial" className="text-gray-900">Commercial Solar</option>
+            <option value="industrial" className="text-gray-900">Industrial Solar</option>
+            <option value="other" className="text-gray-900">Other</option>
           </select>
         </div>
 
@@ -1505,9 +1580,11 @@ const LandingPage = () => {
           <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
           <textarea
             id="message"
+            name="message"
             rows="4"
             className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
             placeholder="Tell us about your project..."
+            required
           ></textarea>
         </div>
 
@@ -1523,6 +1600,7 @@ const LandingPage = () => {
         </div>
       </form>
     </motion.div>
+  
   </div>
 </section>
 

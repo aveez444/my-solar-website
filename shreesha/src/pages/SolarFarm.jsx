@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
+import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
-import SolarFarmHero from '../assets/solar4.jpg';
+import SolarFarmHero from '../assets/images/Off Site Solar Farm_1.jpg';
 import SolarFarm1 from '../assets/solar1.jpg';
 import SolarFarm2 from '../assets/solar2.jpg';
 import SolarFarm3 from '../assets/solar3.jpg';
+import Talktous from '../components/TalkToUs';
 
 const SolarFarm = () => {
   // Initialize AOS
@@ -154,6 +156,8 @@ const SolarFarm = () => {
 
   return (
     <div className="bg-gray-50">
+
+      < Navbar/>
       {/* Hero Section */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -255,9 +259,9 @@ const SolarFarm = () => {
           className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
         >
           <img
-            src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1504&q=80"
+            src="/src/assets/images/Off Site Solar Farm_3.jpg"
             alt="Solar Farm Installation"
-            className="w-full h-80 object-cover object-center"
+            className="w-full h-90 object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
           <div className="absolute bottom-4 left-4 text-2xl font-bold text-white">
@@ -695,6 +699,9 @@ const SolarFarm = () => {
           </motion.div>
         </div>
       </section>
+            <div className="pt-8 pb-8">
+                        <Talktous/>
+                      </div>
     </div>
   );
 };

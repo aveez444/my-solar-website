@@ -1,83 +1,165 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiShoppingCart, FiCheck, FiArrowRight, FiX } from 'react-icons/fi';
+import emailjs from '@emailjs/browser';
 
 const SolarEcommerce = () => {
   const [cart, setCart] = useState([]);
-  const [showScanner, setShowScanner] = useState(false);
-  const [checkoutStep, setCheckoutStep] = useState('cart'); // 'cart', 'address', 'payment', 'confirmation'
-  const [currentImages, setCurrentImages] = useState({}); // Track current image index for each product
-  const [formData, setFormData] = useState({ fullName: '', address: '', city: '', zip: '' });
+  const [checkoutStep, setCheckoutStep] = useState('cart');
+  const [currentImages, setCurrentImages] = useState({});
+  const [formData, setFormData] = useState({ 
+    fullName: '', 
+    address: '', 
+    city: '', 
+    zip: '',
+    contact: '',
+  });
   const [errors, setErrors] = useState({});
+  const [isSending, setIsSending] = useState(false);
 
   const solarProducts = [
-    {
-      id: 1,
-      name: 'Premium Solar Panel 300W',
-      price: 299.99,
-      description: 'High efficiency monocrystalline panel',
-      images: [
-        'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500',
-        'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500',
-        'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=500'
-      ]
-    },
-    {
-      id: 2,
-      name: 'Solar Panel Kit 500W',
-      price: 499.99,
-      description: 'Complete home solar kit with inverter',
-      images: [
-        'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500',
-        'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500',
-        'https://images.unsplash.com/photo-1473341304170-971dccb5acdf?w=500'
-      ]
-    },
-    {
-      id: 3,
-      name: 'Portable Solar Charger',
-      price: 129.99,
-      description: 'Compact solar charger for outdoor use',
-      images: [
-        'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=500',
-        'https://images.unsplash.com/photo-1503551723145-6c0a9e9092e3?w=500',
-        'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500'
-      ]
-    },
-    {
-      id: 4,
-      name: 'Solar Battery Pack 10kWh',
-      price: 799.99,
-      description: 'High-capacity battery for solar storage',
-      images: [
-        'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=500',
-        'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500',
-        'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500'
-      ]
-    },
-    {
-      id: 5,
-      name: 'Solar Roof Tiles',
-      price: 1499.99,
-      description: 'Aesthetic solar tiles for modern homes',
-      images: [
-        'https://images.unsplash.com/photo-1503551723145-6c0a9e9092e3?w=500',
-        'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500',
-        'https://images.unsplash.com/photo-1473341304170-971dccb5acdf?w=500'
-      ]
-    },
-    {
-      id: 6,
-      name: 'Solar Water Heater',
-      price: 399.99,
-      description: 'Eco-friendly water heating solution',
-      images: [
-        'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500',
-        'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500',
-        'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=500'
-      ]
-    }
-  ];
+  // Solar Lamps
+  {
+    id: 1,
+    name: 'Small Night Lamp',
+    price: 499,
+    description: '3W solar-powered LED lamp with 6-hour backup, automatic dusk-to-dawn operation',
+    images: [
+      'https://m.media-amazon.com/images/I/71h6XJYV3BL._AC_UF1000,1000_QL80_.jpg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/5/306705519/CI/IT/GT/19182200/solar-night-lamp.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/xif0q/solar-lamp/2/5/z/small-solar-lights-for-home-outdoor-garden-lamps-waterproof-solar-original-imagg9j4hzvfh9gz.jpeg'
+    ]
+  },
+  {
+    id: 2,
+    name: 'Big Night Lamp',
+    price: 899,
+    description: '5W high-lumen solar lamp with 12-hour backup, IP65 waterproof for outdoor use',
+    images: [
+      'https://rukminim2.flixcart.com/image/850/1000/xif0q/solar-lamp/e/z/6/big-1-solar-lights-for-home-outdoor-garden-lamps-waterproof-solar-original-imagg9j4mz6y9jhy.jpeg',
+      'https://m.media-amazon.com/images/I/61L+2J5QnVL._AC_UF1000,1000_QL80_.jpg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/5/306705519/CI/IT/GT/19182200/solar-night-lamp.jpg'
+    ]
+  },
+
+  // Solar Samai
+  {
+    id: 3,
+    name: 'Solar Silver Devdas Samai',
+    price: 1299,
+    description: 'Traditional Devdas-style samai with 20 LED lights, 8-hour runtime',
+    images: [
+      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kwv0djk0/solar-lamp/8/n/z/devdas-samai-solar-silver-samai-solar-light-for-home-temple-original-imag9t7fhzhtzfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/VT/VZ/XT/19182200/solar-dev-das-samai.jpg'
+    ]
+  },
+  {
+    id: 4,
+    name: 'Solar Silver Panchpakali Samai',
+    price: 1499,
+    description: 'Five-flame design with copper finish, perfect for puja rooms',
+    images: [
+      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/4/z/y/panchpakali-samai-solar-silver-samai-solar-light-for-home-temple-original-imagc3h2mzshyfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-panchpakali-samai.jpg'
+    ]
+  },
+  {
+    id: 5,
+    name: 'Solar Brass Samai',
+    price: 1799,
+    description: 'Premium brass construction with antique finish, 30 LEDs',
+    images: [
+      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/brass-samai-solar-silver-samai-solar-light-for-home-temple-original-imagc3h2jzshyfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-brass-samai.jpg'
+    ]
+  },
+
+  // Solar Diya
+  {
+    id: 6,
+    name: 'Solar Silver Ashtavinayak Ganpati Diya',
+    price: 799,
+    description: 'Eight-faced Ganpati design with warm white LEDs',
+    images: [
+      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/ashtavinayak-ganpati-diya-solar-silver-diya-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-ganpati-diya.jpg'
+    ]
+  },
+  {
+    id: 7,
+    name: 'Solar Silver Laxmi Diya',
+    price: 899,
+    description: 'Goddess Laxmi motif with golden LEDs, automatic operation',
+    images: [
+      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/laxmi-diya-solar-silver-diya-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-laxmi-diya.jpg'
+    ]
+  },
+  {
+    id: 8,
+    name: 'Solar Silver Niranjan Diya',
+    price: 699,
+    description: 'Classic diya design with flickering LED flame effect',
+    images: [
+      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/niranjan-diya-solar-silver-diya-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-niranjan-diya.jpg'
+    ]
+  },
+
+  // Solar Candles
+  {
+    id: 9,
+    name: 'Solar Candle Sticks',
+    price: 599,
+    description: 'Set of 2 candle sticks with realistic flickering effect',
+    images: [
+      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/candle-sticks-solar-candles-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-candle-sticks.jpg'
+    ]
+  },
+  {
+    id: 10,
+    name: 'Solar Cup Candle',
+    price: 399,
+    description: 'Decorative cup-shaped solar candle with 10-hour runtime',
+    images: [
+      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/cup-candle-solar-candles-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-cup-candle.jpg'
+    ]
+  },
+
+  // Solar Outdoor Lights
+  {
+    id: 11,
+    name: 'Solar Wall Light',
+    price: 799,
+    description: '20W motion-sensor wall light with 120° detection angle',
+    images: [
+      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/wall-light-solar-outdoor-light-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-wall-light.jpg'
+    ]
+  },
+  {
+    id: 12,
+    name: 'Solar Gate Light',
+    price: 999,
+    description: 'Weatherproof gate light with dual-brightness settings (15W/30W)',
+    images: [
+      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
+      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/gate-light-solar-outdoor-light-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
+      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-gate-light.jpg'
+    ]
+  }
+];
 
   const addToCart = (product) => {
     setCart([...cart, product]);
@@ -103,15 +185,66 @@ const SolarEcommerce = () => {
     });
   };
 
+
+const sendOrderEmail = (orderItems) => {
+  setIsSending(true);
+  
+  // Format order items as plain text
+  const orderItemsText = orderItems.map(item => 
+    `- ${item.name} (Qty: 1) - ₹${getDiscountedPrice(item.price)}`
+  ).join('\n');
+
+  const emailParams = {
+    customer_name: formData.fullName,
+    customer_phone: formData.contact,
+    shipping_address: `${formData.address}, ${formData.city}, ${formData.zip}`,
+    order_items: orderItemsText,  // Now sending as plain text
+    order_total: `₹${totalPrice.toFixed(2)}`,
+    order_date: new Date().toLocaleDateString('en-IN')
+  };
+
+  console.log("Sending email with params:", emailParams); // Debug log
+
+  emailjs.send(
+    "service_e0owvxr",
+    "template_luya5li",
+    emailParams,
+    "Wh7iX-UXO1TeE9sgj"
+  )
+  .then(() => {
+    console.log("Email sent successfully!");
+    setCheckoutStep('confirmation');
+  })
+  .catch((err) => {
+    console.error("Email failed to send:", err);
+    alert("Order placed! Email confirmation failed. Please note your order details.");
+    setCheckoutStep('confirmation');
+  })
+  .finally(() => setIsSending(false));
+};
+
+  const completeOrder = () => {
+  if (validateForm()) {
+    sendOrderEmail(cart); // Pass the cart array directly
+  }
+};
+
   const validateForm = () => {
     const newErrors = {};
     if (!formData.fullName) newErrors.fullName = 'Full Name is required';
     if (!formData.address) newErrors.address = 'Address is required';
     if (!formData.city) newErrors.city = 'City is required';
     if (!formData.zip) newErrors.zip = 'ZIP Code is required';
+    if (!formData.contact) newErrors.contact = 'Contact Number is required';
+    
+    // Validate contact number
+    if (formData.contact && !/^\d{10}$/.test(formData.contact)) {
+      newErrors.contact = 'Enter valid 10-digit number';
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -125,41 +258,10 @@ const SolarEcommerce = () => {
     }
   };
 
-  const completeOrder = () => {
-    setCheckoutStep('confirmation');
-  };
-
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white pt-20">
       {/* Header */}
-      <header className="bg-green-600 text-white p-4 shadow-md sticky top-0 z-10">
-        <div className="container mx-auto flex justify-between items-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl font-bold"
-          >
-            SolarWorld
-          </motion.h1>
-          <motion.div 
-            whileHover={{ scale: 1.1 }}
-            className="relative"
-          >
-            <FiShoppingCart className="text-2xl" />
-            {cart.length > 0 && (
-              <motion.span 
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                className="absolute -top-2 -right-2 bg-black text-green-500 border border-green-500 rounded-full w-5 h-5 flex items-center justify-center text-xs"
-              >
-                {cart.length}
-              </motion.span>
-            )}
-          </motion.div>
-        </div>
-      </header>
+      
 
       <main className="container mx-auto p-4">
         <AnimatePresence mode="wait">
@@ -218,10 +320,10 @@ const SolarEcommerce = () => {
                       <p className="text-gray-400 mt-2">{product.description}</p>
                       <div className="mt-4 flex flex-col">
                         <div className="flex items-center space-x-2">
-                          <s className="text-lg text-gray-500">${product.price.toFixed(2)}</s>
+                          <s className="text-lg text-gray-500">₹{product.price.toFixed(2)}</s>
                           <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">50% off</span>
                         </div>
-                        <span className="text-2xl font-bold text-green-500 mt-1">${getDiscountedPrice(product.price)}</span>
+                        <span className="text-2xl font-bold text-green-500 mt-1">₹{getDiscountedPrice(product.price)}</span>
                         <motion.button
                           whileTap={{ scale: 0.95 }}
                           onClick={() => addToCart(product)}
@@ -258,8 +360,8 @@ const SolarEcommerce = () => {
                         <div>
                           <h4 className="font-medium text-white">{item.name}</h4>
                           <div className="flex items-center space-x-2">
-                            <s className="text-gray-500">${item.price.toFixed(2)}</s>
-                            <span className="text-green-500">${getDiscountedPrice(item.price)}</span>
+                            <s className="text-gray-500">₹{item.price.toFixed(2)}</s>
+                            <span className="text-green-500">₹{getDiscountedPrice(item.price)}</span>
                           </div>
                         </div>
                         <motion.button 
@@ -275,7 +377,7 @@ const SolarEcommerce = () => {
                   </AnimatePresence>
                   <div className="mt-4 flex justify-between items-center">
                     <span className="font-bold text-white">Total:</span>
-                    <span className="text-xl font-bold text-green-500">${totalPrice.toFixed(2)}</span>
+                    <span className="text-xl font-bold text-green-500">₹{totalPrice.toFixed(2)}</span>
                   </div>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -291,17 +393,17 @@ const SolarEcommerce = () => {
             </motion.div>
           )}
 
-          {checkoutStep === 'address' && (
-            <motion.div
-              key="address"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 100 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-lg mx-auto bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700"
-            >
-              <h2 className="text-2xl font-bold text-green-500 mb-6">Shipping Address</h2>
-              <form className="space-y-4">
+           {checkoutStep === 'address' && (
+    <motion.div
+      key="address"
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-lg mx-auto bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700"
+    >
+      <h2 className="text-2xl font-bold text-green-500 mb-6">Shipping Details</h2>
+      <form className="space-y-4">
                 <div>
                   <label className="block text-gray-300 mb-1">Full Name</label>
                   <motion.input
@@ -315,6 +417,20 @@ const SolarEcommerce = () => {
                   />
                   {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
                 </div>
+                <div>
+          <label className="block text-gray-300 mb-1">Contact Number*</label>
+          <motion.input
+            type="tel"
+            name="contact"
+            value={formData.contact}
+            onChange={handleInputChange}
+            placeholder="10-digit mobile number"
+            className={`w-full p-2 border rounded bg-gray-800 text-white border-gray-600 ${errors.contact ? 'border-red-500' : ''}`}
+            whileFocus={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          />
+          {errors.contact && <p className="text-red-500 text-sm mt-1">{errors.contact}</p>}
+        </div>
                 <div>
                   <label className="block text-gray-300 mb-1">Address</label>
                   <motion.textarea
@@ -356,135 +472,35 @@ const SolarEcommerce = () => {
                   </div>
                 </div>
                 <div className="flex justify-between mt-6">
-                  <motion.button 
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    type="button"
-                    onClick={() => setCheckoutStep('cart')}
-                    className="text-gray-400 hover:text-gray-200"
-                  >
-                    Back to Cart
-                  </motion.button>
-                  <motion.button 
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    type="button"
-                    onClick={handleCheckout}
-                    className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700"
-                  >
-                    Continue
-                  </motion.button>
-                </div>
-              </form>
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            type="button"
+            onClick={() => setCheckoutStep('cart')}
+            className="text-gray-400 hover:text-gray-200"
+          >
+            Back to Cart
+          </motion.button>
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            type="button"
+            onClick={completeOrder}
+            disabled={isSending}
+            className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 flex items-center space-x-2 disabled:bg-gray-600"
+          >
+            {isSending ? 'Sending...' : (
+              <>
+                <span>Complete Order</span>
+                <FiCheck />
+              </>
+            )}
+          </motion.button>
+        </div>
+      </form>
             </motion.div>
           )}
 
-          {checkoutStep === 'payment' && (
-            <motion.div
-              key="payment"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 100 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-lg mx-auto bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700"
-            >
-              <h2 className="text-2xl font-bold text-green-500 mb-6">Payment</h2>
-              
-              <div className="mb-6 p-4 bg-gray-800 rounded-lg">
-                <h3 className="font-bold text-white mb-2">Order Summary</h3>
-                {cart.map(item => (
-                  <div key={item.id} className="flex justify-between py-2 border-b border-gray-700">
-                    <span className="text-gray-300">{item.name}</span>
-                    <span className="text-green-500">${getDiscountedPrice(item.price)}</span>
-                  </div>
-                ))}
-                <div className="flex justify-between font-bold text-white mt-2">
-                  <span>Total:</span>
-                  <span className="text-green-500">${totalPrice.toFixed(2)}</span>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="border border-gray-600 rounded-lg p-4 bg-gray-800"
-                >
-                  <label className="flex items-center space-x-2">
-                    <input type="radio" name="payment" className="text-green-600" />
-                    <span className="text-white">Credit Card</span>
-                  </label>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="border border-gray-600 rounded-lg p-4 bg-gray-800"
-                >
-                  <label className="flex items-center space-x-2">
-                    <input type="radio" name="payment" className="text-green-600" />
-                    <span className="text-white">PayPal</span>
-                  </label>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="border border-gray-600 rounded-lg p-4 bg-gray-800"
-                >
-                  <label className="flex items-center space-x-2">
-                    <input 
-                      type="radio" 
-                      name="payment" 
-                      className="text-green-600"
-                      onChange={() => setShowScanner(true)}
-                    />
-                    <span className="text-white">Scan to Pay</span>
-                  </label>
-                </motion.div>
-              </div>
-
-              {showScanner && (
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ type: 'spring', stiffness: 200 }}
-                  className="mt-6 p-6 bg-black rounded-lg flex flex-col items-center border border-green-500"
-                >
-                  <div className="w-64 h-64 bg-gray-800 mb-4 relative overflow-hidden">
-                    <motion.div 
-                      className="absolute inset-0 border-2 border-green-500"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 1, repeat: Infinity }}
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-48 h-48 bg-white bg-opacity-10 flex items-center justify-center">
-                        <FiCheck className="text-green-500 text-4xl" />
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-white mb-4">Scan this QR code to complete payment</p>
-                </motion.div>
-              )}
-
-              <div className="flex justify-between mt-6">
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="button"
-                  onClick={() => setCheckoutStep('address')}
-                  className="text-gray-400 hover:text-gray-200"
-                >
-                  Back
-                </motion.button>
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="button"
-                  onClick={completeOrder}
-                  className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 flex items-center space-x-2"
-                >
-                  <span>Complete Order</span>
-                  <FiCheck />
-                </motion.button>
-              </div>
-            </motion.div>
-          )}
 
           {checkoutStep === 'confirmation' && (
             <motion.div

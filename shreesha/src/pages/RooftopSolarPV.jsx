@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
+import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
+import Talktous from '../components/TalkToUs';
 
 const RooftopSolarPV = () => {
   useEffect(() => {
@@ -70,6 +72,8 @@ const RooftopSolarPV = () => {
 
   return (
     <div className="bg-white text-gray-800 overflow-hidden">
+      
+      < Navbar/>
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -79,7 +83,7 @@ const RooftopSolarPV = () => {
             muted
             playsInline
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500"
+            poster="/src/assets/images/Rooftop_2.jpg"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-on-the-roof-of-a-house-39800-large.mp4" type="video/mp4" />
           </video>
@@ -151,7 +155,7 @@ const RooftopSolarPV = () => {
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500"
+                  src="/src/assets/images/Rooftop_1.jpg"
                   alt="Rooftop Solar PV System"
                   className="w-full h-auto"
                 />
@@ -440,6 +444,9 @@ const RooftopSolarPV = () => {
           </motion.div>
         </div>
       </section>
+            <div className="pt-8 pb-8">
+                        <Talktous/>
+                      </div>
     </div>
   );
 };

@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
+import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
+import Talktous from '../components/TalkToUs';
 
 const CAPEXEMIModel = () => {
   useEffect(() => {
@@ -97,6 +99,9 @@ const CAPEXEMIModel = () => {
 
   return (
     <div className="bg-white text-gray-800 overflow-hidden">
+
+        < Navbar/>
+
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -106,7 +111,7 @@ const CAPEXEMIModel = () => {
             muted 
             playsInline 
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1504&q=80"
+            poster="/src/assets/images/Solar EMI model_1.jpg"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-on-the-roof-of-a-house-39800-large.mp4" type="video/mp4" />
           </video>
@@ -178,9 +183,9 @@ const CAPEXEMIModel = () => {
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1504&q=80"
+                  src="/src/assets/images/Solar EMI model_2.jpg"
                   alt="CAPEX-EMI Solar Installation"
-                  className="w-full h-80 object-cover object-center"
+                  className="w-full h-90 object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-2xl font-bold text-white">
@@ -471,6 +476,9 @@ const CAPEXEMIModel = () => {
           </motion.div>
         </div>
       </section>
+     <div className="pt-8 pb-8">
+                 <Talktous/>
+               </div>
     </div>
   );
 };

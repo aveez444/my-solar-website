@@ -29,8 +29,9 @@ import RooftopSolarPV from './pages/RooftopSolarPV';
 import GroundMountedSolarPV from './pages/GroundMountedSolarPV';
 import SolarFarm from './pages/SolarFarm';
 import SolarEcommerce from './pages/SolarEcommerce';
-import SolarLamp from './pages/SolarLamp';
+import SolarLC from './pages/SolarLampsCandles';
 import SolarSamai from './pages/SolarSamai';
+import SolarOutdoor from './pages/SolarOutdoor';
 
 
 function App() {
@@ -63,8 +64,9 @@ function App() {
         <Route path="/bipv" element={<BiPV/>}/>
         <Route path="/water" element={<SolarWaterPumping/>}/>
 
-        <Route path="/lamp" element={<SolarLamp/>}/>
+        <Route path="/lamp" element={<SolarLC/>}/>
         <Route path="/samai" element={<SolarSamai/>}/>
+        <Route path="/outdoor" element={<SolarOutdoor/>}/>
 
         <Route path="/solar-ecommerce" element={<SolarEcommerce/>} />
 

@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
+import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
+import Talktous from '../components/TalkToUs';
 
 const OffGridSystem = () => {
   useEffect(() => {
@@ -97,6 +99,8 @@ const OffGridSystem = () => {
 
   return (
     <div className="bg-white text-gray-800 overflow-hidden">
+
+      < Navbar/>
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -106,7 +110,7 @@ const OffGridSystem = () => {
             muted 
             playsInline 
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1504&q=80"
+            poster="/src/assets/images/Off Grid System_1.jpg"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-on-the-roof-of-a-house-39800-large.mp4" type="video/mp4" />
           </video>
@@ -178,7 +182,7 @@ const OffGridSystem = () => {
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1504&q=80"
+                  src="/src/assets/images/Off Grid System_2.jpg"
                   alt="Off Grid Solar System"
                   className="w-full h-auto"
                 />
@@ -510,6 +514,9 @@ const OffGridSystem = () => {
           </motion.div>
         </div>
       </section>
+            <div className="pt-8 pb-8">
+                        <Talktous/>
+                      </div>
     </div>
   );
 };
