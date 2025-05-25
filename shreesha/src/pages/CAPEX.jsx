@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
 import Talktous from '../components/TalkToUs';
 import capexImage from '/src/assets/images/CAPEX Solar_1.jpg';
+import capexImage1 from '/src/assets/images/CAPEX Solar_2.jpg';
 
 const CAPEX = () => {
   useEffect(() => {
@@ -176,11 +177,11 @@ const CAPEX = () => {
                 data-aos="fade-left"
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
-                <img
-                  src="/src/assets/images/CAPEX Solar_2.jpg"
-                  alt="CAPEX Solar Installation"
-                  className="w-full h-90 object-cover object-center"
-                />
+                 <img 
+                    src={capexImage1} 
+                    alt="CAPEX Solar 1" 
+                    className="w-full h-full object-cover"
+                  />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-2xl font-bold text-white">
                   CAPEX Solar Model
