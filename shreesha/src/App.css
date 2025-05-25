@@ -40,3 +40,33 @@
 .read-the-docs {
   color: #888;
 }
+.partner-logo {
+  transition: transform 0.3s ease;
+}
+
+.partner-logo img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+  max-height: 100%; /* Ensure the image does not exceed the container height */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.partner-logo:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+  padding: 0 1rem; /* Adjust padding for spacing */
+}
+
+.bg-white {
+  padding: 1rem; /* Add padding for logo container */
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  height: 100px; /* Set a fixed height for uniformity */
+  display: flex; /* Use flexbox for centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}

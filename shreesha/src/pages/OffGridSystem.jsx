@@ -4,6 +4,10 @@ import AOS from 'aos';
 import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
 import Talktous from '../components/TalkToUs';
+import offGridImage from "/src/assets/images/Off Grid System_1.jpg";
+import offGridImage2 from "/src/assets/images/Off Grid System_2.jpg";
+
+
 
 const OffGridSystem = () => {
   useEffect(() => {
@@ -104,16 +108,14 @@ const OffGridSystem = () => {
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="w-full h-full object-cover"
-            poster="/src/assets/images/Off Grid System_1.jpg"
-          >
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-on-the-roof-of-a-house-39800-large.mp4" type="video/mp4" />
-          </video>
+
+<img 
+  src={offGridImage} 
+  alt="Off Grid Solar" 
+  className="w-full h-full object-cover"
+/>
+
+          
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
         </div>
         
@@ -181,10 +183,10 @@ const OffGridSystem = () => {
                 data-aos="fade-left"
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
-                <img
-                  src="/src/assets/images/Off Grid System_2.jpg"
-                  alt="Off Grid Solar System"
-                  className="w-full h-auto"
+                <img 
+                  src={offGridImage2} 
+                  alt="Off Grid Solar System" 
+                  className="w-full h-auto" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
                 <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg border border-gray-100">

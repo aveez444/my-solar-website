@@ -4,6 +4,9 @@ import AOS from 'aos';
 import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
 import Talktous from '../components/TalkToUs';
+import onGridImage1 from "/src/assets/images/On Grid  Solar System_1.jpg";
+import onGridImage2 from "/src/assets/images/On Grid  Solar System_2.jpg";
+
 
 const OnGridSystem = () => {
   useEffect(() => {
@@ -74,16 +77,14 @@ const OnGridSystem = () => {
       {/* Hero Section - Modernized */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
+
+          <img
+            src={onGridImage1}
+            alt="On Grid Solar System"
             className="w-full h-full object-cover"
-            poster="/src/assets/images/On Grid  Solar System_1.jpg"
-          >
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-on-the-roof-of-a-house-39800-large.mp4" type="video/mp4" />
-          </video>
+          />
+
+
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
         </div>
         
@@ -155,11 +156,13 @@ const OnGridSystem = () => {
   data-aos="fade-left"
   className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
 >
-  <img
-      src="/src/assets/images/On Grid  Solar System_2.jpg"
-      alt="On Grid Solar System"
-      className="w-full h-auto"
-    />
+    
+        <img
+              src= {onGridImage2}
+              alt="On Grid Solar System"
+              className="w-full h-full object-cover"
+        />
+        
     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
   <div className="absolute -bottom-6 -right-6 bg-black p-4 rounded-lg shadow-md border border-gray-100">
     <div className="text-xl font-bold text-green-600">25+ Years</div>

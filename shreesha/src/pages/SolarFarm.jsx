@@ -3,11 +3,13 @@ import { motion } from 'framer-motion';
 import AOS from 'aos';
 import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
-import SolarFarmHero from '../assets/images/Off Site Solar Farm_1.jpg';
+//import SolarFarmHero from '../assets/images/Off Site Solar Farm_1.jpg';
 import SolarFarm1 from '../assets/solar1.jpg';
 import SolarFarm2 from '../assets/solar2.jpg';
 import SolarFarm3 from '../assets/solar3.jpg';
 import Talktous from '../components/TalkToUs';
+import offSiteSolarFarm2 from "/src/assets/images/Off Site Solar Farm_1.jpg";
+import offSiteSolarFarm3 from "/src/assets/images/Off Site Solar Farm_3.jpg";
 
 const SolarFarm = () => {
   // Initialize AOS
@@ -161,11 +163,13 @@ const SolarFarm = () => {
       {/* Hero Section */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
+
           <img
-            src={SolarFarmHero}
+            src={offSiteSolarFarm2}
             alt="Solar Farm"
             className="w-full h-full object-cover"
           />
+
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
         </div>
 
@@ -258,11 +262,11 @@ const SolarFarm = () => {
           data-aos="fade-left"
           className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
         >
-          <img
-            src="/src/assets/images/Off Site Solar Farm_3.jpg"
-            alt="Solar Farm Installation"
-            className="w-full h-90 object-cover object-center"
-          />
+<img
+  src={offSiteSolarFarm3}
+  alt="Solar Farm Installation"
+  className="w-full h-full object-cover"
+/>
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
           <div className="absolute bottom-4 left-4 text-2xl font-bold text-white">
             Solar Farm Solutions

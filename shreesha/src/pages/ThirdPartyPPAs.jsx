@@ -4,6 +4,8 @@ import AOS from 'aos';
 import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
 import Talktous from '../components/TalkToUs';
+import thirdPartyImage from "/src/assets/images/Third-Party_1.jpg";
+import thirdPartyImage2 from "/src/assets/images/Solar Panel 8.jpg";
 
 const ThirdPartyPPAs = () => {
   useEffect(() => {
@@ -105,16 +107,12 @@ const ThirdPartyPPAs = () => {
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="w-full h-full object-cover"
-            poster="/src/assets/images/Third-Party_1.jpg"
-          >
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-solar-panels-in-a-solar-power-plant-39802-large.mp4" type="video/mp4" />
-          </video>
+
+<img 
+  src={thirdPartyImage} 
+  alt="Third Party Solar System" 
+  className="w-full h-full object-cover" 
+/>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
         </div>
         
@@ -182,11 +180,14 @@ const ThirdPartyPPAs = () => {
                 data-aos="fade-left"
                 className="relative mb-12 rounded-2xl overflow-hidden shadow-2xl"
               >
-                <img
-                  src="/src/assets/images/Solar Panel 8.jpg"
-                  alt="Third-Party PPA Solar Installation"
-                  className="w-full h-86 object-cover object-center"
-                />
+
+<img
+  src={thirdPartyImage2}
+  alt="Third-Party PPA Solar Installation"
+  className="w-full h-86 object-cover object-center"
+/>
+
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-2xl font-bold text-white">
                   Third-Party PPAs
