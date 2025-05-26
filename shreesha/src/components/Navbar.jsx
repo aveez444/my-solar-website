@@ -27,6 +27,7 @@ import emi from '../assets/images/emi-min.png';
 import deferred from '../assets/images/deferred-min.png';
 import lamp from '../assets/images/Products/Lamp/Big-Lamp.png';
 import samai from '../assets/images/Products/Samai/navbar.png';
+import ShreeshaLogo from '../assets/images/full-logo.svg';
 import outdoor from '../assets/images/Products/Samai/outdoor.png';
 
 const Navbar = () => {
@@ -176,7 +177,7 @@ const Navbar = () => {
           <div className="relative z-10 flex items-center justify-between px-6 py-4 md:px-12">
             <Link to="/">
               <img
-                src="https://www.shreeshaenergy.com/uploads/238/business/logo_svg/235/l1.svg"
+                src={ShreeshaLogo}
                 alt="Shreesha Energy Logo"
                 className="h-11 w-auto cursor-pointer"
               />
