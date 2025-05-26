@@ -283,8 +283,8 @@ const Footer = () => {
               >
 <FaMobileAlt className="text-green-500 mr-3" />
                 <div className="flex flex-col">
-                  <a href="tel:+919822033636" className="text-gray-300 hover:text-green-400 mb-1">
-                    +91 98220 33636
+                  <a href="tel:+917020986306" className="text-gray-300 hover:text-green-400 mb-1">
+                    +91 70209 86306
                   </a>
                   
                 </div>
@@ -302,8 +302,8 @@ const Footer = () => {
 <FaPhoneSquareAlt className="text-green-500 mr-3" />
                 <div className="flex flex-col">
                  
-                  <a href="tel:+919890844477" className="text-gray-300 hover:text-green-400">
-                    +91 98908 44477
+                  <a href="tel:+918830363889" className="text-gray-300 hover:text-green-400">
+                    +91 88303 63889
                   </a>
                 </div>
               </motion.li>

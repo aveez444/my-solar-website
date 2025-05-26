@@ -2,6 +2,13 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiShoppingCart, FiCheck, FiArrowRight, FiX } from 'react-icons/fi';
 import emailjs from '@emailjs/browser';
+import SmallNightLamp from "../assets/images/Products/Lamp/Small-Lamp.png";
+import BigNightLamp from "../assets/images/Products/Lamp/Big-Lamp.png";
+import SolarSilverDevdasSamai from "../assets/images/Products/Samai/ds.jpeg";
+import SolarSilverPanchpakaliSamai from "../assets/images/Products/Samai/ps.jpeg";
+import SolarSilverAshtavinayakGanpatiDiya from "../assets/images/Products/Samai/Ashtavinayak.jpg";
+import SolarBrassSamai from "../assets/images/Products/Samai/SilverSamai.jpg";
+
 
 const SolarEcommerce = () => {
   const [cart, setCart] = useState([]);
@@ -18,148 +25,54 @@ const SolarEcommerce = () => {
   const [isSending, setIsSending] = useState(false);
 
   const solarProducts = [
-  // Solar Lamps
-  {
-    id: 1,
-    name: 'Small Night Lamp',
-    price: 499,
-    description: '3W solar-powered LED lamp with 6-hour backup, automatic dusk-to-dawn operation',
-    images: [
-      'https://m.media-amazon.com/images/I/71h6XJYV3BL._AC_UF1000,1000_QL80_.jpg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/5/306705519/CI/IT/GT/19182200/solar-night-lamp.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/xif0q/solar-lamp/2/5/z/small-solar-lights-for-home-outdoor-garden-lamps-waterproof-solar-original-imagg9j4hzvfh9gz.jpeg'
-    ]
-  },
-  {
-    id: 2,
-    name: 'Big Night Lamp',
-    price: 899,
-    description: '5W high-lumen solar lamp with 12-hour backup, IP65 waterproof for outdoor use',
-    images: [
-      'https://rukminim2.flixcart.com/image/850/1000/xif0q/solar-lamp/e/z/6/big-1-solar-lights-for-home-outdoor-garden-lamps-waterproof-solar-original-imagg9j4mz6y9jhy.jpeg',
-      'https://m.media-amazon.com/images/I/61L+2J5QnVL._AC_UF1000,1000_QL80_.jpg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/5/306705519/CI/IT/GT/19182200/solar-night-lamp.jpg'
-    ]
-  },
+    // Solar Lamps
+    {
+      id: 1,
+      name: 'Small Night Lamp',
+      price: 499,
+      description: '3W solar-powered LED lamp with 6-hour backup, automatic dusk-to-dawn operation',
+      image: SmallNightLamp
+    },
+    {
+      id: 2,
+      name: 'Big Night Lamp',
+      price: 899,
+      description: '5W high-lumen solar lamp with 12-hour backup, IP65 waterproof for outdoor use',
+      image: BigNightLamp
+    },
 
-  // Solar Samai
-  {
-    id: 3,
-    name: 'Solar Silver Devdas Samai',
-    price: 1299,
-    description: 'Traditional Devdas-style samai with 20 LED lights, 8-hour runtime',
-    images: [
-      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kwv0djk0/solar-lamp/8/n/z/devdas-samai-solar-silver-samai-solar-light-for-home-temple-original-imag9t7fhzhtzfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/VT/VZ/XT/19182200/solar-dev-das-samai.jpg'
-    ]
-  },
-  {
-    id: 4,
-    name: 'Solar Silver Panchpakali Samai',
-    price: 1499,
-    description: 'Five-flame design with copper finish, perfect for puja rooms',
-    images: [
-      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/4/z/y/panchpakali-samai-solar-silver-samai-solar-light-for-home-temple-original-imagc3h2mzshyfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-panchpakali-samai.jpg'
-    ]
-  },
-  {
-    id: 5,
-    name: 'Solar Brass Samai',
-    price: 1799,
-    description: 'Premium brass construction with antique finish, 30 LEDs',
-    images: [
-      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/brass-samai-solar-silver-samai-solar-light-for-home-temple-original-imagc3h2jzshyfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-brass-samai.jpg'
-    ]
-  },
+    // Solar Samai
+    {
+      id: 3,
+      name: 'Solar Silver Devdas Samai',
+      price: 1299,
+      description: 'Traditional Devdas-style samai with 20 LED lights, 8-hour runtime',
+      image: SolarSilverDevdasSamai
+    },
+    {
+      id: 4,
+      name: 'Solar Silver Panchpakali Samai',
+      price: 1499,
+      description: 'Five-flame design with copper finish, perfect for puja rooms',
+      image: SolarSilverPanchpakaliSamai
+    },
+    {
+      id: 5,
+      name: 'Solar Brass Samai',
+      price: 1799,
+      description: 'Premium brass construction with antique finish, 30 LEDs',
+      image: SolarBrassSamai
+    },
 
-  // Solar Diya
-  {
-    id: 6,
-    name: 'Solar Silver Ashtavinayak Ganpati Diya',
-    price: 799,
-    description: 'Eight-faced Ganpati design with warm white LEDs',
-    images: [
-      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/ashtavinayak-ganpati-diya-solar-silver-diya-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-ganpati-diya.jpg'
-    ]
-  },
-  {
-    id: 7,
-    name: 'Solar Silver Laxmi Diya',
-    price: 899,
-    description: 'Goddess Laxmi motif with golden LEDs, automatic operation',
-    images: [
-      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/laxmi-diya-solar-silver-diya-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-laxmi-diya.jpg'
-    ]
-  },
-  {
-    id: 8,
-    name: 'Solar Silver Niranjan Diya',
-    price: 699,
-    description: 'Classic diya design with flickering LED flame effect',
-    images: [
-      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/niranjan-diya-solar-silver-diya-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-niranjan-diya.jpg'
-    ]
-  },
-
-  // Solar Candles
-  {
-    id: 9,
-    name: 'Solar Candle Sticks',
-    price: 599,
-    description: 'Set of 2 candle sticks with realistic flickering effect',
-    images: [
-      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/candle-sticks-solar-candles-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-candle-sticks.jpg'
-    ]
-  },
-  {
-    id: 10,
-    name: 'Solar Cup Candle',
-    price: 399,
-    description: 'Decorative cup-shaped solar candle with 10-hour runtime',
-    images: [
-      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/cup-candle-solar-candles-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-cup-candle.jpg'
-    ]
-  },
-
-  // Solar Outdoor Lights
-  {
-    id: 11,
-    name: 'Solar Wall Light',
-    price: 799,
-    description: '20W motion-sensor wall light with 120° detection angle',
-    images: [
-      'https://m.media-amazon.com/images/I/71x6b0Nv3QL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/wall-light-solar-outdoor-light-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-wall-light.jpg'
-    ]
-  },
-  {
-    id: 12,
-    name: 'Solar Gate Light',
-    price: 999,
-    description: 'Weatherproof gate light with dual-brightness settings (15W/30W)',
-    images: [
-      'https://m.media-amazon.com/images/I/61WXv6JZJVL._AC_UF1000,1000_QL80_.jpg',
-      'https://rukminim2.flixcart.com/image/850/1000/kzeqavk0/solar-lamp/9/z/c/gate-light-solar-outdoor-light-solar-light-for-home-original-imagc3h2jzshyfzz.jpeg',
-      'https://5.imimg.com/data5/SELLER/Default/2023/7/324610343/SE/IG/ZT/19182200/solar-gate-light.jpg'
-    ]
-  }
-];
+    // Solar Diya
+    {
+      id: 6,
+      name: 'Solar Silver Ashtavinayak Ganpati Diya',
+      price: 799,
+      description: 'Eight-faced Ganpati design with warm white LEDs',
+      image: SolarSilverAshtavinayakGanpatiDiya
+    },
+  ];
 
   const addToCart = (product) => {
     setCart([...cart, product]);
@@ -262,7 +175,6 @@ const sendOrderEmail = (orderItems) => {
     <div className="min-h-screen bg-black text-white pt-20">
       {/* Header */}
       
-
       <main className="container mx-auto p-4">
         <AnimatePresence mode="wait">
           {checkoutStep === 'cart' && (
@@ -281,44 +193,27 @@ const sendOrderEmail = (orderItems) => {
               >
                 Solar Products
               </motion.h2>
-
+  
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {solarProducts.map((product) => (
                   <motion.div
                     key={product.id}
                     whileHover={{ y: -10, boxShadow: '0 15px 25px rgba(0, 255, 0, 0.2)' }}
-                    className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden shadow-sm"
+                    className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden shadow-sm flex flex-col"
                   >
-                    <div className="relative h-48 overflow-hidden">
-                      <AnimatePresence>
-                        <motion.img 
-                          key={currentImages[product.id] || 0}
-                          src={product.images[currentImages[product.id] || 0]} 
-                          alt={product.name}
-                          initial={{ x: 100, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          exit={{ x: -100, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="w-full h-full object-cover"
-                        />
-                      </AnimatePresence>
-                      <button 
-                        onClick={() => handleImageSwipe(product.id, 'prev')}
-                        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
-                      >
-                        ←
-                      </button>
-                      <button 
-                        onClick={() => handleImageSwipe(product.id, 'next')}
-                        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
-                      >
-                        →
-                      </button>
+                    {/* Image container with fixed aspect ratio */}
+                    <div className="relative h-48 w-full overflow-hidden flex items-center justify-center bg-gray-800">
+                      <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="h-full w-auto object-contain"
+                        style={{ maxWidth: '100%' }}
+                      />
                     </div>
-                    <div className="p-4">
+                    <div className="p-4 flex-grow flex flex-col">
                       <h3 className="text-xl font-semibold text-white">{product.name}</h3>
                       <p className="text-gray-400 mt-2">{product.description}</p>
-                      <div className="mt-4 flex flex-col">
+                      <div className="mt-4 flex flex-col mt-auto">
                         <div className="flex items-center space-x-2">
                           <s className="text-lg text-gray-500">₹{product.price.toFixed(2)}</s>
                           <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">50% off</span>
@@ -337,7 +232,8 @@ const sendOrderEmail = (orderItems) => {
                   </motion.div>
                 ))}
               </div>
-
+  
+              {/* Cart section remains unchanged */}
               {cart.length > 0 && (
                 <motion.div 
                   initial={{ opacity: 0, y: 50 }}
