@@ -24,6 +24,7 @@ import {
   FaMapMarkerAlt 
 } from "react-icons/fa";
 import { SiGooglemaps } from "react-icons/si";
+import ShreeshaLogo from "../assets/images/full-logo.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -114,7 +115,7 @@ const Footer = () => {
               whileHover={{ scale: 1.02 }}
             >
               <img 
-                src="https://www.shreeshaenergy.com/uploads/238/business/logo_svg/235/l1.svg" 
+                src={ShreeshaLogo}
                 alt="ShreeSha Energy Logo" 
                 className="h-16"
               />

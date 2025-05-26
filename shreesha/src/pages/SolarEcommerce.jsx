@@ -8,7 +8,7 @@ import SolarSilverDevdasSamai from "../assets/images/Products/Samai/ds.jpeg";
 import SolarSilverPanchpakaliSamai from "../assets/images/Products/Samai/ps.jpeg";
 import SolarSilverAshtavinayakGanpatiDiya from "../assets/images/Products/Samai/Ashtavinayak.jpg";
 import SolarBrassSamai from "../assets/images/Products/Samai/SilverSamai.jpg";
-
+import Navbar from '../components/Navbar';
 
 const SolarEcommerce = () => {
   const [cart, setCart] = useState([]);
@@ -173,6 +173,7 @@ const sendOrderEmail = (orderItems) => {
 
   return (
     <div className="min-h-screen bg-black text-white pt-20">
+      <Navbar/>
       {/* Header */}
       
       <main className="container mx-auto p-4">
