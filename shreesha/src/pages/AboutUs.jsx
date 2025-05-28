@@ -65,7 +65,7 @@ const AboutUs = () => {
       id: 1,
       name: 'Mr. Adheer Joshi',
       position: 'Co-Founder & Director Sales',
-      image: 'https://randomuser.me/api/portraits/men/41.jpg',
+      image: 'https://media.licdn.com/dms/image/v2/C4D03AQE-gK2afs4Gmg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516585493122?e=1753920000&v=beta&t=aVOseNNua4uSHm9mva98v9XAzAPy17Hgy7qUMb7ste8',
       description: 'A visionary leader driving record-breaking growth in competitive markets.',
       strengths: [
         'Sales Strategy',
@@ -83,7 +83,7 @@ const AboutUs = () => {
       id: 2,
       name: 'Kavita Sharma Joshi',
       position: 'Director',
-      image: 'https://randomuser.me/api/portraits/women/41.jpg',
+      image: 'https://media.licdn.com/dms/image/v2/C5603AQFfVLfjiinhfw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1591029347967?e=1753920000&v=beta&t=aNL_xXVi6_DKGshl_o9hxD1EX2O5UiH3bIZ97UsCqqE',
       description: 'Her HR expertise has been pivotal in building Shreesha’s success.',
       strengths: [
         'Recruitment',
@@ -144,6 +144,48 @@ const [currentSlide, setCurrentSlide] = useState(0);
     }, 2000); // Change slide every 2 seconds
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
+
+  
+ const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  arrows: false,
+  responsive: [
+    {
+      breakpoint: 1280, // xl screens
+      settings: {
+        slidesToShow: 4,
+      }
+    },
+    {
+      breakpoint: 1024, // lg screens
+      settings: {
+        slidesToShow: 3,
+      }
+    },
+    {
+      breakpoint: 768, // md screens
+      settings: {
+        slidesToShow: 2,
+        dots: false
+      }
+    },
+    {
+      breakpoint: 350, // sm screens
+      settings: {
+        slidesToShow: 1,
+        centerMode: true,
+        centerPadding: '40px',
+        dots: false
+      }
+    }
+  ]
+};
 
   // Animation variants
   const textVariants = {
@@ -412,10 +454,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
               >
                 <div className="p-6">
                   <div className="flex flex-col items-center mb-6">
-                    <div className={`w-24 h-24 rounded-full flex items-center justify-center text-5xl mb-4 
-                ${member.gender === 'female' ? 'bg-pink-100 text-pink-500' : 'bg-blue-100 text-blue-500'}`}>
-                      {member.gender === 'female' ? '👩‍💻' : '👨‍💻'}
-                    </div>
+                      <img src = {member.image} className = "w-24 h-24 rounded-full flex items-center justify-center text-5xl mb-4"/>
                     <div className="text-center">
                       <h3 className="text-2xl font-bold text-gray-800">{member.name}</h3>
                       <p className="text-green-600 font-medium">{member.position}</p>
@@ -501,57 +540,45 @@ const [currentSlide, setCurrentSlide] = useState(0);
       </section>
 
       {/* Partners Section */}
-  <section className="py-20 bg-gray-50">
-    <div className="container mx-auto px-6">
-      <div data-aos="fade-up" className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-800">Our Trusted Partners</h2>
-        <div className="w-20 h-1 bg-green-500 mx-auto mt-4"></div>
+<section className="py-12 md:py-20 bg-gray-50">
+    <div className="container mx-auto px-4 sm:px-6">
+      <div data-aos="fade-up" className="text-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Trusted Partners</h2>
+        <div className="w-20 h-1 bg-green-500 mx-auto mt-3 md:mt-4"></div>
       </div>
 
-      <div className="relative overflow-hidden">
-        <div className="flex items-center justify-center">
-          <div className="w-full max-w-5xl overflow-hidden">
-            <Slider
-              dots={true}
-              infinite={true}
-              speed={500}
-              slidesToShow={4}
-              slidesToScroll={1}
-              autoplay={true}
-              autoplaySpeed={2000}
-            >
-              {partners.map((partner) => (
-                <div key={partner.id} className="flex-shrink-0 px-4">
-                  <a
-                    href={partner.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center group partner-logo"
-                  >
-                    <div className="mx-auto flex items-center justify-center bg-white shadow rounded p-4 h-24">
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                        onError={(e) => {
-                          e.target.src = 'https://via.placeholder.com/150?text=Logo+Missing';
-                          e.target.className = 'max-h-full object-contain';
-                        }}
-                      />
-                    </div>
-                    <p className="mt-3 text-sm font-medium text-gray-700 group-hover:text-green-600 transition">
-                      {partner.name}
-                    </p>
-                  </a>
-                </div>
-              ))}
-            </Slider>
-          </div>
+      <div className="relative">
+        <div className="max-w-7xl mx-auto">
+          <Slider {...settings}>
+            {partners.map((partner) => (
+              <div key={partner.id} className="px-2 sm:px-4">
+                <a
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center group partner-logo"
+                  aria-label={`Visit ${partner.name}`}
+                >
+                  <div className="mx-auto flex items-center justify-center bg-white shadow-sm hover:shadow-md rounded-lg p-3 h-28 md:h-32 transition-all duration-300">
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/150?text=Logo+Missing';
+                        e.target.className = 'max-h-full object-contain';
+                      }}
+                    />
+                  </div>
+                  <p className="mt-3 text-xs sm:text-sm font-medium text-gray-600 group-hover:text-green-600 transition line-clamp-2">
+                    {partner.name}
+                  </p>
+                </a>
+              </div>
+            ))}
+          </Slider>
         </div>
-
-        {/* Gradient fade effects on sides */}
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
       </div>
     </div>
   </section>

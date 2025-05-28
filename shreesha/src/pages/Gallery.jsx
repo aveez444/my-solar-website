@@ -29,8 +29,6 @@ import e2 from '../assets/images/Gallery/e2.jpeg';
 import f1 from '../assets/images/Gallery/f1.jpeg';
 import f2 from '../assets/images/Gallery/f2.jpeg';
 
-
-
 const galleryItems = [
   {
     title: "Residential - 5kW On-Grid Terrace Installation",
@@ -310,8 +308,9 @@ useEffect(() => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen">
       <Navbar/>
+      <div className="bg-black text-white">
       {/* Hero Section with Diagonal Half-Cross Image */}
       <section
         ref={heroRef}
@@ -594,6 +593,7 @@ useEffect(() => {
     </div>
 <div className="pt-8 pb-8">
             <Talktous/>
+          </div>
           </div>
 
 
