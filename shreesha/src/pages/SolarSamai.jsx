@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Talktous from '../components/TalkToUs';
+import Navbar from '../components/Navbar';
 
 // Images import with relative paths
 import ds from '../assets/images/Products/Samai/ds.jpeg';
@@ -94,6 +95,9 @@ const SolarSamaiDiya = () => {
 
   return (
     <div className="p-6 max-w-6xl mx-auto bg-green-50 min-h-screen pt-20">
+
+    < Navbar />
+
       <h1 className="text-3xl font-extrabold text-green-700 mb-10 text-center">
         Solar Samai & Diya
       </h1>

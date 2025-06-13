@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Navbar from '../components/Navbar';
 import Talktous from '../components/TalkToUs';
 
 import s from '../assets/images/Products/Lamp/Small-Lamp.png';
@@ -70,6 +71,7 @@ const SolarLamps = () => {
 
   return (
     <div className="p-6 max-w-6xl mx-auto bg-green-50 min-h-screen pt-20">
+        < Navbar />
       <h1 className="text-3xl font-extrabold text-green-700 mb-10 text-center">
         Solar Lamps & Candle
       </h1>

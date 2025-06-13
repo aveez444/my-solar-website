@@ -32,6 +32,9 @@ import SolarEcommerce from './pages/SolarEcommerce';
 import SolarLC from './pages/SolarLampsCandles';
 import SolarSamai from './pages/SolarSamai';
 import SolarOutdoor from './pages/SolarOutdoor';
+import GEOA from './pages/GEOA';
+import CombinedNetMetering from './pages/CombinedNetMetering';
+import CSR from './pages/CSR ';
 
 
 function App() {
@@ -57,16 +60,20 @@ function App() {
         <Route path="/resco" element={<RESCOModel/>} />
         <Route path="/capexemi" element={<CAPEXEMIModel/>} />
         <Route path="/deferred" element={<DeferredCAPEXModel/>} />     
+        <Route path="/csr" element={<CSR/>} /> 
 
         <Route path="/rooftop" element={<RooftopSolarPV/>}/>
         <Route path="/ground" element={<GroundMountedSolarPV/>} />
         <Route path="/carport" element={<SolarCarport/>}/>
         <Route path="/bipv" element={<BiPV/>}/>
         <Route path="/water" element={<SolarWaterPumping/>}/>
+        <Route path="/geoa" element={<GEOA/>}/>
+        <Route path="/netmeter" element={<CombinedNetMetering/>}/>
 
         <Route path="/lamp" element={<SolarLC/>}/>
         <Route path="/samai" element={<SolarSamai/>}/>
         <Route path="/outdoor" element={<SolarOutdoor/>}/>
+        
 
         <Route path="/solar-ecommerce" element={<SolarEcommerce/>} />
 

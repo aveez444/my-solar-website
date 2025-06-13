@@ -11,6 +11,7 @@ import Solar5 from '../assets/images/SolarPanel3.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fullStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
+import { Zap, Leaf, Globe, ArrowRight, Sparkles } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 
@@ -86,6 +87,8 @@ const LandingPage = () => {
 
   return <div className="flex space-x-1">{stars}</div>;
 };
+
+
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const testimonials = [
@@ -198,7 +201,38 @@ const LandingPage = () => {
       features: ['MW Scale Projects', 'Hybrid Systems', 'Load Management'],
     },
   ];
-
+  const solutions = [
+    {
+      icon: Zap,
+      title: "Net Metering",
+      description: "Slash energy bills with Net Metering, Virtual, and Group Net Metering, powering homes and communities sustainably.",
+      href: "/netmeter",
+      gradient: "from-amber-400 via-orange-500 to-yellow-600",
+      bgGradient: "from-amber-500/20 via-orange-500/20 to-yellow-600/20",
+      glowColor: "shadow-amber-500/50",
+      position: "md:translate-y-0 md:-translate-x-8"
+    },
+    {
+      icon: Leaf,
+      title: "Green Energy & Agri Voltaics",
+      description: "Access renewable energy directly with GEOA and combine solar with farming through Agri Voltaics for sustainable land use.",
+      href: "/geoa",
+      gradient: "from-emerald-400 via-green-500 to-teal-600",
+      bgGradient: "from-emerald-500/20 via-green-500/20 to-teal-600/20",
+      glowColor: "shadow-emerald-500/50",
+      position: "md:-translate-y-12 md:translate-x-4"
+    },
+    {
+      icon: Globe,
+      title: "CSR Impact",
+      description: "Drive meaningful change with CSR initiatives in renewable energy, creating sustainable impact for communities and the planet.",
+      href: "/csr",
+      gradient: "from-blue-400 via-cyan-500 to-indigo-600",
+      bgGradient: "from-blue-500/20 via-cyan-500/20 to-indigo-600/20",
+      glowColor: "shadow-blue-500/50",
+      position: "md:translate-y-8 md:translate-x-8"
+    }
+  ];
   // Project showcase data
   const projects = [
     {
@@ -660,6 +694,169 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+                
+      <section className="relative min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
+  {/* Animated Background Elements - Lighter Version */}
+  <div className="absolute inset-0">
+    {/* Subtle Floating Orbs */}
+    <motion.div 
+      className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-green-100 to-emerald-200 rounded-full blur-3xl opacity-70"
+      animate={{ 
+        scale: [1, 1.2, 1],
+        opacity: [0.3, 0.5, 0.3],
+        x: [0, 50, 0],
+        y: [0, -30, 0]
+      }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+    />
+    <motion.div 
+      className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full blur-3xl opacity-70"
+      animate={{ 
+        scale: [1.2, 1, 1.2],
+        opacity: [0.2, 0.4, 0.2],
+        x: [0, -40, 0],
+        y: [0, 40, 0]
+      }}
+      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+    />
+    
+    {/* Subtle Grid Pattern */}
+    <div className="absolute inset-0 opacity-20">
+      <div className="w-full h-full" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23374151' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }} />
+    </div>
+  </div>
+
+  <div className="relative z-10 container mx-auto px-6 py-24 lg:py-32">
+    {/* Header with Staggered Animation */}
+    <motion.div 
+      className="text-center mb-24"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 30, scale: 0.9 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200 rounded-full px-6 py-2 mb-6"
+      >
+        <Sparkles className="w-4 h-4 text-emerald-600" />
+        <span className="text-emerald-700 text-sm font-medium">Sustainable Innovation</span>
+      </motion.div>
+      
+      <motion.h2 
+        className="text-5xl lg:text-7xl font-black tracking-tight mb-6"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-800 via-emerald-500 to-teal-600 leading-tight block">
+          Powering Tomorrow's
+        </span>
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 via-green-600 to-teal-700 leading-tight block">
+          Energy Revolution
+        </span>
+      </motion.h2>
+      
+      <motion.p 
+        className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        viewport={{ once: true }}
+      >
+        Discover cutting-edge solar and renewable energy solutions designed to transform communities, landscapes, and futures through sustainable innovation.
+      </motion.p>
+    </motion.div>
+
+    {/* Dynamic Card Layout - Simplified */}
+    <div className="relative max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        {solutions.map((solution, index) => {
+          const Icon = solution.icon;
+          return (
+            <motion.div
+              key={solution.title}
+              className={`relative group ${solution.position}`}
+              initial={{ opacity: 0, y: 100, rotateX: 45 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.2,
+                type: "spring",
+                stiffness: 100
+              }}
+              viewport={{ once: true }}
+              whileHover={{ 
+                y: -15, 
+                transition: { duration: 0.3 }
+              }}
+            >
+              {/* Card - Simplified with solid background */}
+              <div className={`relative bg-white border border-gray-200 rounded-3xl p-8 h-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden`}>
+                {/* Content */}
+                <div className={`w-16 h-16 bg-gradient-to-br ${solution.gradient} rounded-2xl flex items-center justify-center mb-6`}>
+                  <Icon className="w-8 h-8 text-white" />
+                </div>
+
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  {solution.title}
+                </h3>
+                
+                <p className="text-gray-600 mb-8 leading-relaxed">
+                  {solution.description}
+                </p>
+
+                {/* CTA Button */}
+                <motion.a
+                  href={solution.href}
+                  className={`inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r ${solution.gradient} text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 group/btn`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>Discover Now</span>
+                  <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                </motion.a>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+
+    {/* Call to Action */}
+    <motion.div
+      className="text-center mt-24"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <motion.a
+        href="#solutions"
+        className="inline-flex items-center gap-4 px-10 py-4 bg-gradient-to-r from-green-500 via-emerald-600 to-teal-700 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-emerald-200 transition-all duration-300 group"
+        whileHover={{ 
+          scale: 1.05,
+          boxShadow: "0 15px 30px rgba(16, 185, 129, 0.3)"
+        }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span>Explore All Solutions</span>
+        <motion.div
+          animate={{ x: [0, 5, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <ArrowRight className="w-6 h-6" />
+        </motion.div>
+      </motion.a>
+    </motion.div>
+  </div>
+</section>
 
       {/* What We Offer Section - Unique Grid Layout with Interactive Cards */}
 <section className="py-24 bg-white relative overflow-hidden">
@@ -1603,9 +1800,10 @@ const LandingPage = () => {
   
   </div>
 </section>
-
 </div>
+
   );
+
 };
 
 export default LandingPage;
