@@ -838,7 +838,7 @@ const LandingPage = () => {
       viewport={{ once: true }}
     >
       <motion.a
-        href="#solutions"
+        href="#services"
         className="inline-flex items-center gap-4 px-10 py-4 bg-gradient-to-r from-green-500 via-emerald-600 to-teal-700 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-emerald-200 transition-all duration-300 group"
         whileHover={{ 
           scale: 1.05,
