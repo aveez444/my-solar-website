@@ -4,6 +4,7 @@ import AOS from 'aos';
 import Navbar from '../components/Navbar';
 import 'aos/dist/aos.css';
 import Talktous from '../components/TalkToUs';
+import GEOAVideosection from '../components/GEOAvideosection';
 
 const GEOA = () => {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -298,6 +299,8 @@ const GEOA = () => {
                 </div>
               </div>
             </div>
+
+            <GEOAVideosection />
 
             {/* Agri Voltaics Section */}
             <div className="mb-16 lg:mb-24" data-aos="fade-up">
