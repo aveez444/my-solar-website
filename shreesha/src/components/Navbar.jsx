@@ -47,20 +47,19 @@ const Navbar = () => {
 
   const appointmentRef = useRef();
 
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-        if (
-          menuRef.current && 
-          !menuRef.current.contains(event.target) && 
-          (!dropdownRef.current || !dropdownRef.current.contains(event.target))
-        ) {
-          // Only close if the click is not on a Link within the dropdown
-          if (!event.target.closest('a')) {
-            setActiveMenu(null);
-            setClickLocked(false);
-          }
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current && 
+        !menuRef.current.contains(event.target) && 
+        (!dropdownRef.current || !dropdownRef.current.contains(event.target))
+      ) {
+        if (!event.target.closest('a')) {
+          setActiveMenu(null);
+          setClickLocked(false);
         }
-      };
+      }
+    };
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -191,7 +190,7 @@ const Navbar = () => {
                 <Menu size={20} />
               </button>
               <Link to="/solar-ecommerce">
-                <button className="p-2 rounded-full text-white hover:bg-white/20 transition">
+                <button className="p-2 rounded-full text-white hover:bg-white/20 transition animate-cart-attention relative">
                   <ShoppingCart size={20} />
                 </button>
               </Link>
@@ -213,7 +212,7 @@ const Navbar = () => {
                   onMouseEnter={() => {
                     if (item.subMenu) {
                       setActiveMenu(item.label);
-                      setClickLocked(false); // Unlock when just hovering
+                      setClickLocked(false);
                     }
                   }}
                   onMouseLeave={() => {
@@ -224,7 +223,7 @@ const Navbar = () => {
                   onClick={() => {
                     if (item.subMenu) {
                       setActiveMenu(item.label);
-                      setClickLocked(true); // Lock only on click
+                      setClickLocked(true);
                     }
                   }}
                 >
@@ -250,7 +249,7 @@ const Navbar = () => {
                 Get Free Quote
               </button>
               <Link to="/solar-ecommerce">
-                <button className="p-2 rounded-full text-white group-hover:text-black hover:bg-gray-100 transition">
+                <button className="p-2 rounded-full text-white group-hover:text-black hover:bg-gray-100 transition animate-cart-attention relative">
                   <ShoppingCart size={18} />
                 </button>
               </Link>
@@ -267,26 +266,26 @@ const Navbar = () => {
 
       {/* Desktop Dropdown */}
       {activeMenu && (
-          <div 
-            ref={dropdownRef}
-            className="fixed left-0 top-[64px] w-full bg-white/80 backdrop-blur-md shadow-2xl px-12 py-8 text-sm animate-slideDown z-40 text-black"
-            onMouseEnter={() => {
-              setActiveMenu("Offerings");
-              setClickLocked(true); // Keep it locked when mouse enters dropdown
-            }}
-            onMouseLeave={() => {
-              if (!clickLocked) {
-                setActiveMenu(null);
-              }
-            }}
-          >
+        <div 
+          ref={dropdownRef}
+          className="fixed left-0 top-[64px] w-full bg-white/80 backdrop-blur-md shadow-2xl px-12 py-8 text-sm animate-slideDown z-40 text-black"
+          onMouseEnter={() => {
+            setActiveMenu("Offerings");
+            setClickLocked(true);
+          }}
+          onMouseLeave={() => {
+            if (!clickLocked) {
+              setActiveMenu(null);
+            }
+          }}
+        >
           <div className="flex justify-center gap-10 mb-8">
             {["Solar Energy System", "Off-Grid", "On-Site Distributed Solar", "Financing & Models"].map((cat, idx) => (
               <button
                 key={idx}
                 onMouseEnter={() => setActiveSub(cat)}
                 onClick={(e) => {
-                  e.stopPropagation(); // Prevent event from reaching document
+                  e.stopPropagation();
                   setActiveSub(cat);
                 }}
                 className={clsx(
@@ -309,7 +308,7 @@ const Navbar = () => {
               <div 
                 key={idx}
                 className="flex flex-col items-center"
-                onClick={(e) => e.stopPropagation()} // Prevent event from reaching document
+                onClick={(e) => e.stopPropagation()}
               >
                 <Link 
                   to={item.path} 
@@ -332,7 +331,6 @@ const Navbar = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        // Handle "Know more" click if needed
                       }}
                     >
                       Know more
@@ -344,7 +342,6 @@ const Navbar = () => {
           </div>
         </div>
       )}
-
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
@@ -445,6 +442,69 @@ const Navbar = () => {
 
       <ConsultationModal isOpen={isModalOpen} onClose={closeModal} />
       <Sidebar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+      <style>
+        {`
+          @keyframes cartAttention {
+            0% {
+              transform: scale(1) translateY(0);
+              color: white;
+              background-color: transparent;
+              box-shadow: none;
+            }
+            20% {
+              transform: scale(1.3) translateY(-4px);
+              color: #FFD700;
+              background-color: rgba(255, 215, 0, 0.2);
+              box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            }
+            40% {
+              transform: scale(1.3) translateY(2px);
+              color: #FFD700;
+              background-color: rgba(255, 215, 0, 0.2);
+              box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            }
+            60% {
+              transform: scale(1.3) translateY(-2px);
+              color: #FFD700;
+              background-color: rgba(255, 215, 0, 0.2);
+              box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            }
+            80% {
+              transform: scale(1.15) translateY(0);
+              color: #FFD700;
+              background-color: rgba(255, 215, 0, 0.2);
+              box-shadow: 0 0 4px rgba(255, 215, 0, 0.3);
+            }
+            100% {
+              transform: scale(1) translateY(0);
+              color: white;
+              background-color: transparent;
+              box-shadow: none;
+            }
+          }
+
+          .animate-cart-attention {
+            animation: cartAttention 1.5s ease-in-out infinite;
+            animation-delay: 1.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            will-change: transform, color, background-color, box-shadow;
+            position: relative;
+            z-index: 10;
+          }
+
+          .animate-cart-attention:hover {
+            animation: none;
+            transform: scale(1);
+            color: inherit;
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+          }
+
+         
+        `}
+      </style>
     </>
   );
 };

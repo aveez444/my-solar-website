@@ -13,6 +13,7 @@ import { faStar as fullStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-i
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
 import { Zap, Leaf, Globe, ArrowRight, Sparkles } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import AdPopup from '../components/AdPopup';
 
 
 
@@ -1798,6 +1799,7 @@ const LandingPage = () => {
       </form>
     </motion.div>
   
+  <AdPopup />
   </div>
 </section>
 </div>
