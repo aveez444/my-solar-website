@@ -15,10 +15,10 @@ import SolarCarDiya1 from "../assets/images/Products/Samai/CarDiya3.jpeg";
 
 
 // Banner images
-import Banner1 from "../assets/images/banner1.jpg";
-import Banner2 from "../assets/images/banner2.jpg";
-import Banner3 from "../assets/images/banner3.jpg";
-import Banner4 from "../assets/images/banner4.jpg";
+import Banner1 from "../assets/banner1.jpg";
+import Banner2 from "../assets/banner2.jpg";
+import Banner3 from "../assets/banner3.jpg";
+import Banner4 from "../assets/banner4.jpg";
 
 // Product data
 const solarProducts = [
