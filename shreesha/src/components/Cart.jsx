@@ -172,30 +172,35 @@ const Cart = ({ isOpen, onClose, onProceedToCheckout }) => {
                                     <p className="text-xs text-gray-500">₹{item.price} each</p>
                                     <p className="font-bold text-emerald-700">₹{(item.price * item.quantity).toFixed(2)}</p>
                                   </div>
-                                  
-                                  {/* Quantity Controls */}
-                                  <div className="flex items-center space-x-2 bg-gray-50 rounded-lg p-1">
-                                    <motion.button
-                                      onClick={() => {
-                                        if (item.quantity > 1) {
-                                          updateQuantity(item.id, item.quantity - 1);
-                                        }
-                                      }}
-                                      className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-emerald-600 disabled:opacity-50"
-                                      disabled={item.quantity <= 1}
-                                      whileTap={{ scale: 0.9 }}
-                                    >
-                                      <FiMinus size={16} />
-                                    </motion.button>
-                                    <span className="text-sm font-semibold min-w-[24px] text-center">{item.quantity}</span>
-                                    <motion.button
-                                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                      className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-emerald-600"
-                                      whileTap={{ scale: 0.9 }}
-                                    >
-                                      <FiPlus size={16} />
-                                    </motion.button>
-                                  </div>
+
+                                    {/* Quantity Controls */}
+                                    <div className="flex items-center space-x-2 bg-gray-50 rounded-lg p-1">
+                                      <motion.button
+                                        onClick={() => {
+                                          // Get the minimum quantity for this order type
+                                          const minQty = item.orderType === 'bulk' ? 10 : item.orderType === 'corporate' ? 50 : 1;
+                                          if (item.quantity > minQty) {
+                                            updateQuantity(item.id, item.quantity - 1);
+                                          }
+                                        }}
+                                        className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-emerald-600 disabled:opacity-50"
+                                        disabled={item.quantity <= (item.orderType === 'bulk' ? 10 : item.orderType === 'corporate' ? 50 : 1)}
+                                        whileTap={{ scale: 0.9 }}
+                                      >
+                                        <FiMinus size={16} />
+                                      </motion.button>
+                                      <span className="text-sm font-semibold min-w-[24px] text-center">{item.quantity}</span>
+                                      <motion.button
+                                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                        className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-emerald-600"
+                                        whileTap={{ scale: 0.9 }}
+                                      >
+                                        <FiPlus size={16} />
+                                      </motion.button>
+                                    </div>
+                    
+                                   
+
                                   
                                   <motion.button 
                                     onClick={() => removeFromCart(item.id)}

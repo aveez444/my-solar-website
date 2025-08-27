@@ -955,29 +955,7 @@ const CarDiya = () => {
         </AnimatePresence>
 
         {/* Floating Mobile CTA */}
-        <AnimatePresence>
-          {checkoutStep === 'viewing' && (
-            <motion.div
-              initial={{ y: 100 }}
-              animate={{ y: 0 }}
-              exit={{ y: 100 }}
-              className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 p-4 shadow-2xl flex justify-between items-center md:hidden z-40 backdrop-blur-md border-t-2 border-emerald-300"
-            >
-              <div className="text-white">
-                <span className="text-2xl font-bold">₹{getDiscountedPrice(product.price)}</span>
-                <p className="text-xs opacity-90">{getDiscountLabel()}</p>
-              </div>
-              <motion.button
-                onClick={handleBuyNow}
-                className="bg-white text-emerald-600 px-8 py-3 rounded-xl font-bold shadow-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Buy Now
-              </motion.button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+     
       </main>
     </div>
   );

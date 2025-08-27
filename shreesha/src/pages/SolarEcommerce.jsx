@@ -31,7 +31,7 @@ const solarProducts = [
     images: [SmallNightLamp, BigNightLamp],
     category: 'lamp',
     rating: 4.5,
-    reviews: 128
+    reviews: 128  
   },
   {
     id: 2,
@@ -150,7 +150,7 @@ const DiscountStrip = () => {
           transition={{ duration: 0.5 }}
           className="fixed top-0 left-0 w-full bg-gradient-to-r from-red-600 to-pink-600 text-white text-center py-2 z-50 shadow-md flex justify-center items-center"
         >
-          <span className="font-bold text-sm md:text-base">🎉 Festive Sale: Get 50% OFF on All Products! 🎉</span>
+          <span className="font-bold text-sm md:text-base">🎉 Festive Sale: Contact for Exclusive Offers! 🎉</span>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="ml-4 text-white underline hover:text-gray-200 text-sm md:text-base"
@@ -229,7 +229,7 @@ const ProductListing = ({ addToCart }) => {
   return (
     <div className="min-h-screen pt-12" style={{ marginTop: '40px' }}>
       <DiscountStrip />
-      <div className="relative h-96 md:h-screen max-h-[700px] overflow-hidden">
+      <div className="relative h-72 sm:h-80 md:h-screen max-h-[700px] overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentBannerIndex}
@@ -331,17 +331,6 @@ const ProductListing = ({ addToCart }) => {
           </div>
         </div>
         
-        <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-3 z-10">
-          {bannerImages.map((_, index) => (
-            <button
-              key={index}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${currentBannerIndex === index ? 'bg-white scale-125' : 'bg-white bg-opacity-50 hover:bg-opacity-70'}`}
-              onClick={() => setCurrentBannerIndex(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-        
         <motion.button 
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -401,7 +390,7 @@ const ProductListing = ({ addToCart }) => {
             </h2>
             <span className="text-gray-500">{filteredProducts.length} products</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredProducts.map((product) => (
               <PremiumProductCard key={product.id} product={product} addToCart={addToCart} />
             ))}
@@ -422,11 +411,11 @@ const PremiumProductCard = ({ product, addToCart }) => {
       whileHover={{ y: -8, boxShadow: '0 15px 25px rgba(0,0,0,0.1)' }}
       className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 transition-all duration-300"
     >
-      <div 
-        className="h-60 w-full flex items-center justify-center relative cursor-pointer p-4"
-        onClick={() => navigate(`/${product.url}`)}
-      >
-        <div className={`absolute top-4 left-4 ${category?.accent} text-white text-xs font-bold py-1 px-3 rounded-full shadow-md tracking-wide`}>
+        <div 
+          className="h-48 sm:h-60 w-full flex items-center justify-center relative cursor-pointer p-3 sm:p-4"
+          onClick={() => navigate(`/${product.url}`)}
+        >
+        <div className={`absolute top-2 sm:top-4 left-2 sm:left-4 ${category?.accent} text-white text-[10px] sm:text-xs font-bold py-0.5 sm:py-1 px-2 sm:px-3 rounded-full shadow-md tracking-wide`}>
           {category?.name.toUpperCase()}
         </div>
         <motion.button
@@ -438,47 +427,61 @@ const PremiumProductCard = ({ product, addToCart }) => {
           <FiHeart className="text-gray-500 hover:text-red-500 transition-colors" />
         </motion.button>
         <img 
-          src={product.images[0]} 
-          alt={product.name} 
-          className="h-44 object-contain transition-transform duration-500 hover:scale-110"
-        />
+            src={product.images[0]} 
+            alt={product.name} 
+            className="h-32 sm:h-44 object-contain transition-transform duration-500 hover:scale-110"
+          />
       </div>
       
-      <div className="p-5">
-        <h3 
-          className="font-semibold text-lg mb-2 text-gray-800 cursor-pointer hover:text-gray-600 transition-colors"
+      <div className="p-3 sm:p-5">
+        <div className="relative">
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => navigate(`/${product.url}`)}
+            className="sm:hidden absolute -top-6 right-0 bg-gray-900 text-white p-1.5 rounded-full shadow-md hover:bg-gray-800 transition-colors"
+            aria-label="View product"
+          >
+            <FiShoppingCart size={14} />
+          </motion.button>
+       <h3 
+          className="font-semibold text-base sm:text-lg mb-1 sm:mb-2 text-gray-800 cursor-pointer hover:text-gray-600 transition-colors"
           onClick={() => navigate(`/${product.url}`)}
         >
           {product.name}
         </h3>
+        </div>
         
-        <div className="flex items-center mb-3">
+        <div className="flex items-center mb-2 sm:mb-3">
           <div className="flex text-amber-400">
             {[...Array(5)].map((_, i) => (
               <FiStar 
                 key={i} 
                 className={i < Math.floor(product.rating) ? "fill-current" : "text-gray-300"} 
-                size={16} 
+                size={14} sm:size={16} 
               />
             ))}
           </div>
-          <span className="text-sm text-gray-500 ml-2">({product.reviews})</span>
+          <span className="text-xs sm:text-sm text-gray-500 ml-1 sm:ml-2">({product.reviews})</span>
         </div>
-        
+                
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-2xl font-bold text-green-600">₹{(product.price * 0.5).toFixed(2)}</span>
-            <span className="text-sm text-gray-500 line-through ml-2">₹{product.price.toFixed(2)}</span>
+            <span className=" text1xl font-bold text-green-600">₹{(product.price * 0.5).toFixed(2)}</span>
+            <span className="text-sm text-gray-500 line-through ml-1">₹{product.price.toFixed(2)}</span>
           </div>
           
-          <motion.button
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate(`/${product.url}`)}
-            className="bg-gray-900 text-white p-3 rounded-full shadow-md hover:bg-gray-800 transition-colors"
-          >
-            <FiShoppingCart size={18} />
-          </motion.button>
+          <div className="hidden sm:flex sm:flex-col sm:items-end sm:gap-2">
+            <motion.button
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate(`/${product.url}`)}
+              className="bg-gray-900 text-white p-2 rounded-full shadow-md hover:bg-gray-800 transition-colors"
+              aria-label="View product"
+            >
+              <FiShoppingCart size={16} />
+            </motion.button>
+        </div>
         </div>
       </div>
     </motion.div>

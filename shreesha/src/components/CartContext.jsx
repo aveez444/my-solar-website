@@ -59,22 +59,31 @@ const cartReducer = (state, action) => {
       };
     }
 
-    case CART_ACTIONS.UPDATE_QUANTITY: {
-      const { itemId, newQuantity } = action.payload;
-      const itemIndex = state.items.findIndex(item => item.id === itemId);
-      
-      if (itemIndex < 0 || newQuantity < 1) return state;
+// In CartContext.jsx, modify the UPDATE_QUANTITY case in the cartReducer:
 
-      const updatedItems = [...state.items];
-      const oldQuantity = updatedItems[itemIndex].quantity;
-      updatedItems[itemIndex].quantity = newQuantity;
+case CART_ACTIONS.UPDATE_QUANTITY: {
+  const { itemId, newQuantity } = action.payload;
+  const itemIndex = state.items.findIndex(item => item.id === itemId);
+  
+  if (itemIndex < 0) return state;
+  
+  // Get the minimum quantity based on order type
+  const item = state.items[itemIndex];
+  const minQty = item.orderType === 'bulk' ? 10 : item.orderType === 'corporate' ? 50 : 1;
+  
+  // Don't allow quantity below minimum
+  if (newQuantity < minQty) return state;
 
-      return {
-        ...state,
-        items: updatedItems,
-        totalItems: state.totalItems - oldQuantity + newQuantity
-      };
-    }
+  const updatedItems = [...state.items];
+  const oldQuantity = updatedItems[itemIndex].quantity;
+  updatedItems[itemIndex].quantity = newQuantity;
+
+  return {
+    ...state,
+    items: updatedItems,
+    totalItems: state.totalItems - oldQuantity + newQuantity
+  };
+}
 
     case CART_ACTIONS.CLEAR_CART:
       return {
