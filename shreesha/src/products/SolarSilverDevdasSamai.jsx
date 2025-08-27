@@ -338,64 +338,73 @@ const SolarDevdasSamai = () => {
               <section className="relative flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 py-12 lg:py-20">
                 {/* Product Images */}
                 <div className="lg:w-1/2 relative">
-                  <motion.div
-                    className="relative h-80 md:h-96 lg:h-[500px] overflow-hidden rounded-3xl bg-gradient-to-br from-white via-emerald-50 to-green-100 shadow-2xl border border-emerald-200"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {/* Decorative elements */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-green-500/5"></div>
-                    <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-emerald-400/20 to-green-500/20 rounded-full blur-xl"></div>
-                    <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-teal-400/20 to-emerald-500/20 rounded-full blur-lg"></div>
-                    
-                    <AnimatePresence>
-                      <motion.img
-                        key={currentImageIndex}
-                        src={product.images[currentImageIndex]}
-                        alt={`${product.name} - View ${currentImageIndex + 1}`}
-                        className="absolute inset-0 w-full h-full object-contain p-6 md:p-12 filter drop-shadow-2xl"
-                        initial={{ opacity: 0, x: 100, scale: 0.8 }}
-                        animate={{ opacity: 1, x: 0, scale: 1 }}
-                        exit={{ opacity: 0, x: -100, scale: 0.8 }}
-                        transition={{ duration: 0.6, ease: 'easeInOut' }}
-                      />
-                    </AnimatePresence>
-                    
-                    {/* Navigation buttons */}
-                    <motion.button
-                      onClick={() => handleImageChange('prev')}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-3 rounded-full shadow-xl hover:bg-white border border-emerald-200 hover:border-emerald-300 transition-all duration-300"
-                      whileHover={{ scale: 1.1, x: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FiArrowLeft size={20} className="text-emerald-600" />
-                    </motion.button>
-                    <motion.button
-                      onClick={() => handleImageChange('next')}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-3 rounded-full shadow-xl hover:bg-white border border-emerald-200 hover:border-emerald-300 transition-all duration-300"
-                      whileHover={{ scale: 1.1, x: 2 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FiArrowRight size={20} className="text-emerald-600" />
-                    </motion.button>
-                  </motion.div>
-                  
-                  {/* Image indicators */}
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex space-x-3">
-                    {product.images.map((_, idx) => (
-                      <motion.button
-                        key={idx}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                          idx === currentImageIndex 
-                            ? 'bg-emerald-500 shadow-lg shadow-emerald-500/50' 
-                            : 'bg-gray-300 hover:bg-gray-400'
-                        }`}
-                        whileHover={{ scale: 1.3 }}
-                        onClick={() => setCurrentImageIndex(idx)}
-                      />
-                    ))}
-                  </div>
-                </div>
+  <motion.div
+    className="relative w-full h-64 md:h-96 lg:h-[500px] overflow-hidden rounded-3xl bg-gradient-to-br from-white via-emerald-50 to-green-100 shadow-2xl border border-emerald-200"
+    whileHover={{ scale: 1.02 }}
+    transition={{ duration: 0.3 }}
+  >
+    {/* Decorative elements */}
+    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-green-500/5"></div>
+    <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-emerald-400/20 to-green-500/20 rounded-full blur-xl"></div>
+    <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-teal-400/20 to-emerald-500/20 rounded-full blur-lg"></div>
+    
+    {/* Image container with flex centering */}
+    <div className="w-full h-full flex items-center justify-center p-4 md:p-6 lg:p-8 relative">
+      <AnimatePresence>
+        <motion.img
+          key={currentImageIndex}
+          src={product.images[currentImageIndex]}
+          alt={`${product.name} - View ${currentImageIndex + 1}`}
+          className="max-w-full max-h-full object-contain filter drop-shadow-2xl"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+        />
+      </AnimatePresence>
+    </div>
+    
+    {/* Navigation buttons - Only show if multiple images */}
+    {product.images.length > 1 && (
+      <>
+        <motion.button
+          onClick={() => handleImageChange('prev')}
+          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-2 md:p-3 rounded-full shadow-xl hover:bg-white border border-emerald-200 hover:border-emerald-300 transition-all duration-300 z-10"
+          whileHover={{ scale: 1.1, x: -2 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <FiArrowLeft size={16} className="text-emerald-600" />
+        </motion.button>
+        <motion.button
+          onClick={() => handleImageChange('next')}
+          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-2 md:p-3 rounded-full shadow-xl hover:bg-white border border-emerald-200 hover:border-emerald-300 transition-all duration-300 z-10"
+          whileHover={{ scale: 1.1, x: 2 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <FiArrowRight size={16} className="text-emerald-600" />
+        </motion.button>
+      </>
+    )}
+  </motion.div>
+  
+  {/* Image indicators - Only show if multiple images */}
+  {product.images.length > 1 && (
+    <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex space-x-3">
+      {product.images.map((_, idx) => (
+        <motion.button
+          key={idx}
+          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            idx === currentImageIndex 
+              ? 'bg-emerald-500 shadow-lg shadow-emerald-500/50' 
+              : 'bg-gray-300 hover:bg-gray-400'
+          }`}
+          whileHover={{ scale: 1.3 }}
+          onClick={() => setCurrentImageIndex(idx)}
+        />
+      ))}
+    </div>
+  )}
+</div>
 
                 {/* Product Info */}
                 <div className="lg:w-1/2 space-y-8">
