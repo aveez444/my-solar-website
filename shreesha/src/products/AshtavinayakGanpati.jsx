@@ -77,6 +77,12 @@ const AshtavinayakGanpati = () => {
     return () => clearInterval(interval);
   }, [product.images.length]);
 
+  // Add this useEffect near your other useEffects
+  useEffect(() => {
+    // Scroll to top when checkout step changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [checkoutStep]);
+
   useEffect(() => {
     const selectedType = orderTypes.find(type => type.id === orderType);
     if (selectedType && qty < selectedType.minQty) {
@@ -147,6 +153,7 @@ const AshtavinayakGanpati = () => {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
+
   const validateForm = () => {
     const newErrors = {};
     if (!formData.fullName.trim()) newErrors.fullName = 'Full Name is required';
@@ -171,48 +178,43 @@ const AshtavinayakGanpati = () => {
   const sendOrderEmail = () => {
     setIsSending(true);
     
-    // Replace these with your actual EmailJS IDs
-    const EMAILJS_SERVICE_ID = 'service_ca06e9l';
-    const EMAILJS_TEMPLATE_ID = 'template_gbcoyjd';
-    const EMAILJS_USER_ID = 'Aveez'; // This is your Account User ID from EmailJS
+    const YOUR_EMAIL = 'your-email@example.com';
     
+    // Direct purchase only (Buy Now)
     const orderDetails = `${product.name} (${orderType}) - Qty: ${qty} - ₹${(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}`;
     const totalPrice = (parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2);
 
-    // Prepare template parameters for EmailJS
-    const templateParams = {
-      to_email: 'aveezmanages@gmail.com', // Your email address
-      from_name: formData.fullName,
-      from_email: formData.email,
+    // Email content (you can implement actual email sending here)
+    const emailContent = {
+      to: YOUR_EMAIL,
       subject: `New Order - ${formData.fullName}`,
-      customer_name: formData.fullName,
-      customer_email: formData.email,
-      customer_phone: formData.contact,
-      customer_company: orderType === 'corporate' ? formData.company : 'N/A',
-      shipping_address: `${formData.address}, ${formData.city}, ${formData.zip}`,
-      order_details: orderDetails,
-      total_amount: `₹${totalPrice}`,
-      order_type: orderTypes.find(t => t.id === orderType)?.label,
-      order_date: new Date().toLocaleDateString('en-IN'),
-      reply_to: formData.email
+      body: `
+        Customer Details:
+        Name: ${formData.fullName}
+        Email: ${formData.email}
+        Phone: ${formData.contact}
+        ${orderType === 'corporate' ? `Company: ${formData.company}` : ''}
+        
+        Shipping Address:
+        ${formData.address}, ${formData.city}, ${formData.zip}
+        
+        Order Details:
+        ${orderDetails}
+        
+        Total Amount: ₹${totalPrice}
+        Order Type: ${orderTypes.find(t => t.id === orderType)?.label}
+        Order Date: ${new Date().toLocaleDateString('en-IN')}
+      `
     };
 
-    // Send email using EmailJS
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_USER_ID)
-      .then((response) => {
-        console.log('Email sent successfully!', response.status, response.text);
-        setCheckoutStep('confirmation');
-        setIsSending(false);
-      })
-      .catch((error) => {
-        console.error('Failed to send email:', error);
-        // Even if email fails, show confirmation to user
-        setCheckoutStep('confirmation');
-        setIsSending(false);
-        
-        // Optional: Show error message to user
-        alert('Order placed successfully! However, there was an issue sending the confirmation email. We will contact you shortly.');
-      });
+    // Simulate email sending
+    setTimeout(() => {
+      console.log('Order email would be sent to:', YOUR_EMAIL);
+      console.log('Email content:', emailContent);
+      setCheckoutStep('confirmation');
+      setIsSending(false);
+      setCartItems([]);
+    }, 2000);
   };
 
   const completeOrder = () => {
@@ -965,7 +967,6 @@ const AshtavinayakGanpati = () => {
         </AnimatePresence>
 
         {/* Floating Mobile CTA */}
-      
       </main>
     </div>
   );

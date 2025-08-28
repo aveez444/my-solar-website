@@ -8,39 +8,56 @@ import {
 } from 'react-icons/fi';
 import { FaBuilding } from "react-icons/fa";
 import { FaLeaf } from "react-icons/fa";
-import SolarSilverPanchpakaliSamai from "../assets/images/Products/Samai/Panchpakalisamai.jpeg";
+import TableTop1 from "../assets/images/TableTop1.jpeg";
+import TableTop2 from "../assets/images/TableTop2.jpeg";
+import TableTop3 from "../assets/images/TableTop3.jpeg";
 import { useCart } from '../components/CartContext'; // Adjust path as needed
-import ScrollToTop from '../components/ScrollToTop';
 
 
-const PanchpakaliSamai = () => {
+const SolarTableTop = () => {
     const product = {
-        id: 4, // Change ID
-        name: 'Solar Silver Panchpakali Samai',
-        price: 1499,
-        description: 'Elegant Panchpakali (five-flame) design with a stunning silver finish. This samai is perfect for traditional ceremonies, daily puja, and special gatherings, offering a warm and inviting ambiance.',
-        extendedDescription: 'Experience the divine elegance of our Solar Silver Panchpakali Samai. This exquisite piece features the traditional five-flame design symbolizing the Pancha Tattva (five elements). Crafted with meticulous attention to detail, it brings spiritual significance and modern functionality to your sacred spaces.',
+        id: 8,
+        name: 'Solar Table Top Lamp',
+        description: 'Elegant solar-powered table top lamps perfect for home decor, office spaces, or gifting. Available in three versatile designs to suit different needs and preferences.',
+        extendedDescription: 'Our premium Solar Table Top Lamps combine functionality with elegant design, offering three distinct variations to meet your specific requirements. Each lamp features efficient solar charging, automatic evening illumination, and eco-friendly operation. Choose from our standard model, corporate edition with logo customization, or executive version with integrated card and pen holder for ultimate convenience.',
         features: [
-          { icon: FiSun, title: 'Solar Powered', desc: 'Efficient solar panel charges during daylight hours for zero electricity cost' },
-          { icon: FiBatteryCharging, title: '10-Hour Runtime', desc: 'Extended 10 hours of continuous illumination for all-night prayers' },
-          { icon: FaLeaf, title: 'Eco-Friendly', desc: 'Sustainable energy solution with zero carbon emissions' },
-          { icon: FiZap, title: '25 Bright LEDs', desc: '25 premium LED lights arranged in sacred five-flame pattern' },
-          { icon: FiDroplet, title: 'Weather Resistant', desc: 'Suitable for both indoor puja rooms and outdoor temple areas' },
-          { icon: FiShield, title: '2.5-Year Warranty', desc: 'Extended warranty coverage for complete peace of mind' }
+          { icon: FiSun, title: 'Solar Powered', desc: 'Built-in solar panel for automatic charging during daylight hours' },
+          { icon: FiBatteryCharging, title: 'Auto On/Off', desc: 'Automatically turns on at dusk and off at dawn for hassle-free operation' },
+          { icon: FaLeaf, title: 'Eco-Friendly', desc: 'Zero electricity consumption with clean solar energy' },
+          { icon: FiZap, title: 'Bright LED Lighting', desc: 'Energy-efficient LEDs providing perfect ambient illumination' },
+          { icon: FiActivity, title: 'Premium Build Quality', desc: 'Durable construction with weather-resistant finish' },
+          { icon: FiShield, title: '1-Year Warranty', desc: 'Comprehensive warranty for peace of mind' }
         ],
         benefits: [
-          'Authentic Panchpakali (five-flame) design with spiritual significance',
-          'Premium silver finish that enhances any sacred space',
-          'Perfect for daily rituals, festivals, and special ceremonies',
-          'Creates a serene and divine atmosphere for meditation and prayer',
-          'No wiring or electricity bills - completely solar powered',
-          'Automatic operation with intelligent light sensors'
+          'Three distinct designs to choose from based on your needs',
+          'Perfect for home decor, office desks, or reception areas',
+          'Corporate edition allows brand customization with logo printing',
+          'Executive version includes practical card and pen holder functionality',
+          'Creates warm, inviting atmosphere for any space',
+          'Ideal for gifting to clients, employees, or loved ones'
         ],
-        images: [SolarSilverPanchpakaliSamai], // Use your actual image imports
+        images: [TableTop1, TableTop2, TableTop3], // Use your actual image imports
+        variations: [
+          {
+            name: 'Standard Table Top',
+            description: 'Classic elegant design perfect for home and office use',
+            features: ['Sleek minimalist design', 'Warm white LED illumination', 'Compact footprint']
+          },
+          {
+            name: 'Table Top with Logo',
+            description: 'Customizable corporate edition with brand logo printing',
+            features: ['Brand customization available', 'Ideal for corporate gifting', 'Professional appearance']
+          },
+          {
+            name: 'Table Top with Card & Pen Holder',
+            description: 'Executive version with integrated organizational features',
+            features: ['Built-in card holder', 'Pen storage compartment', 'Perfect for office desks']
+          }
+        ],
         reviews: [
-          { name: 'Suresh P.', rating: 5, comment: 'The Panchpakali design is absolutely authentic and beautiful. The silver finish looks luxurious in our temple room.' },
-          { name: 'Meera D.', rating: 5, comment: 'Perfect for our daily puja. The five-flame pattern creates such a divine atmosphere during evening prayers.' },
-          { name: 'Arun K.', rating: 4, comment: 'Excellent craftsmanship and good brightness. The solar charging works very efficiently.' }
+          { name: 'Rajesh K.', rating: 5, comment: 'Perfect for my office desk! The card holder version is both functional and beautiful.' },
+          { name: 'Corporate Gifting Team', rating: 5, comment: 'Excellent quality for our client gifts. The logo customization was perfectly executed.' },
+          { name: 'Meera S.', rating: 4, comment: 'Love the elegant design. It charges well and provides perfect ambient lighting for my living room.' }
         ]
       };
 
@@ -49,7 +66,7 @@ const PanchpakaliSamai = () => {
         { id: 'bulk', label: 'Bulk Order', icon: FiTruck, minQty: 10 },
         { id: 'corporate', label: 'Corporate Gifting', icon: FaBuilding, minQty: 50 }
       ];
- 
+    
       const [currentImageIndex, setCurrentImageIndex] = useState(0);
       const [showCheckout, setShowCheckout] = useState(false);
       const [qty, setQty] = useState(1);
@@ -77,12 +94,12 @@ const PanchpakaliSamai = () => {
         return () => clearInterval(interval);
       }, [product.images.length]);
 
-        // Add this useEffect near your other useEffects
+      // Add this useEffect near your other useEffects
       useEffect(() => {
-        // Scroll to top when checkout step changes
+    // Scroll to top when checkout step changes
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, [checkoutStep]);
-    
+        
       useEffect(() => {
         const selectedType = orderTypes.find(type => type.id === orderType);
         if (selectedType && qty < selectedType.minQty) {
@@ -90,14 +107,8 @@ const PanchpakaliSamai = () => {
         }
       }, [orderType]);
     
-      const getDiscountedPrice = (price) => {
-        const discount = orderType === 'bulk' ? 0.3 : orderType === 'corporate' ? 0.25 : 0.15;
-        return (price * (1 - discount)).toFixed(2);
-      };
-    
-      const getDiscountLabel = () => {
-        return orderType === 'bulk' ? '30% OFF' : orderType === 'corporate' ? '25% OFF' : '15% OFF';
-      };
+      // REMOVED: getDiscountedPrice function
+      // REMOVED: getDiscountLabel function
     
       const handleOrderTypeChange = (type) => {
         if (type === 'corporate') {
@@ -118,15 +129,10 @@ const PanchpakaliSamai = () => {
       };
     
       const addToCart = () => {
-        addToGlobalCart(
-          product, 
-          qty, 
-          orderType, 
-          getDiscountedPrice(product.price)
-        );
+        // MODIFIED: Removed price parameter
+        addToGlobalCart(product, qty, orderType);
         console.log('Product added to cart!');
       };
-    
     
       const handleBuyNow = () => {
         setCheckoutStep('summary');
@@ -178,11 +184,13 @@ const PanchpakaliSamai = () => {
       const sendOrderEmail = () => {
         setIsSending(true);
         
+        // REPLACE 'your-email@example.com' WITH YOUR ACTUAL EMAIL
         const YOUR_EMAIL = 'your-email@example.com';
         
-        // Direct purchase only (Buy Now)
-        const orderDetails = `${product.name} (${orderType}) - Qty: ${qty} - ₹${(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}`;
-        const totalPrice = (parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2);
+        // MODIFIED: Removed price calculations
+        const orderDetails = `${product.name} (${orderType}) - Qty: ${qty}`;
+        
+        // MODIFIED: Removed total price calculation
     
         // Email content (you can implement actual email sending here)
         const emailContent = {
@@ -201,7 +209,6 @@ const PanchpakaliSamai = () => {
             Order Details:
             ${orderDetails}
             
-            Total Amount: ₹${totalPrice}
             Order Type: ${orderTypes.find(t => t.id === orderType)?.label}
             Order Date: ${new Date().toLocaleDateString('en-IN')}
           `
@@ -228,7 +235,6 @@ const PanchpakaliSamai = () => {
       return (
         <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 text-gray-800 relative overflow-x-hidden">
           
-    
     {/* Corporate Gifting Terms Modal */}
     <AnimatePresence>
       {showCorporateTerms && (
@@ -432,13 +438,10 @@ const PanchpakaliSamai = () => {
                         </h1>
                        
                               
+                        {/* MODIFIED: Removed price display and replaced with contact message */}
                         <div className="flex items-center space-x-4 mb-6">
-                          <span className="text-3xl text-gray-500 line-through">₹{product.price.toFixed(2)}</span>
-                          <span className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
-                            ₹{getDiscountedPrice(product.price)}
-                          </span>
-                          <span className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-                            {getDiscountLabel()}
+                          <span className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
+                            Contact for Pricing
                           </span>
                         </div>
                       </motion.div>
@@ -528,7 +531,7 @@ const PanchpakaliSamai = () => {
                             onClick={handleBuyNow}
                             className="flex-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 flex items-center justify-center"
                           >
-                            Buy Now 
+                            Contact for Pricing
                             <FiArrowRight className="ml-3" size={20} />
                           </motion.button>
                         </div>
@@ -551,9 +554,8 @@ const PanchpakaliSamai = () => {
                       </div>
                     </div>
                   </section>
-    
-                  {/* Features Section */}
-                  <section className="py-16 bg-gradient-to-br from-white via-emerald-50/30 to-green-50/30 rounded-[3rem] shadow-2xl border border-emerald-100/50 backdrop-blur-sm">
+                                {/* Features Section */}
+                                <section className="py-16 bg-gradient-to-br from-white via-emerald-50/30 to-green-50/30 rounded-[3rem] shadow-2xl border border-emerald-100/50 backdrop-blur-sm">
                     <motion.h2 
                       className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-16 text-center"
                       initial={{ opacity: 0, y: 30 }}
@@ -662,77 +664,98 @@ const PanchpakaliSamai = () => {
                   </section>
                 </motion.div>
               )}
-    
-              {/* Order Summary Step */}
-              {checkoutStep === 'summary' && (
-                <motion.div
-                  key="summary"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -50 }}
-                  transition={{ duration: 0.5 }}
-                  className="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-2xl border border-emerald-200"
-                >
-                  <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-8 text-center">
-                    Order Summary
-                  </h2>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-center space-x-4 p-6 bg-emerald-50 rounded-2xl border border-emerald-200">
-                      <img 
-                        src={product.images[0]} 
-                        alt={product.name}
-                        className="w-20 h-20 rounded-xl object-cover border-2 border-emerald-200"
-                      />
-                      <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-gray-800">{product.name}</h3>
-                        <p className="text-emerald-600 font-medium">{orderTypes.find(t => t.id === orderType)?.label}</p>
-                        <p className="text-gray-600">Quantity: {qty}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm text-gray-500 line-through">₹{(product.price * qty).toFixed(2)}</p>
-                        <p className="text-2xl font-bold text-emerald-600">₹{(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}</p>
-                      </div>
-                    </div>
-    
-                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-6 rounded-2xl border border-emerald-200">
-                      <div className="flex justify-between items-center text-lg">
-                        <span className="font-semibold text-gray-700">Total Amount:</span>
-                        <span className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
-                          ₹{(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm text-gray-600 mt-2">
-                        <span>You save:</span>
-                        <span className="font-semibold text-green-600">
-                          ₹{((product.price - parseFloat(getDiscountedPrice(product.price))) * qty).toFixed(2)}
-                        </span>
-                      </div>
-                    </div>
-    
-                    <div className="flex justify-between mt-8">
-                      <motion.button
-                        type="button"
-                        onClick={() => setCheckoutStep('viewing')}
-                        className="text-emerald-600 hover:text-emerald-800 transition font-medium flex items-center"
-                        whileHover={{ scale: 1.05, x: -5 }}
-                      >
-                        <FiArrowLeft className="mr-2" /> Back to Product
-                      </motion.button>
-                      <motion.button
-                        type="button"
-                        onClick={() => setCheckoutStep('address')}
-                        className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 flex items-center"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Continue to Shipping <FiArrowRight className="ml-2" />
-                      </motion.button>
+
+           
+
+          {/* Order Summary Step */}
+          {checkoutStep === 'summary' && (
+            <motion.div
+              key="summary"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-2xl mx-auto bg-white p-4 md:p-8 rounded-3xl shadow-2xl border border-emerald-200"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-6 md:mb-8 text-center">
+                Request Summary
+              </h2>
+              
+              <div className="space-y-4 md:space-y-6">
+                <div className="text-center mb-4 md:mb-6">
+                  <div className="bg-gradient-to-r from-emerald-500 to-green-500 text-white p-3 md:p-4 rounded-2xl mb-3 md:mb-4 text-sm md:text-base">
+                    <FiInfo className="inline-block mr-2" size={18} />
+                    <span className="font-semibold">We'll contact you with personalized pricing</span>
+                  </div>
+                  <p className="text-gray-600 text-sm md:text-base">Based on your order type and quantity requirements</p>
+                </div>
+
+                <div className="flex items-center space-x-3 md:space-x-4 p-4 md:p-6 bg-emerald-50 rounded-2xl border border-emerald-200">
+                  <img 
+                    src={product.images[0]} 
+                    alt={product.name}
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover border-2 border-emerald-200"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-800 truncate">{product.name}</h3>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <span className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs md:text-sm font-medium">
+                        {orderTypes.find(t => t.id === orderType)?.label}
+                      </span>
+                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs md:text-sm font-medium">
+                        Qty: {qty}
+                      </span>
                     </div>
                   </div>
-                </motion.div>
-              )}
-    
+                </div>
+
+                <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-4 md:p-6 rounded-2xl border border-emerald-200">
+                  <div className="text-center">
+                    <FiPhone className="inline-block text-emerald-600 mb-2 md:mb-3" size={24} />
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Next Steps</h3>
+                    <p className="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">
+                      Our team will contact you within 24 hours to discuss:
+                    </p>
+                    <ul className="text-left text-gray-700 space-y-1 md:space-y-2 max-w-md mx-auto text-sm md:text-base">
+                      <li className="flex items-start">
+                        <FiCheckCircle className="text-emerald-500 mr-2 mt-0.5 md:mt-1 flex-shrink-0" size={16} />
+                        <span>Personalized pricing for your order</span>
+                      </li>
+                      <li className="flex items-start">
+                        <FiCheckCircle className="text-emerald-500 mr-2 mt-0.5 md:mt-1 flex-shrink-0" size={16} />
+                        <span>Customization options if needed</span>
+                      </li>
+                      <li className="flex items-start">
+                        <FiCheckCircle className="text-emerald-500 mr-2 mt-0.5 md:mt-1 flex-shrink-0" size={16} />
+                        <span>Delivery timeline and options</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex flex-col-reverse md:flex-row justify-between gap-3 md:gap-0 mt-6 md:mt-8">
+                  <motion.button
+                    type="button"
+                    onClick={() => setCheckoutStep('viewing')}
+                    className="text-emerald-600 hover:text-emerald-800 transition font-medium flex items-center justify-center text-sm md:text-base py-2 md:py-0"
+                    whileHover={{ scale: 1.05, x: -5 }}
+                  >
+                    <FiArrowLeft className="mr-2" /> Back to Product
+                  </motion.button>
+                  <motion.button
+                    type="button"
+                    onClick={() => setCheckoutStep('address')}
+                    className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-4 md:px-8 py-2 md:py-3 rounded-xl font-bold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 flex items-center justify-center text-sm md:text-base"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Continue to Contact <FiArrowRight className="ml-2" />
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
               {/* Address Form Step */}
               {checkoutStep === 'address' && (
                 <motion.div
@@ -744,7 +767,7 @@ const PanchpakaliSamai = () => {
                   className="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-2xl border border-emerald-200"
                 >
                   <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-8 text-center">
-                    Shipping Information
+                    Contact Information
                   </h2>
                   
                   <form className="space-y-6">
@@ -890,7 +913,7 @@ const PanchpakaliSamai = () => {
                           </>
                         ) : (
                           <>
-                            Complete Order <FiCheck className="ml-2" />
+                            Submit Inquiry <FiCheck className="ml-2" />
                           </>
                         )}
                       </motion.button>
@@ -898,9 +921,8 @@ const PanchpakaliSamai = () => {
                   </form>
                 </motion.div>
               )}
-    
-              {/* Order Confirmation Step */}
-              {checkoutStep === 'confirmation' && (
+                        {/* Order Confirmation Step */}
+                        {checkoutStep === 'confirmation' && (
                 <motion.div
                   key="confirmation"
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -926,7 +948,7 @@ const PanchpakaliSamai = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                   >
-                    Order Placed Successfully!
+                    Inquiry Submitted Successfully!
                   </motion.h2>
                   
                   <motion.div
@@ -936,13 +958,13 @@ const PanchpakaliSamai = () => {
                     className="space-y-4 mb-8"
                   >
                     <p className="text-xl text-gray-700 leading-relaxed">
-                      Your eco-friendly solar lamp order has been confirmed!
+                      Your inquiry for our eco-friendly solar lamp has been received!
                     </p>
                     <div className="bg-white p-6 rounded-2xl shadow-lg border border-emerald-200 space-y-2">
-                      <p className="text-lg font-semibold text-gray-800">Order Details:</p>
-                      <p className="text-emerald-600 font-medium">Order ID: #{Date.now().toString().slice(-6)}</p>
-                      <p className="text-gray-600">We'll contact you within 24 hours for order confirmation</p>
-                      <p className="text-gray-600">Expected delivery: 3-5 business days</p>
+                      <p className="text-lg font-semibold text-gray-800">Inquiry Details:</p>
+                      <p className="text-emerald-600 font-medium">Reference ID: #{Date.now().toString().slice(-6)}</p>
+                      <p className="text-gray-600">We'll contact you within 24 hours with pricing details</p>
+                      <p className="text-gray-600">Our team will provide customized pricing based on your requirements</p>
                     </div>
                   </motion.div>
                   
@@ -960,16 +982,17 @@ const PanchpakaliSamai = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8 }}
                   >
-                    Continue Shopping <FiArrowRight className="ml-3" />
+                    Continue Browsing <FiArrowRight className="ml-3" />
                   </motion.button>
                 </motion.div>
               )}
             </AnimatePresence>
     
-            {/* Floating Mobile CTA */}
+         
           </main>
         </div>
       );
     };
 
-export default PanchpakaliSamai;
+
+export default SolarTableTop;

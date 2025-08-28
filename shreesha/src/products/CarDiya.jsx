@@ -77,6 +77,12 @@ const CarDiya = () => {
     return () => clearInterval(interval);
   }, [product.images.length]);
 
+    // Add this useEffect near your other useEffects
+    useEffect(() => {
+      // Scroll to top when checkout step changes
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [checkoutStep]);
+
   useEffect(() => {
     const selectedType = orderTypes.find(type => type.id === orderType);
     if (selectedType && qty < selectedType.minQty) {
@@ -172,14 +178,11 @@ const CarDiya = () => {
   const sendOrderEmail = () => {
     setIsSending(true);
     
-    // REPLACE 'your-email@example.com' WITH YOUR ACTUAL EMAIL
     const YOUR_EMAIL = 'your-email@example.com';
     
-    const orderDetails = cartItems.length > 0 ? 
-      cartItems.map(item => `${item.product.name} (${item.orderType}) - Qty: ${item.quantity} - ₹${(parseFloat(item.price) * item.quantity).toFixed(2)}`).join('\n') :
-      `${product.name} (${orderType}) - Qty: ${qty} - ₹${(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}`;
-    
-    const totalPrice = cartItems.length > 0 ? getTotalCartPrice() : (parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2);
+    // Direct purchase only (Buy Now)
+    const orderDetails = `${product.name} (${orderType}) - Qty: ${qty} - ₹${(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}`;
+    const totalPrice = (parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2);
 
     // Email content (you can implement actual email sending here)
     const emailContent = {
@@ -964,7 +967,6 @@ const CarDiya = () => {
         </AnimatePresence>
 
         {/* Floating Mobile CTA */}
-     
       </main>
     </div>
   );

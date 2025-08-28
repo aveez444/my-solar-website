@@ -12,6 +12,7 @@ import SolarSilverPanchpakaliSamai from "../assets/images/Products/Samai/ps.jpeg
 import SolarSilverAshtavinayakGanpatiDiya from "../assets/images/Products/Samai/Ashtavinayak.jpg";
 import SolarBrassSamai from "../assets/images/Products/Samai/SilverSamai.jpg";
 import SolarCarDiya1 from "../assets/images/Products/Samai/CarDiya3.jpeg";
+import TableTop1 from "../assets/images/TableTop1.jpeg";
 
 
 // Banner images
@@ -93,8 +94,19 @@ const solarProducts = [
     name: 'Solar Car Diya',
     url: 'solarcardiya',
     price: 799,
-    description: 'A unique and innovative car-shaped diya with solar-powered illumination. Perfect for vehicle worship, travel protection, and adding divine light to your journeys.',
+    description: 'Elegant solar-powered table top lamps perfect for home decor, office spaces, or gifting. Available in three versatile designs to suit different needs and preferences.',
     images: [SolarCarDiya1],
+    category: 'diya',
+    rating: 4.6,
+    reviews: 142
+  },
+  {
+    id: 8,
+    name: 'Table Tops',
+    url: 'tabletop',
+    price: 799,
+    description: 'A unique and innovative car-shaped diya with solar-powered illumination. Perfect for vehicle worship, travel protection, and adding divine light to your journeys.',
+    images: [TableTop1],
     category: 'diya',
     rating: 4.6,
     reviews: 142
@@ -124,6 +136,7 @@ const categories = [
     accent: 'bg-pink-500',
     image: SolarSilverAshtavinayakGanpatiDiya
   }
+  
 ];
 
 // Discount Strip Component

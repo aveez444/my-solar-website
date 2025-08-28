@@ -77,6 +77,12 @@ const SolarLamp = () => {
     return () => clearInterval(interval);
   }, [product.images.length]);
 
+    // Add this useEffect near your other useEffects
+    useEffect(() => {
+      // Scroll to top when checkout step changes
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [checkoutStep]);
+
   useEffect(() => {
     const selectedType = orderTypes.find(type => type.id === orderType);
     if (selectedType && qty < selectedType.minQty) {
@@ -172,14 +178,11 @@ const SolarLamp = () => {
   const sendOrderEmail = () => {
     setIsSending(true);
     
-    // REPLACE 'your-email@example.com' WITH YOUR ACTUAL EMAIL
     const YOUR_EMAIL = 'your-email@example.com';
     
-    const orderDetails = cartItems.length > 0 ? 
-      cartItems.map(item => `${item.product.name} (${item.orderType}) - Qty: ${item.quantity} - ₹${(parseFloat(item.price) * item.quantity).toFixed(2)}`).join('\n') :
-      `${product.name} (${orderType}) - Qty: ${qty} - ₹${(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}`;
-    
-    const totalPrice = cartItems.length > 0 ? getTotalCartPrice() : (parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2);
+    // Direct purchase only (Buy Now)
+    const orderDetails = `${product.name} (${orderType}) - Qty: ${qty} - ₹${(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}`;
+    const totalPrice = (parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2);
 
     // Email content (you can implement actual email sending here)
     const emailContent = {
@@ -423,10 +426,12 @@ const SolarLamp = () => {
                       <span className="text-gray-600 font-medium">4.8 (234 reviews)</span>
                     </div>
                     
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-black bg-clip-text text-transparent leading-tight mb-6">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-black  bg-clip-text text-transparent leading-tight mb-6">
                       {product.name}
+                      
                     </h1>
-                    
+                   
+                          
                     <div className="flex items-center space-x-4 mb-6">
                       <span className="text-3xl text-gray-500 line-through">₹{product.price.toFixed(2)}</span>
                       <span className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
@@ -961,7 +966,7 @@ const SolarLamp = () => {
           )}
         </AnimatePresence>
 
-        
+        {/* Floating Mobile CTA */}
       </main>
     </div>
   );
