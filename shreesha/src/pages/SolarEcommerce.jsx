@@ -27,7 +27,7 @@ const solarProducts = [
     id: 1,
     name: 'Small Night Lamp',
     url: 'solarnightlamp',
-    price: 499,
+    price: 2598,
     description: '3W solar-powered LED lamp with 6-hour backup, automatic dusk-to-dawn operation. Ideal for accent lighting in gardens, pathways, and patios. Energy-efficient and eco-friendly.',
     images: [SmallNightLamp, BigNightLamp],
     category: 'lamp',
@@ -38,7 +38,7 @@ const solarProducts = [
     id: 2,
     name: 'Big Night Lamp',
     url: 'biglamp',
-    price: 899,
+    price: 2598,
     description: '5W high-lumen solar lamp with 12-hour backup, IP65 waterproof for outdoor use. Provides brilliant illumination for larger areas like driveways, backyards, and security lighting.',
     images: [BigNightLamp, SmallNightLamp],
     category: 'lamp',
@@ -49,7 +49,7 @@ const solarProducts = [
     id: 3,
     name: 'Solar Silver Devdas Samai',
     url: 'silversamai',
-    price: 1299,
+    price: 2398,
     description: 'Traditional Devdas-style samai crafted with intricate silver detailing. Features 20 bright LED lights and an 8-hour runtime. Perfect for adding a divine and elegant glow to your pooja room or festive occasions.',
     images: [SolarSilverDevdasSamai, SolarSilverPanchpakaliSamai],
     category: 'samai',
@@ -60,7 +60,7 @@ const solarProducts = [
     id: 4,
     name: 'Solar Silver Panchpakali Samai',
     url: 'panchpakalisamai',
-    price: 1499,
+    price: 2498,
     description: 'Elegant Panchpakali (five-flame) design with a stunning silver finish. This samai is perfect for traditional ceremonies, daily puja, and special gatherings, offering a warm and inviting ambiance.',
     images: [SolarSilverPanchpakaliSamai, SolarBrassSamai],
     category: 'samai',
@@ -71,7 +71,7 @@ const solarProducts = [
     id: 5,
     name: 'Solar Brass Samai',
     url: 'brass',
-    price: 1799,
+    price: 1998,
     description: 'Premium brass construction with an antique finish, embodying timeless craftsmanship. Equipped with 30 bright LEDs for extended illumination, it adds a touch of classic luxury to any space.',
     images: [SolarBrassSamai, SolarSilverDevdasSamai],
     category: 'samai',
@@ -93,7 +93,7 @@ const solarProducts = [
     id: 7,
     name: 'Solar Car Diya',
     url: 'solarcardiya',
-    price: 799,
+    price: 1998,
     description: 'Elegant solar-powered table top lamps perfect for home decor, office spaces, or gifting. Available in three versatile designs to suit different needs and preferences.',
     images: [SolarCarDiya1],
     category: 'diya',
@@ -104,10 +104,10 @@ const solarProducts = [
     id: 8,
     name: 'Table Tops',
     url: 'tabletop',
-    price: 799,
+    price: 1998,
     description: 'A unique and innovative car-shaped diya with solar-powered illumination. Perfect for vehicle worship, travel protection, and adding divine light to your journeys.',
     images: [TableTop1],
-    category: 'diya',
+    category: 'lamp',
     rating: 4.6,
     reviews: 142
   },
@@ -117,7 +117,7 @@ const solarProducts = [
 const categories = [
   {
     id: 'lamp',
-    name: 'Solar Lamps',
+    name: 'Table Tops',
     color: 'from-blue-50 to-cyan-50',
     accent: 'bg-blue-500',
     image: SmallNightLamp
@@ -139,50 +139,20 @@ const categories = [
   
 ];
 
-// Discount Strip Component
 const DiscountStrip = () => {
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    // Hide the discount strip after 5 seconds
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 3000);
-
-    // Clean up the timer when component unmounts
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -50, opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="fixed top-0 left-0 w-full bg-gradient-to-r from-red-600 to-pink-600 text-white text-center py-2 z-50 shadow-md flex justify-center items-center"
-        >
-          <span className="font-bold text-sm md:text-base">🎉 Festive Sale: Contact for Exclusive Offers! 🎉</span>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="ml-4 text-white underline hover:text-gray-200 text-sm md:text-base"
-          >
-            Shop Now
-          </button>
-          
-          {/* Optional: Visual countdown timer */}
-          <div className="ml-4 w-16 h-1 bg-white/30 rounded-full overflow-hidden">
-            <motion.div
-              initial={{ width: "100%" }}
-              animate={{ width: "0%" }}
-              transition={{ duration: 3, ease: "linear" }}
-              className="h-full bg-white"
-            />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div
+      className="fixed top-[60px] left-0 w-full bg-gradient-to-r from-red-600 to-pink-600 text-white text-center py-2 z-40 shadow-md flex justify-center items-center" // Changed z-50 to z-40 (below navbar if navbar z-50), top-0 to top-[60px], removed motion/AnimatePresence
+    >
+      <span className="font-bold text-sm md:text-base">🎉 Festive Sale: Contact for Exclusive Offers! 🎉</span>
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="ml-4 text-white underline hover:text-gray-200 text-sm md:text-base"
+      >
+        Shop Now
+      </button>
+      {/* Removed countdown timer as it's no longer needed for constant strip */}
+    </div>
   );
 };
 
@@ -241,8 +211,9 @@ const ProductListing = ({ addToCart }) => {
 
   return (
     <div className="min-h-screen pt-12" style={{ marginTop: '40px' }}>
-      <DiscountStrip />
+            <DiscountStrip />
       <div className="relative h-72 sm:h-80 md:h-screen max-h-[700px] overflow-hidden">
+
         <AnimatePresence mode="wait">
           <motion.div
             key={currentBannerIndex}

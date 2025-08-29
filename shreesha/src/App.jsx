@@ -57,8 +57,6 @@ import Cart from './components/Cart';
 import FloatingCartButton from './components/FloatingCartButton';
 
 
-
-
 // Component to conditionally render cart features
 const ConditionalCartFeatures = () => {
   const location = useLocation();

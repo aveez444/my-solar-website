@@ -17,7 +17,7 @@ const AdPopup = () => {
 
     const hideTimer = setTimeout(() => {
       setShowPopup(false);
-    }, 7500); // 15s (delay) + 50s (display) = 65s
+    }, 30000); // 15s (delay) + 50s (display) = 65s
 
     return () => {
       clearTimeout(showTimer);
@@ -29,13 +29,13 @@ const AdPopup = () => {
     {
       id: 1,
       name: 'Small Night Lamp',
-      price: 499,
+      price: 2598,
       image: SmallNightLamp,
     },
     {
       id: 4,
       name: 'Solar Silver Panchpakali Samai',
-      price: 1499,
+      price: 2498,
       image: SolarSilverPanchpakaliSamai,
     },
     {

@@ -535,7 +535,7 @@ Please contact the customer within 24 hours to confirm the order.
                     <div className="text-gray-600 space-y-2">
                       <p className="font-medium">✅ Order confirmation sent to your email</p>
                       <p>📞 We'll contact you within 24 hours</p>
-                      <p>🚚 Expected delivery: 3-5 business days</p>
+                      <p>🚚 Expected delivery: 8-10 business days</p>
                     </div>
                   </motion.div>
                   

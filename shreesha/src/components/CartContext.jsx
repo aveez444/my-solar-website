@@ -69,12 +69,12 @@ case CART_ACTIONS.UPDATE_QUANTITY: {
   
   // Get the minimum quantity based on order type
   const item = state.items[itemIndex];
-  const minQty = item.orderType === 'bulk' ? 10 : item.orderType === 'corporate' ? 50 : 1;
+  const minQty = item.orderType === 'bulk' ? 10 : item.orderType === 'corporate' ? 20 : 1;
   
   // Don't allow quantity below minimum
   if (newQuantity < minQty) return state;
 
-  const updatedItems = [...state.items];
+  const updatedItems = [...state.items];  
   const oldQuantity = updatedItems[itemIndex].quantity;
   updatedItems[itemIndex].quantity = newQuantity;
 
