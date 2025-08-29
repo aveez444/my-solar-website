@@ -145,12 +145,6 @@ const DiscountStrip = () => {
       className="fixed top-[60px] left-0 w-full bg-gradient-to-r from-red-600 to-pink-600 text-white text-center py-2 z-40 shadow-md flex justify-center items-center" // Changed z-50 to z-40 (below navbar if navbar z-50), top-0 to top-[60px], removed motion/AnimatePresence
     >
       <span className="font-bold text-sm md:text-base">🎉 Festive Sale: Contact for Exclusive Offers! 🎉</span>
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="ml-4 text-white underline hover:text-gray-200 text-sm md:text-base"
-      >
-        Shop Now
-      </button>
       {/* Removed countdown timer as it's no longer needed for constant strip */}
     </div>
   );
