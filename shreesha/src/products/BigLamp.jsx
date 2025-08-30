@@ -11,6 +11,7 @@ import { FaBuilding } from "react-icons/fa";
 import BigNightLamp from "../assets/images/Products/Lamp/Big-Lamp.png";
 import BigNightLamp2 from "../assets/images/SolarNightLampBig.jpeg";
 import { useCart } from '../components/CartContext'; // Adjust path as needed
+import emailjs from "@emailjs/browser"; // ✅ Import EmailJS
 
 
 const BigLamp = () => {
@@ -167,48 +168,57 @@ const BigLamp = () => {
       return Object.keys(newErrors).length === 0;
     };
   
-    const sendOrderEmail = () => {
+     // --- Send Email ---
+     const sendOrderEmail = () => {
       setIsSending(true);
-      
-      const YOUR_EMAIL = 'your-email@example.com';
-      
-      // Direct purchase only (Buy Now)
-      const orderDetails = `${product.name} (${orderType}) - Qty: ${qty} - ₹${(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}`;
-      const totalPrice = (parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2);
   
-      // Email content (you can implement actual email sending here)
-      const emailContent = {
-        to: YOUR_EMAIL,
-        subject: `New Order - ${formData.fullName}`,
-        body: `
-          Customer Details:
-          Name: ${formData.fullName}
-          Email: ${formData.email}
-          Phone: ${formData.contact}
-          ${orderType === 'corporate' ? `Company: ${formData.company}` : ''}
-          
-          Shipping Address:
-          ${formData.address}, ${formData.city}, ${formData.zip}
-          
-          Order Details:
-          ${orderDetails}
-          
-          Total Amount: ₹${totalPrice}
-          Order Type: ${orderTypes.find(t => t.id === orderType)?.label}
-          Order Date: ${new Date().toLocaleDateString('en-IN')}
-        `
-      };
+      const orderDetails = `${product.name} (${orderType}) - Qty: ${qty} - ₹${(
+        parseFloat(getDiscountedPrice(product.price)) * qty
+      ).toFixed(2)}`;
   
-      // Simulate email sending
-      setTimeout(() => {
-        console.log('Order email would be sent to:', YOUR_EMAIL);
-        console.log('Email content:', emailContent);
-        setCheckoutStep('confirmation');
-        setIsSending(false);
-        setCartItems([]);
-      }, 2000);
+      const totalPrice = (
+        parseFloat(getDiscountedPrice(product.price)) * qty
+      ).toFixed(2);
+  
+      emailjs
+        .send(
+          "service_6steo4p", // ⚡ from EmailJS dashboard
+          "template_b71e32a", // ⚡ from EmailJS dashboard
+          {
+            to_email: "shreesha.energy@gmail.com, aveezmanages@gmail.com", // ✅ multiple recipients
+            name: formData.fullName,
+            email: formData.email,
+            message: `
+              Customer: ${formData.fullName}
+              Email: ${formData.email}
+              Phone: ${formData.contact}
+              ${orderType === "corporate" ? `Company: ${formData.company}` : ""}
+              
+              Address: ${formData.address}, ${formData.city}, ${formData.zip}
+              
+              Order: ${orderDetails}
+              Total: ₹${totalPrice}
+              Type: ${orderTypes.find((t) => t.id === orderType)?.label}
+              Date: ${new Date().toLocaleDateString("en-IN")}
+            `,
+            time: new Date().toLocaleString("en-IN"),
+          },
+          "keqjPA-FB_hoRljDf" // ⚡ from EmailJS dashboard
+        )
+        .then(
+          (response) => {
+            console.log("✅ Email sent:", response.status, response.text);
+            setCheckoutStep("confirmation");
+            setIsSending(false);
+          },
+          (error) => {
+            console.error("❌ Email send failed:", error);
+            setIsSending(false);
+          }
+        );
     };
   
+    // --- Complete order ---
     const completeOrder = () => {
       if (validateForm()) {
         sendOrderEmail();

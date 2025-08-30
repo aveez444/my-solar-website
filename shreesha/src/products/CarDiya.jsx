@@ -12,6 +12,7 @@ import { useCart } from '../components/CartContext'; // Adjust path as needed
 import SolarCarDiya1 from "../assets/images/Products/Samai/CarDiya1.jpeg";
 import SolarCarDiya2 from "../assets/images/Products/Samai/CarDiya2.jpeg";
 import SolarCarDiya3 from "../assets/images/Products/Samai/CarDiya3.jpeg";
+import emailjs from "@emailjs/browser"; // ✅ Import EmailJS
 
 const CarDiya = () => {
     const product = {
@@ -166,53 +167,63 @@ const CarDiya = () => {
         return Object.keys(newErrors).length === 0;
       };
     
-      const sendOrderEmail = () => {
-        setIsSending(true);
-        
-        const YOUR_EMAIL = 'your-email@example.com';
-        
-        // Direct purchase only (Buy Now)
-        const orderDetails = `${product.name} (${orderType}) - Qty: ${qty} - ₹${(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}`;
-        const totalPrice = (parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2);
-    
-        // Email content (you can implement actual email sending here)
-        const emailContent = {
-          to: YOUR_EMAIL,
-          subject: `New Order - ${formData.fullName}`,
-          body: `
-            Customer Details:
-            Name: ${formData.fullName}
+   
+     // --- Send Email ---
+  const sendOrderEmail = () => {
+    setIsSending(true);
+
+    const orderDetails = `${product.name} (${orderType}) - Qty: ${qty} - ₹${(
+      parseFloat(getDiscountedPrice(product.price)) * qty
+    ).toFixed(2)}`;
+
+    const totalPrice = (
+      parseFloat(getDiscountedPrice(product.price)) * qty
+    ).toFixed(2);
+
+    emailjs
+      .send(
+        "service_6steo4p", // ⚡ from EmailJS dashboard
+        "template_b71e32a", // ⚡ from EmailJS dashboard
+        {
+          to_email: "shreesha.energy@gmail.com, aveezmanages@gmail.com", // ✅ multiple recipients
+          name: formData.fullName,
+          email: formData.email,
+          message: `
+            Customer: ${formData.fullName}
             Email: ${formData.email}
             Phone: ${formData.contact}
-            ${orderType === 'corporate' ? `Company: ${formData.company}` : ''}
+            ${orderType === "corporate" ? `Company: ${formData.company}` : ""}
             
-            Shipping Address:
-            ${formData.address}, ${formData.city}, ${formData.zip}
+            Address: ${formData.address}, ${formData.city}, ${formData.zip}
             
-            Order Details:
-            ${orderDetails}
-            
-            Total Amount: ₹${totalPrice}
-            Order Type: ${orderTypes.find(t => t.id === orderType)?.label}
-            Order Date: ${new Date().toLocaleDateString('en-IN')}
-          `
-        };
-    
-        // Simulate email sending
-        setTimeout(() => {
-          console.log('Order email would be sent to:', YOUR_EMAIL);
-          console.log('Email content:', emailContent);
-          setCheckoutStep('confirmation');
+            Order: ${orderDetails}
+            Total: ₹${totalPrice}
+            Type: ${orderTypes.find((t) => t.id === orderType)?.label}
+            Date: ${new Date().toLocaleDateString("en-IN")}
+          `,
+          time: new Date().toLocaleString("en-IN"),
+        },
+        "keqjPA-FB_hoRljDf" // ⚡ from EmailJS dashboard
+      )
+      .then(
+        (response) => {
+          console.log("✅ Email sent:", response.status, response.text);
+          setCheckoutStep("confirmation");
           setIsSending(false);
-          setCartItems([]);
-        }, 2000);
-      };
-    
-      const completeOrder = () => {
-        if (validateForm()) {
-          sendOrderEmail();
+        },
+        (error) => {
+          console.error("❌ Email send failed:", error);
+          setIsSending(false);
         }
-      };
+      );
+  };
+
+  // --- Complete order ---
+  const completeOrder = () => {
+    if (validateForm()) {
+      sendOrderEmail();
+    }
+  };
     
       const selectedOrderType = orderTypes.find(type => type.id === orderType);
     
