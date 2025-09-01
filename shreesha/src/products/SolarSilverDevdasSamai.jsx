@@ -17,7 +17,7 @@ const SolarDevdasSamai = () => {
     const product = {
         id: 3, // Change ID
         name: 'Solar Silver Devdas Samai',
-        price: 2398,
+        price: 2198,
         description: 'Traditional Devdas-style samai crafted with intricate silver detailing. Features 20 bright LED lights and an 8-hour runtime. Perfect for adding a divine and elegant glow to your pooja room or festive occasions.',
         extendedDescription: 'Experience the divine elegance of our Solar Silver Devdas Samai. Meticulously crafted with traditional artistry, this samai combines ancient design with modern solar technology. Perfect for daily puja, special ceremonies, and festive celebrations.',
         benefits: [
@@ -535,8 +535,7 @@ const SolarDevdasSamai = () => {
                 {/* Trust badges */}
                 <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 pt-4 md:pt-6 border-t border-emerald-100">
                 <div className="flex items-center space-x-2 text-gray-600">
-                  <FiTruck className="text-emerald-500 w-4 h-4 md:w-5 md:h-5" />
-                  <span className="text-xs md:text-sm font-medium">Free Shipping</span>
+               
                 </div>
                 <div className="flex items-center space-x-2 text-gray-600">
                   <FiShield className="text-emerald-500 w-4 h-4 md:w-5 md:h-5" />

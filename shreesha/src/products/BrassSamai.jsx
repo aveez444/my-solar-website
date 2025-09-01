@@ -17,7 +17,7 @@ const BrassSamai = () => {
     const product = {
         id: 5,
         name: 'Solar Brass Samai',
-        price: 1699,
+        price: 5998,
         description: 'Traditional (five-flame) design crafted in premium brass with a golden finish. This samai is ideal for religious ceremonies, daily worship, and festive occasions, creating a sacred and serene atmosphere.',
         extendedDescription: 'Experience the timeless beauty of our Solar Brass Samai. This meticulously crafted piece features the sacred five-flame design representing the Pancha Tattva (five elements). Made from high-quality brass with an antique golden finish, it combines traditional artistry with modern solar technology for your spiritual practices.',
 
@@ -538,8 +538,7 @@ const BrassSamai = () => {
                 {/* Trust badges */}
                 <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 pt-4 md:pt-6 border-t border-emerald-100">
                 <div className="flex items-center space-x-2 text-gray-600">
-                  <FiTruck className="text-emerald-500 w-4 h-4 md:w-5 md:h-5" />
-                  <span className="text-xs md:text-sm font-medium">Free Shipping</span>
+                 
                 </div>
                 <div className="flex items-center space-x-2 text-gray-600">
                   <FiShield className="text-emerald-500 w-4 h-4 md:w-5 md:h-5" />

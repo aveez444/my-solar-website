@@ -18,7 +18,7 @@ const SolarLamp = () => {
   const product = {
     id: 1,
     name: 'Premium Solar Night Lamp',
-    price: 2598,
+    price: 1998,
     description: 'Illuminate your outdoor spaces with our 3W solar-powered LED lamp, featuring a 6-hour backup and automatic dusk-to-dawn operation. Perfect for accent lighting in gardens, pathways, and patios.',
     extendedDescription: 'Experience the magic of sustainable lighting! Our Premium Solar Night Lamp not only brightens your surroundings but also contributes to a greener planet. With no electricity bills, easy installation, and durable design.',
     benefits: [
@@ -535,8 +535,7 @@ const SolarLamp = () => {
             {/* Trust badges */}
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 pt-4 md:pt-6 border-t border-emerald-100">
             <div className="flex items-center space-x-2 text-gray-600">
-              <FiTruck className="text-emerald-500 w-4 h-4 md:w-5 md:h-5" />
-              <span className="text-xs md:text-sm font-medium">Free Shipping</span>
+             
             </div>
             <div className="flex items-center space-x-2 text-gray-600">
               <FiShield className="text-emerald-500 w-4 h-4 md:w-5 md:h-5" />

@@ -29,7 +29,7 @@ const AdPopup = () => {
     {
       id: 1,
       name: 'Small Night Lamp',
-      price: 2598,
+      price: 1998,
       image: SmallNightLamp,
     },
     {
@@ -41,7 +41,7 @@ const AdPopup = () => {
     {
       id: 6,
       name: 'Solar Silver Ashtavinayak Ganpati Diya',
-      price: 799,
+      price: 2498,
       image: SolarSilverAshtavinayakGanpatiDiya,
     },
   ];

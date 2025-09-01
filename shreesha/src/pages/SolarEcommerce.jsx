@@ -13,7 +13,7 @@ import SolarSilverAshtavinayakGanpatiDiya from "../assets/images/Products/Samai/
 import SolarBrassSamai from "../assets/images/Products/Samai/SilverSamai.jpg";
 import SolarCarDiya1 from "../assets/images/Products/Samai/CarDiya3.jpeg";
 import TableTop1 from "../assets/images/TableTop1.jpeg";
-
+import SilverDevdas from "../assets/images/silverdevdas.jpeg";
 
 // Banner images
 import Banner1 from "../assets/Banner1.jpg";
@@ -27,7 +27,7 @@ const solarProducts = [
     id: 1,
     name: 'Small Night Lamp',
     url: 'solarnightlamp',
-    price: 2598,
+    price: 1998,
     description: '3W solar-powered LED lamp with 6-hour backup, automatic dusk-to-dawn operation. Ideal for accent lighting in gardens, pathways, and patios. Energy-efficient and eco-friendly.',
     images: [SmallNightLamp, BigNightLamp],
     category: 'lamp',
@@ -38,7 +38,7 @@ const solarProducts = [
     id: 2,
     name: 'Big Night Lamp',
     url: 'biglamp',
-    price: 2598,
+    price: 2798,
     description: '5W high-lumen solar lamp with 12-hour backup, IP65 waterproof for outdoor use. Provides brilliant illumination for larger areas like driveways, backyards, and security lighting.',
     images: [BigNightLamp, SmallNightLamp],
     category: 'lamp',
@@ -49,7 +49,7 @@ const solarProducts = [
     id: 3,
     name: 'Solar Silver Devdas Samai',
     url: 'silversamai',
-    price: 2398,
+    price: 2198,
     description: 'Traditional Devdas-style samai crafted with intricate silver detailing. Features 20 bright LED lights and an 8-hour runtime. Perfect for adding a divine and elegant glow to your pooja room or festive occasions.',
     images: [SolarSilverDevdasSamai, SolarSilverPanchpakaliSamai],
     category: 'samai',
@@ -71,7 +71,7 @@ const solarProducts = [
     id: 5,
     name: 'Solar Brass Samai',
     url: 'brass',
-    price: 1998,
+    price: 5998,
     description: 'Premium brass construction with an antique finish, embodying timeless craftsmanship. Equipped with 30 bright LEDs for extended illumination, it adds a touch of classic luxury to any space.',
     images: [SolarBrassSamai, SolarSilverDevdasSamai],
     category: 'samai',
@@ -82,7 +82,7 @@ const solarProducts = [
     id: 6,
     name: 'Solar Silver Ashtavinayak Ganpati Diya',
     url: 'ganpatidiya',
-    price: 799,
+    price: 2498,
     description: 'An auspicious Ashtavinayak Ganpati design, meticulously crafted in silver. This diya radiates warm white LEDs, bringing blessings, peace, and a radiant light to your home.',
     images: [SolarSilverAshtavinayakGanpatiDiya, SolarBrassSamai],
     category: 'diya',
@@ -108,6 +108,17 @@ const solarProducts = [
     description: 'A unique and innovative car-shaped diya with solar-powered illumination. Perfect for vehicle worship, travel protection, and adding divine light to your journeys.',
     images: [TableTop1],
     category: 'lamp',
+    rating: 4.6,
+    reviews: 142
+  },
+  {
+    id: 9,
+    name: 'Solar Silver Devdas',
+    url: 'silverdevdas',
+    price: 2198,
+    description: 'Elegant Devdas-style diya with intricate silver detailing and solar-powered illumination. Features a warm LED flame effect with up to 6 hours of runtime.',
+    images: [SilverDevdas],
+    category: 'diya',
     rating: 4.6,
     reviews: 142
   },
@@ -350,8 +361,8 @@ const ProductListing = ({ addToCart }) => {
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-2 rounded-full font-medium transition-all duration-300
                   ${activeCategory === category.id 
-                    ? `bg-gradient-to-r ${category.color} text-white shadow-lg` 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                    ? `bg-white text-black shadow-lg` 
+                    : 'bg-black text-gray-100 hover:bg-gray-800'}`}
               >
                 {category.name}
               </motion.button>

@@ -6,6 +6,7 @@ import {
 } from 'react-icons/fi';
 import { FaBuilding } from 'react-icons/fa';
 import { useCart } from './CartContext';
+import emailjs from "@emailjs/browser"; // ✅ Import EmailJS
 
 const CheckoutModal = ({ isOpen, onClose }) => {
   const { cart, clearCart, getTotalPrice, getItemsByOrderType } = useCart();
@@ -75,111 +76,131 @@ const CheckoutModal = ({ isOpen, onClose }) => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // --- Send Order Email ---
   const sendOrderEmail = async () => {
     setIsProcessing(true);
-    
-    // REPLACE WITH YOUR ACTUAL EMAIL
-    const YOUR_EMAIL = 'your-email@example.com';
-    
+  
+    // Generate grouped items and details
     const groupedItems = getItemsByOrderType();
-    const orderDate = new Date().toLocaleDateString('en-IN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    const orderDate = new Date().toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
-
+  
     // Generate order ID
     const orderId = `ORD-${Date.now().toString().slice(-6)}`;
-
-    // Format order details by category
-    let orderDetails = '';
-    
+  
+    // Format order details
+    let orderDetails = "";
+  
     if (groupedItems.normal.length > 0) {
-      orderDetails += '\n=== INDIVIDUAL PURCHASES ===\n';
-      groupedItems.normal.forEach(item => {
-        orderDetails += `• ${item.product.name} - Qty: ${item.quantity} - ₹${item.price} each = ₹${(item.price * item.quantity).toFixed(2)}\n`;
+      orderDetails += "\n=== INDIVIDUAL PURCHASES ===\n";
+      groupedItems.normal.forEach((item) => {
+        orderDetails += `• ${item.product.name} - Qty: ${
+          item.quantity
+        } - ₹${item.price} each = ₹${(item.price * item.quantity).toFixed(2)}\n`;
       });
     }
-
+  
     if (groupedItems.bulk.length > 0) {
-      orderDetails += '\n=== BULK ORDERS ===\n';
-      groupedItems.bulk.forEach(item => {
-        orderDetails += `• ${item.product.name} - Qty: ${item.quantity} - ₹${item.price} each = ₹${(item.price * item.quantity).toFixed(2)}\n`;
+      orderDetails += "\n=== BULK ORDERS ===\n";
+      groupedItems.bulk.forEach((item) => {
+        orderDetails += `• ${item.product.name} - Qty: ${
+          item.quantity
+        } - ₹${item.price} each = ₹${(item.price * item.quantity).toFixed(2)}\n`;
       });
     }
-
+  
     if (groupedItems.corporate.length > 0) {
-      orderDetails += '\n=== CORPORATE GIFTING ===\n';
-      groupedItems.corporate.forEach(item => {
-        orderDetails += `• ${item.product.name} - Qty: ${item.quantity} - ₹${item.price} each = ₹${(item.price * item.quantity).toFixed(2)}\n`;
+      orderDetails += "\n=== CORPORATE GIFTING ===\n";
+      groupedItems.corporate.forEach((item) => {
+        orderDetails += `• ${item.product.name} - Qty: ${
+          item.quantity
+        } - ₹${item.price} each = ₹${(item.price * item.quantity).toFixed(2)}\n`;
       });
     }
-
-    const emailContent = {
-      to: YOUR_EMAIL,
-      subject: `New Solar Products Order - ${orderId}`,
-      body: `
-🌟 NEW ORDER RECEIVED 🌟
-
-Order ID: ${orderId}
-Order Date: ${orderDate}
-
-👤 CUSTOMER DETAILS:
-Name: ${formData.fullName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-${formData.company ? `Company: ${formData.company}` : ''}
-
-📍 SHIPPING ADDRESS:
-${formData.address}
-${formData.city}, ${formData.state} ${formData.zipCode}
-
-📦 ORDER DETAILS:${orderDetails}
-
-💰 TOTAL AMOUNT: ₹${getTotalPrice().toFixed(2)}
-
-${formData.specialInstructions ? `📝 SPECIAL INSTRUCTIONS:\n${formData.specialInstructions}` : ''}
-
----
-This order was placed through your solar products website.
-Please contact the customer within 24 hours to confirm the order.
-      `
-    };
-
-    // Simulate email sending (replace with your actual email service)
+  
+    // Build email message
+    const message = `
+  🌟 NEW ORDER RECEIVED 🌟
+  
+  Order ID: ${orderId}
+  Order Date: ${orderDate}
+  
+  👤 CUSTOMER DETAILS:
+  Name: ${formData.fullName}
+  Email: ${formData.email}
+  Phone: ${formData.phone}
+  ${formData.company ? `Company: ${formData.company}` : ""}
+  
+  📍 SHIPPING ADDRESS:
+  ${formData.address}
+  ${formData.city}, ${formData.state} ${formData.zipCode}
+  
+  📦 ORDER DETAILS:
+  ${orderDetails}
+  
+  💰 TOTAL AMOUNT: ₹${getTotalPrice().toFixed(2)}
+  
+  ${
+    formData.specialInstructions
+      ? `📝 SPECIAL INSTRUCTIONS:\n${formData.specialInstructions}`
+      : ""
+  }
+  
+  ---
+  This order was placed through your solar products website.
+  Please contact the customer within 24 hours to confirm the order.
+    `;
+  
     try {
-      // Here you would integrate with your email service (EmailJS, Nodemailer, etc.)
-      console.log('Email would be sent to:', YOUR_EMAIL);
-      console.log('Email content:', emailContent);
-      
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      setCheckoutStep('confirmation');
-      
-      // Store order details for confirmation display
-      sessionStorage.setItem('lastOrder', JSON.stringify({
-        orderId,
-        customerName: formData.fullName,
-        totalAmount: getTotalPrice().toFixed(2),
-        itemCount: cart.totalItems
-      }));
-      
+      // ✅ Use your actual EmailJS credentials
+      const response = await emailjs.send(
+        "service_6steo4p", // ⚡ Service ID
+        "template_b71e32a", // ⚡ Template ID
+        {
+          to_email: "shreesha.energy@gmail.com, aveezmanages@gmail.com", // ✅ Recipients
+          name: formData.fullName,
+          email: formData.email,
+          message: message,
+          order_id: orderId,
+          order_date: orderDate,
+          total: `₹${getTotalPrice().toFixed(2)}`,
+        },
+        "keqjPA-FB_hoRljDf" // ⚡ Public key
+      );
+  
+      console.log("✅ Email sent:", response.status, response.text);
+      setCheckoutStep("confirmation");
+  
+      // Store order for confirmation page
+      sessionStorage.setItem(
+        "lastOrder",
+        JSON.stringify({
+          orderId,
+          customerName: formData.fullName,
+          totalAmount: getTotalPrice().toFixed(2),
+          itemCount: cart.totalItems,
+        })
+      );
     } catch (error) {
-      console.error('Error sending email:', error);
-      alert('There was an error processing your order. Please try again.');
+      console.error("❌ Email send failed:", error);
+      alert("There was an error sending your order email. Please try again.");
     } finally {
       setIsProcessing(false);
     }
   };
-
+  
+  // --- Place Order ---
   const handlePlaceOrder = () => {
     if (validateForm()) {
       sendOrderEmail();
     }
   };
+  
 
   const handleOrderComplete = () => {
     clearCart();

@@ -15,7 +15,7 @@ const SimilarProducts = () => {
     { 
       id: 1, 
       name: "Small Night Lamp", 
-      price: 499, 
+      price: 1998, 
       description: "3W solar-powered LED lamp with 6-hour backup.", 
       image: SmallNightLamp,
       path: "/solarnightlamp"
@@ -23,7 +23,7 @@ const SimilarProducts = () => {
     { 
       id: 2, 
       name: "Big Night Lamp", 
-      price: 899, 
+      price: 2798, 
       description: "5W high-lumen solar lamp for driveways & backyards.", 
       image: BigNightLamp,
       path: "/biglamp"
@@ -31,7 +31,7 @@ const SimilarProducts = () => {
     { 
       id: 3, 
       name: "Solar Silver Devdas Samai", 
-      price: 1299, 
+      price: 2198, 
       description: "Traditional Devdas-style samai with bright LEDs.", 
       image: SolarSilverDevdasSamai,
       path: "/silversamai"
@@ -39,7 +39,7 @@ const SimilarProducts = () => {
     { 
       id: 4, 
       name: "Solar Silver Panchpakali Samai", 
-      price: 1499, 
+      price: 2498, 
       description: "Elegant five-flame samai for ceremonies.", 
       image: SolarSilverPanchpakaliSamai,
       path: "/panchpakalisamai"
@@ -47,7 +47,7 @@ const SimilarProducts = () => {
     { 
       id: 5, 
       name: "Solar Brass Samai", 
-      price: 1799, 
+      price: 5998, 
       description: "Premium brass samai with 30 LEDs, luxury style.", 
       image: SolarBrassSamai,
       path: "/brass"
@@ -55,7 +55,7 @@ const SimilarProducts = () => {
     { 
       id: 6, 
       name: "Solar Silver Ashtavinayak Ganpati Diya", 
-      price: 799, 
+      price: 2498, 
       description: "Auspicious Ganpati diya with warm white LEDs.", 
       image: SolarSilverAshtavinayakGanpatiDiya,
       path: "/ganpatidiya"
@@ -63,7 +63,7 @@ const SimilarProducts = () => {
     { 
       id: 7, 
       name: "Solar Car Diya", 
-      price: 899, 
+      price: 1998, 
       description: "Car-shaped diya for vehicle worship and travel protection.", 
       image: SolarCarDiya,
       path: "/solarcardiya"

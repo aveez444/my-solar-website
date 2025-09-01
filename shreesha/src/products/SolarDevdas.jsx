@@ -7,31 +7,30 @@ import {
   FiTruck, FiShield, FiGift, FiUsers
 } from 'react-icons/fi';
 import { FaBuilding } from "react-icons/fa";
-
-import SolarSilverAshtavinayakDiya from "../assets/images/Products/Samai/AshtavinayakGanpati.jpeg";
+import { FaLeaf } from "react-icons/fa";
+import SolarSilverDevdas from "../assets/images/silverdevdas.jpeg";
 import { useCart } from '../components/CartContext'; // Adjust path as needed
 import emailjs from "@emailjs/browser"; // ✅ Import EmailJS
 
 
-const AshtavinayakGanpati = () => {
+const SolarDevdas = () => {
     const product = {
-        id: 6,
-        name: 'Solar Silver Ashtavinayak Ganpati Diya',
-        price: 2498,
-        description: 'An auspicious Ashtavinayak Ganpati design, meticulously crafted in silver. This diya radiates warm white LEDs, bringing blessings, peace, and a radiant light to your home.',
-        extendedDescription: 'Invoke the divine blessings of Lord Ganesha with our exquisite Solar Silver Ashtavinayak Ganpati Diya. This beautifully crafted piece features the sacred Ashtavinayak (eight forms of Ganesha) motif, symbolizing wisdom, prosperity, and the removal of obstacles. The elegant silver finish and warm illumination create a spiritually uplifting atmosphere perfect for daily worship and special occasions.',
+        id: 9, // Change ID
+        name: 'Solar Silver Devdas',
+        price: 2198,
+        description: 'Elegant Devdas-style diya with intricate silver detailing and solar-powered illumination. Features a warm LED flame effect with up to 6 hours of runtime. A perfect blend of tradition and modern technology for your pooja room and festive decor.',
+        extendedDescription: 'Bring home the timeless beauty of our Solar Silver Devdas Diya. Designed with traditional artistry and finished with delicate silver detailing, this diya radiates divine charm. Powered by solar technology, it offers a soft, glowing flame effect without the need for oil or wicks. Ideal for daily prayers, festive celebrations, and as a graceful addition to your spiritual décor',
         benefits: [
-          'Sacred Ashtavinayak design representing the eight forms of Lord Ganesha',
-          'Elegant silver finish that complements any home decor or prayer space',
-          'Perfect for daily worship, Ganesh Chaturthi, and other religious celebrations',
-          'Creates a serene atmosphere for meditation and spiritual practices'
-         
+          'Exquisite silver finish with traditional Devdas design patterns',
+          'Perfect for puja rooms, temples, and festive decorations',
+          'Creates a divine and spiritual atmosphere',
+          'No wiring required - place anywhere with sunlight access',
         ],
-        images: [SolarSilverAshtavinayakDiya], // Use your actual image imports
+        images: [SolarSilverDevdas], // Use your actual image imports
         reviews: [
-          { name: 'Neha R.', rating: 5, comment: 'The Ashtavinayak design is beautifully detailed. It brings such positive energy to our home during evening prayers.' },
-          { name: 'Vikram P.', rating: 5, comment: 'Perfect for our daily Ganesh puja. The silver finish looks premium and the light is just the right brightness.' },
-          { name: 'Sanjana M.', rating: 4, comment: 'Lovely product with good craftsmanship. The solar charging works well even on slightly cloudy days.' }
+          { name: 'Priya S.', rating: 5, comment: 'Absolutely beautiful! The craftsmanship is exceptional and it lights up our puja room perfectly.' },
+          { name: 'Rajesh M.', rating: 5, comment: 'The silver finish looks premium and the solar feature works great. Highly recommend!' },
+          { name: 'Anjali K.', rating: 4, comment: 'Beautiful design and good brightness. Perfect for our daily prayers.' }
         ]
       };
 
@@ -167,6 +166,7 @@ const AshtavinayakGanpati = () => {
         return Object.keys(newErrors).length === 0;
       };
     
+   
      // --- Send Email ---
   const sendOrderEmail = () => {
     setIsSending(true);
@@ -223,7 +223,6 @@ const AshtavinayakGanpati = () => {
       sendOrderEmail();
     }
   };
-
     
       const selectedOrderType = orderTypes.find(type => type.id === orderType);
     
@@ -536,7 +535,7 @@ const AshtavinayakGanpati = () => {
                 {/* Trust badges */}
                 <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 pt-4 md:pt-6 border-t border-emerald-100">
                 <div className="flex items-center space-x-2 text-gray-600">
-                
+                 
                 </div>
                 <div className="flex items-center space-x-2 text-gray-600">
                   <FiShield className="text-emerald-500 w-4 h-4 md:w-5 md:h-5" />
@@ -933,4 +932,4 @@ const AshtavinayakGanpati = () => {
         </div>
       );
     };
-export default AshtavinayakGanpati;
+export default SolarDevdas;

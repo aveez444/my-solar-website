@@ -46,6 +46,7 @@ import BrassSamai from './products/BrassSamai';
 import AshtavinayakGanpati from './products/AshtavinayakGanpati';
 import CarDiya from './products/CarDiya';
 import SolarTableTop from './products/SolarTableTop ';
+import SolarDevdas from './products/SolarDevdas';
 
 // Add more product imports here as you create them
 // import SolarPanel from './products/SolarPanel';
@@ -55,6 +56,7 @@ import SolarTableTop from './products/SolarTableTop ';
 import { CartProvider } from './components/CartContext';
 import Cart from './components/Cart';
 import FloatingCartButton from './components/FloatingCartButton';
+
 
 
 // Component to conditionally render cart features
@@ -73,7 +75,8 @@ const ConditionalCartFeatures = () => {
     '/solar-panel',
     '/solarcardiya',
     '/solar-ecommerce',
-    '/tabletop'
+    '/tabletop',
+    '/silverdevdas'
     // Add more product routes as you create them
   ];
 
@@ -165,6 +168,7 @@ function App() {
           <Route path="/ganpatidiya" element={<AshtavinayakGanpati/>} />
           <Route path="/solarcardiya" element={<CarDiya/>} />
           <Route path="/tabletop" element={<SolarTableTop/>} />
+          <Route path="/silverdevdas" element={<SolarDevdas/>} />
 
 
   
