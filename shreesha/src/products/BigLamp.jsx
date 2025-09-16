@@ -286,7 +286,7 @@ const BigLamp = () => {
               className="text-gray-700 leading-relaxed mb-8 select-text"
             >
               <p className="mb-4">
-                Our Corporate Gifting program is designed for bulk orders with a <strong>minimum quantity of 50 units</strong>. 
+                Our Corporate Gifting program is designed for bulk orders with a <strong>minimum quantity of 20 units</strong>. 
               </p>
               <p className="mb-4">
                 Enjoy customizable quantities, bespoke designs, and premium packaging tailored to your brand's needs. 
@@ -338,30 +338,30 @@ const BigLamp = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="space-y-8 md:space-y-16" // Reduced space on mobile
+        className="space-y-6 sm:space-y-8"
       >
         {/* Hero Section */}
-        <section className="relative flex flex-col lg:flex-row items-center justify-between gap-4 md:gap-8 lg:gap-16 py-6 md:py-12 lg:py-20">
+        <section className="relative flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 py-4 sm:py-6">
           {/* Product Images */}
-          <div className="w-full lg:w-1/2 relative">
+          <div className="w-full sm:w-1/2 relative">
             <motion.div
-              className="relative w-full h-56 sm:h-64 md:h-96 lg:h-[500px] overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-white via-emerald-50 to-green-100 shadow-lg md:shadow-2xl border border-emerald-200"
+              className="relative w-full h-48 sm:h-64 md:h-96 overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-white via-emerald-50 to-green-100 shadow-md sm:shadow-lg border border-emerald-200"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               {/* Decorative elements */}
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-green-500/5"></div>
-              <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-emerald-400/20 to-green-500/20 rounded-full blur-xl"></div>
-              <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-teal-400/20 to-emerald-500/20 rounded-full blur-lg"></div>
+              <div className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-emerald-400/20 to-green-500/20 rounded-full blur-sm"></div>
+              <div className="absolute bottom-2 left-2 w-6 h-6 bg-gradient-to-br from-teal-400/20 to-emerald-500/20 rounded-full blur-sm"></div>
               
               {/* Image container with flex centering */}
-              <div className="w-full h-full flex items-center justify-center p-3 md:p-6 lg:p-8 relative">
+              <div className="w-full h-full flex items-center justify-center p-2 sm:p-4 relative">
                 <AnimatePresence>
                   <motion.img
                     key={currentImageIndex}
                     src={product.images[currentImageIndex]}
                     alt={`${product.name} - View ${currentImageIndex + 1}`}
-                    className="max-w-full max-h-full object-contain filter drop-shadow-xl md:drop-shadow-2xl"
+                    className="max-w-full max-h-full object-contain filter drop-shadow-md sm:drop-shadow-lg"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.8 }}
@@ -375,19 +375,19 @@ const BigLamp = () => {
                 <>
                   <motion.button
                     onClick={() => handleImageChange('prev')}
-                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-1 md:p-3 rounded-full shadow-lg md:shadow-xl hover:bg-white border border-emerald-200 hover:border-emerald-300 transition-all duration-300 z-10"
+                    className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-1 sm:p-2 rounded-full shadow-md hover:bg-white border border-emerald-200 hover:border-emerald-300 transition-all duration-300 z-10"
                     whileHover={{ scale: 1.1, x: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <FiArrowLeft size={14} className="text-emerald-600" />
+                    <FiArrowLeft size={12} className="text-emerald-600" />
                   </motion.button>
                   <motion.button
                     onClick={() => handleImageChange('next')}
-                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-1 md:p-3 rounded-full shadow-lg md:shadow-xl hover:bg-white border border-emerald-200 hover:border-emerald-300 transition-all duration-300 z-10"
+                    className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-1 sm:p-2 rounded-full shadow-md hover:bg-white border border-emerald-200 hover:border-emerald-300 transition-all duration-300 z-10"
                     whileHover={{ scale: 1.1, x: 2 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <FiArrowRight size={14} className="text-emerald-600" />
+                    <FiArrowRight size={12} className="text-emerald-600" />
                   </motion.button>
                 </>
               )}
@@ -395,13 +395,13 @@ const BigLamp = () => {
             
             {/* Image indicators - Only show if multiple images */}
             {product.images.length > 1 && (
-              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex space-x-2">
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex space-x-1 sm:space-x-2">
                 {product.images.map((_, idx) => (
                   <motion.button
                     key={idx}
-                    className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                    className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
                       idx === currentImageIndex 
-                        ? 'bg-emerald-500 shadow-md md:shadow-lg shadow-emerald-500/50' 
+                        ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50' 
                         : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                     whileHover={{ scale: 1.3 }}
@@ -413,259 +413,256 @@ const BigLamp = () => {
           </div>
           
           {/* Product Info */}
-          <div className="w-full lg:w-1/2 space-y-4 md:space-y-8 mt-6 md:mt-0">
+          <div className="w-full sm:w-1/2 space-y-3 sm:space-y-4 mt-4 sm:mt-0">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <div className="flex items-center space-x-2 mb-3 md:mb-4">
+              <div className="flex items-center space-x-1 sm:space-x-2 mb-2 sm:mb-3">
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => (
-                    <FiStar key={i} size={16} className="md:w-5" fill="currentColor" />
+                    <FiStar key={i} size={12} fill="currentColor" />
                   ))}
                 </div>
-                <span className="text-sm md:text-base text-gray-600 font-medium">4.8 (234 reviews)</span>
+                <span className="text-xs sm:text-sm text-gray-600 font-medium">4.8 (234 reviews)</span>
               </div>
               
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold bg-black bg-clip-text text-transparent leading-tight mb-4 md:mb-6">
+              <h1 className="text-xl sm:text-2xl font-extrabold bg-black bg-clip-text text-transparent leading-tight mb-2 sm:mb-3">
                 {product.name}
               </h1>
               
-              <div className="flex items-center space-x-3 md:space-x-4 mb-4 md:mb-6">
-                <span className="text-lg md:text-xl lg:text-2xl text-gray-500 line-through">₹{product.price.toFixed(2)}</span>
-                <span className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
+              <div className="flex items-center space-x-1 sm:space-x-2 mb-2 sm:mb-3">
+                <span className="text-xs sm:text-sm text-gray-500 line-through">₹{product.price.toFixed(2)}</span>
+                <span className="text-sm sm:text-base font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
                   ₹{getDiscountedPrice(product.price)}
                 </span>
-                <span className="bg-red-600 text-white px-2 py-1 md:px-4 md:py-2 rounded-full font-bold text-xs md:text-sm shadow-md">
+                <span className="bg-red-600 text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded-full font-bold text-[8px] sm:text-xs shadow-sm">
                   {getDiscountLabel()}
                 </span>
               </div>
             </motion.div>
+
+            <p className="text-xs sm:text-sm text-gray-700 leading-tight">{product.description}</p>
+            <p className="text-xs sm:text-sm text-gray-600 italic font-medium">{product.extendedDescription}</p>
 
             {/* Order Type Selection */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="space-y-3 md:space-y-4"
+              className="space-y-2 sm:space-y-3"
             >
-              <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-3 md:mb-4">Choose Order Type:</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-4">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">Choose Order Type:</h3>
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {orderTypes.map((type) => (
                   <motion.button
                     key={type.id}
                     onClick={() => handleOrderTypeChange(type.id)}
-                    className={`p-2 md:p-3 sm:p-4 rounded-xl md:rounded-2xl border-2 transition-all duration-300 ${
+                    className={`p-2 sm:p-3 rounded-lg border transition-all duration-300 flex flex-col items-center justify-center text-center h-20 sm:h-24 ${
                       orderType === type.id
-                        ? 'border-emerald-500 bg-gradient-to-br from-emerald-50 to-green-50 shadow-md md:shadow-lg shadow-emerald-500/25'
-                        : 'border-gray-200 bg-white hover:border-emerald-300 hover:shadow-md'
+                        ? 'border-emerald-500 bg-gradient-to-br from-emerald-50 to-green-50 shadow-sm shadow-emerald-500/25'
+                        : 'border-gray-200 bg-white hover:border-emerald-300 hover:shadow-sm'
                     }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
                   >
                     <type.icon 
-                      size={20} 
-                      className={`mx-auto mb-1 ${
+                      size={16} 
+                      className={`mb-1 sm:mb-2 ${
                         orderType === type.id ? 'text-emerald-600' : 'text-gray-400'
                       }`} 
                     />
-                    <p className={`font-semibold text-xs md:text-sm ${
+                    <p className={`font-semibold text-[10px] sm:text-xs leading-tight ${
                       orderType === type.id ? 'text-emerald-700' : 'text-gray-600'
                     }`}>
                       {type.label}
                     </p>
-                    <p className="text-[10px] md:text-xs text-gray-500 mt-0.5">Min: {type.minQty}</p>
+                    <p className="text-[8px] sm:text-[10px] text-gray-500 mt-0.5">Min: {type.minQty}</p>
                   </motion.button>
                 ))}
               </div>
             </motion.div>
 
-            <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-relaxed">{product.description}</p>
-            <p className="text-xs md:text-sm text-gray-600 italic font-medium">{product.extendedDescription}</p>
-
             {/* Quantity and Actions */}
-            <div className="space-y-4 md:space-y-6">
-              <div className="flex items-center space-x-3 md:space-x-4">
-                <span className="text-base md:text-lg font-semibold text-gray-700">Quantity:</span>
-                <div className="flex items-center bg-white rounded-lg md:rounded-xl shadow-md border border-emerald-200 overflow-hidden">
+            <div className="space-y-2 sm:space-y-3">
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <span className="text-xs sm:text-sm font-semibold text-gray-700">Quantity:</span>
+                <div className="flex items-center bg-white rounded-lg shadow-sm border border-emerald-200 overflow-hidden">
                   <motion.button
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setQty((prev) => Math.max(selectedOrderType.minQty, prev - 1))}
                     disabled={qty <= selectedOrderType.minQty}
-                    className={`p-2 md:p-3 transition-colors duration-200 text-emerald-600 ${
-                        qty <= selectedOrderType.minQty ? 'opacity-50 cursor-not-allowed' : 'hover:bg-emerald-50'
+                    className={`p-1 sm:p-1.5 transition-colors duration-200 text-emerald-600 ${
+                      qty <= selectedOrderType.minQty ? 'opacity-50 cursor-not-allowed' : 'hover:bg-emerald-50'
                     }`}
                     >
-                    <FiArrowLeft size={16} className="md:w-5" />
+                    <FiArrowLeft size={12} />
                   </motion.button>
-                  <span className="px-3 md:px-6 py-2 md:py-3 font-bold text-lg md:text-xl text-emerald-700 min-w-[40px] md:min-w-[60px] text-center">
+                  <span className="px-2 sm:px-3 py-1 sm:py-1.5 font-bold text-xs sm:text-sm text-emerald-700 min-w-[24px] sm:min-w-[32px] text-center">
                     {qty}
                   </span>
                   <motion.button
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setQty((prev) => prev + 1)}
-                    className="p-2 md:p-3 hover:bg-emerald-50 transition-colors duration-200 text-emerald-600"
+                    className="p-1 sm:p-1.5 hover:bg-emerald-50 transition-colors duration-200 text-emerald-600"
                   >
-                    <FiArrowRight size={16} className="md:w-5" />
+                    <FiArrowRight size={12} />
                   </motion.button>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
               <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={addToCart}
-                className="flex-1 bg-white border-2 border-emerald-500 text-emerald-600 px-4 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold shadow-md md:shadow-lg hover:bg-emerald-50 hover:shadow-emerald-500/25 transition-all duration-300 flex items-center justify-center text-sm md:text-base"
+                className="flex-1 bg-white border-2 border-emerald-500 text-emerald-600 px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-bold shadow-md hover:bg-emerald-50 hover:shadow-emerald-500/25 transition-all duration-300 flex items-center justify-center text-sm sm:text-base"
               >
-                <FiShoppingCart className="mr-2 md:mr-3 w-4 h-4 md:w-5 md:h-5" /> 
+                <FiShoppingCart className="mr-1.5 w-4 h-4 sm:w-5 sm:h-5" /> 
                 Add to Cart
               </motion.button>
               <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={handleBuyNow}
-                className="flex-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 text-white px-4 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold shadow-md md:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 flex items-center justify-center text-sm md:text-base"
+                className="flex-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-bold shadow-md hover:shadow-emerald-500/25 transition-all duration-300 flex items-center justify-center text-sm sm:text-base"
               >
                 Buy Now 
-                <FiArrowRight className="ml-2 md:ml-3 w-4 h-4 md:w-5 md:h-5" />
+                <FiArrowRight className="ml-1.5 w-4 h-4 sm:w-5 sm:h-5" />
               </motion.button>
             </div>
 
               {/* Trust badges */}
-              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 pt-4 md:pt-6 border-t border-emerald-100">
-              <div className="flex items-center space-x-2 text-gray-600">
-               
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-2 sm:pt-3 border-t border-emerald-100">
+              <div className="flex items-center space-x-1 text-gray-600">
+                <FiShield className="text-emerald-500 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <span className="text-[10px] sm:text-xs font-medium">2-Year Warranty</span>
               </div>
-              <div className="flex items-center space-x-2 text-gray-600">
-                <FiShield className="text-emerald-500 w-4 h-4 md:w-5 md:h-5" />
-                <span className="text-xs md:text-sm font-medium">2-Year Warranty</span>
-              </div>
-              <div className="flex items-center space-x-2 text-gray-600">
-                <FiCheck className="text-emerald-500 w-4 h-4 md:w-5 md:h-5" />
-                <span className="text-xs md:text-sm font-medium">Eco-Certified</span>
+              <div className="flex items-center space-x-1 text-gray-600">
+                <FiCheck className="text-emerald-500 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <span className="text-[10px] sm:text-xs font-medium">Eco-Certified</span>
               </div>
             </div>
             </div>
           </div>
         </section>
 
-                {/* Benefits Section */}
-                <section className="py-16">
-                  <motion.h2 
-                    className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-8 sm:mb-12 text-center"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    Why Choose Our Solar Lamp?
-                  </motion.h2>
-                  <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                  {product.benefits.map((benefit, idx) => (
-                    <motion.div
-                      key={idx}
-                      className="flex items-start space-x-3 sm:space-x-4 p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-white to-emerald-50/30 shadow-lg hover:shadow-xl border border-emerald-100 hover:border-emerald-200 transition-all duration-300"
-                      initial={{ opacity: 0, x: -50 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1, duration: 0.6 }}
-                      whileHover={{ scale: 1.02, x: 5 }}
-                    >
-                      <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-1.5 sm:p-2 rounded-full shadow-lg">
-                        <FiCheck className="text-white" size={16} /> {/* Reduced from 20 */}
-                      </div>
-                      <span className="text-base sm:text-lg text-gray-700 leading-relaxed flex-1">{benefit}</span>
-                    </motion.div>
-                  ))}
-                </div>
-                </section>
-  
-                <SimilarProducts />
-  
-                {/* Reviews Section */}
-                <section className="py-16 bg-gradient-to-br from-emerald-50 via-green-50/50 to-teal-50 rounded-[3rem] shadow-2xl border border-emerald-200/50">
-                  <motion.h2 
-                    className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-12 text-center"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    What Our Customers Say
-                  </motion.h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 px-4 sm:px-8">
-                      {product.reviews.map((review, idx) => (
-                        <motion.div
-                          key={idx}
-                          className="p-4 sm:p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl border border-emerald-100 hover:border-emerald-200 transition-all duration-500"
-                          initial={{ opacity: 0, y: 50 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: idx * 0.1, duration: 0.6 }}
-                          whileHover={{ scale: 1.05, y: -5 }}
-                        >
-                          <div className="flex items-center mb-4 sm:mb-6">
-                            <div className="flex space-x-1 mr-3 sm:mr-4">
-                              {[...Array(5)].map((_, i) => (
-                                <FiStar 
-                                  key={i} 
-                                  className={`${i < review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
-                                  size={16} // Reduced from 20
-                                />
-                              ))}
-                            </div>
-                            <span className="font-semibold text-sm sm:text-base text-gray-800">{review.name}</span>
-                          </div>
-                          <p className="text-gray-600 text-sm sm:text-base leading-relaxed italic mb-4">"{review.comment}"</p>
-                          <div className="w-full h-1 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full"></div>
-                        </motion.div>
+        {/* Benefits Section */}
+        <section className="py-4 sm:py-6">
+          <motion.h2 
+            className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-4 sm:mb-6 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Why Choose Our Solar Lamp?
+          </motion.h2>
+          <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+          {product.benefits.map((benefit, idx) => (
+            <motion.div
+              key={idx}
+              className="flex items-start space-x-1.5 sm:space-x-2 p-2 sm:p-3 rounded-lg bg-gradient-to-br from-white to-emerald-50/30 shadow-sm border border-emerald-100 hover:border-emerald-200 transition-all duration-300"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.02, x: 3 }}
+            >
+              <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-1 rounded-full shadow-sm">
+                <FiCheck className="text-white" size={12} />
+              </div>
+              <span className="text-[10px] sm:text-xs text-gray-700 leading-tight flex-1">{benefit}</span>
+            </motion.div>
+          ))}
+        </div>
+        </section>
+
+        <SimilarProducts />
+
+        {/* Reviews Section */}
+        <section className="py-4 sm:py-6 bg-gradient-to-br from-emerald-50 via-green-50/50 to-teal-50 rounded-xl shadow-md border border-emerald-200/50">
+          <motion.h2 
+            className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-4 sm:mb-6 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            What Our Customers Say
+          </motion.h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 px-2 sm:px-4">
+              {product.reviews.map((review, idx) => (
+                <motion.div
+                  key={idx}
+                  className="p-2 sm:p-4 rounded-lg bg-white shadow-sm border border-emerald-100 hover:border-emerald-200 transition-all duration-300"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.03, y: -2 }}
+                >
+                  <div className="flex items-center mb-2 sm:mb-3">
+                    <div className="flex space-x-0.5 mr-1 sm:mr-2">
+                      {[...Array(5)].map((_, i) => (
+                        <FiStar 
+                          key={i} 
+                          className={`${i < review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
+                          size={12}
+                        />
                       ))}
                     </div>
-                </section>
-              </motion.div>
-            )}
-  
-  {checkoutStep === 'summary' && (
+                    <span className="font-semibold text-[10px] sm:text-xs text-gray-800">{review.name}</span>
+                  </div>
+                  <p className="text-gray-600 text-[9px] sm:text-[10px] leading-tight italic mb-2">"{review.comment}"</p>
+                  <div className="w-full h-0.5 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full"></div>
+                </motion.div>
+              ))}
+            </div>
+        </section>
+      </motion.div>
+    )}
+
+{checkoutStep === 'summary' && (
   <motion.div
     key="summary"
     initial={{ opacity: 0, y: 50 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -50 }}
     transition={{ duration: 0.5 }}
-    className="max-w-2xl mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-3xl shadow-2xl border border-emerald-200"
+    className="max-w-md mx-auto bg-white p-3 sm:p-4 rounded-xl shadow-md border border-emerald-200"
   >
-    <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8 text-center">
+    <h2 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-3 sm:mb-4 text-center">
       Order Summary
     </h2>
     
-    <div className="space-y-4 sm:space-y-6">
-      <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 md:p-6 bg-emerald-50 rounded-2xl border border-emerald-200">
+    <div className="space-y-2 sm:space-y-3">
+      <div className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 bg-emerald-50 rounded-lg border border-emerald-200">
         <img 
           src={product.images[0]} 
           alt={product.name}
-          className="w-16 sm:w-20 h-16 sm:h-20 rounded-xl object-cover border-2 border-emerald-200"
+          className="w-12 sm:w-16 h-12 sm:h-16 rounded-md object-cover border border-emerald-200"
         />
         <div className="flex-1">
-          <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800">{product.name}</h3>
-          <p className="text-emerald-600 text-sm sm:text-base font-medium">{orderTypes.find(t => t.id === orderType)?.label}</p>
-          <p className="text-gray-600 text-xs sm:text-sm">Quantity: {qty}</p>
+          <h3 className="text-sm sm:text-base font-semibold text-gray-800">{product.name}</h3>
+          <p className="text-emerald-600 text-[10px] sm:text-xs font-medium">{orderTypes.find(t => t.id === orderType)?.label}</p>
+          <p className="text-gray-600 text-[8px] sm:text-[10px]">Quantity: {qty}</p>
         </div>
         <div className="text-right">
-          <p className="text-xs sm:text-sm text-gray-500 line-through">₹{(product.price * qty).toFixed(2)}</p>
-          <p className="text-xl sm:text-2xl md:text-2xl font-bold text-emerald-600">₹{(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}</p>
+          <p className="text-[10px] sm:text-xs text-gray-500 line-through">₹{(product.price * qty).toFixed(2)}</p>
+          <p className="text-base sm:text-lg font-bold text-emerald-600">₹{(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}</p>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-3 sm:p-4 md:p-6 rounded-2xl border border-emerald-200">
-        <div className="flex justify-between items-center text-base sm:text-lg">
+      <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-2 sm:p-3 rounded-lg border border-emerald-200">
+        <div className="flex justify-between items-center text-sm sm:text-base">
           <span className="font-semibold text-gray-700">Total Amount:</span>
-          <span className="text-2xl sm:text-3xl md:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
+          <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
             ₹{(parseFloat(getDiscountedPrice(product.price)) * qty).toFixed(2)}
           </span>
         </div>
-        <div className="flex justify-between items-center text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">
+        <div className="flex justify-between items-center text-[10px] sm:text-xs text-gray-600 mt-1">
           <span>You save:</span>
           <span className="font-semibold text-green-600">
             ₹{((product.price - parseFloat(getDiscountedPrice(product.price))) * qty).toFixed(2)}
@@ -673,263 +670,261 @@ const BigLamp = () => {
         </div>
       </div>
 
-      <div className="flex justify-between mt-4 sm:mt-6 md:mt-8">
+      <div className="flex justify-between mt-2 sm:mt-3">
         <motion.button
           type="button"
           onClick={() => setCheckoutStep('viewing')}
-          className="text-emerald-600 hover:text-emerald-800 transition font-medium text-sm sm:text-base flex items-center"
-          whileHover={{ scale: 1.05, x: -5 }}
+          className="text-emerald-600 hover:text-emerald-800 transition font-medium text-xs sm:text-sm flex items-center"
+          whileHover={{ scale: 1.03, x: -3 }}
         >
-          <FiArrowLeft className="mr-1 sm:mr-2" /> Back to Product
+          <FiArrowLeft className="mr-0.5" /> Back
         </motion.button>
         <motion.button
           type="button"
           onClick={() => setCheckoutStep('address')}
-          className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-xl font-bold text-sm sm:text-base shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 flex items-center"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-bold shadow-sm hover:shadow-emerald-500/25 transition-all duration-300 flex items-center text-xs sm:text-sm"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
         >
-          Continue to Shipping <FiArrowRight className="ml-1 sm:ml-2" />
+          Shipping <FiArrowRight className="ml-0.5" />
         </motion.button>
       </div>
     </div>
   </motion.div>
 )}
-  
-            {/* Address Form Step */}
-            {checkoutStep === 'address' && (
-              <motion.div
-                key="address"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.5 }}
-                className="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-2xl border border-emerald-200"
-              >
-              <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-6 sm:mb-8 text-center">
-                Shipping Information
-              </h2>
-                
-                <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    <div>
-                      <label className="block text-gray-700 mb-1 sm:mb-2 font-semibold text-sm sm:text-base">Full Name *</label>
-                      <motion.input
-                        type="text"
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleInputChange}
-                        className={`w-full p-3 sm:p-4 border-2 rounded-xl bg-gray-50 focus:bg-white focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
-                          errors.fullName ? 'border-red-500' : 'border-gray-200'
-                        }`}
-                        whileFocus={{ scale: 1.02 }}
-                        placeholder="Enter your full name"
-                      />
-                      {errors.fullName && <p className="text-red-500 text-xs sm:text-sm mt-1 sm:mt-2">{errors.fullName}</p>}
-                    </div>
-                    <div>
-                      <label className="block text-gray-700 mb-1 sm:mb-2 font-semibold text-sm sm:text-base">Contact Number *</label>
-                      <motion.input
-                        type="tel"
-                        name="contact"
-                        value={formData.contact}
-                        onChange={handleInputChange}
-                        className={`w-full p-3 sm:p-4 border-2 rounded-xl bg-gray-50 focus:bg-white focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
-                          errors.contact ? 'border-red-500' : 'border-gray-200'
-                        }`}
-                        whileFocus={{ scale: 1.02 }}
-                        placeholder="10-digit mobile number"
-                      />
-                      {errors.contact && <p className="text-red-500 text-xs sm:text-sm mt-1 sm:mt-2">{errors.contact}</p>}
-                    </div>
-                  </div>
-  
-                  <div>
-                    <label className="block text-gray-700 mb-2 font-semibold">Email Address *</label>
-                    <motion.input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className={`w-full p-4 border-2 rounded-xl bg-gray-50 focus:bg-white focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
-                        errors.email ? 'border-red-500' : 'border-gray-200'
-                      }`}
-                      whileFocus={{ scale: 1.02 }}
-                      placeholder="your.email@example.com"
-                    />
-                    {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email}</p>}
-                  </div>
-  
-                  {orderType === 'corporate' && (
-                    <div>
-                      <label className="block text-gray-700 mb-2 font-semibold">Company Name *</label>
-                      <motion.input
-                        type="text"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        className={`w-full p-4 border-2 rounded-xl bg-gray-50 focus:bg-white focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
-                          errors.company ? 'border-red-500' : 'border-gray-200'
-                        }`}
-                        whileFocus={{ scale: 1.02 }}
-                        placeholder="Your company name"
-                      />
-                      {errors.company && <p className="text-red-500 text-sm mt-2">{errors.company}</p>}
-                    </div>
-                  )}
-  
-                  <div>
-                    <label className="block text-gray-700 mb-2 font-semibold">Complete Address *</label>
-                    <motion.textarea
-                      name="address"
-                      value={formData.address}
-                      onChange={handleInputChange}
-                      rows="3"
-                      className={`w-full p-4 border-2 rounded-xl bg-gray-50 focus:bg-white focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 resize-none ${
-                        errors.address ? 'border-red-500' : 'border-gray-200'
-                      }`}
-                      whileFocus={{ scale: 1.02 }}
-                      placeholder="House/Flat No., Street, Area, Landmark"
-                    />
-                    {errors.address && <p className="text-red-500 text-sm mt-2">{errors.address}</p>}
-                  </div>
-  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-gray-700 mb-2 font-semibold">City *</label>
-                      <motion.input
-                        type="text"
-                        name="city"
-                        value={formData.city}
-                        onChange={handleInputChange}
-                        className={`w-full p-4 border-2 rounded-xl bg-gray-50 focus:bg-white focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
-                          errors.city ? 'border-red-500' : 'border-gray-200'
-                        }`}
-                        whileFocus={{ scale: 1.02 }}
-                        placeholder="Your city"
-                      />
-                      {errors.city && <p className="text-red-500 text-sm mt-2">{errors.city}</p>}
-                    </div>
-  
-                    <div>
-                      <label className="block text-gray-700 mb-2 font-semibold">ZIP Code *</label>
-                      <motion.input
-                        type="text"
-                        name="zip"
-                        value={formData.zip}
-                        onChange={handleInputChange}
-                        className={`w-full p-4 border-2 rounded-xl bg-gray-50 focus:bg-white focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
-                          errors.zip ? 'border-red-500' : 'border-gray-200'
-                        }`}
-                        whileFocus={{ scale: 1.02 }}
-                        placeholder="PIN Code"
-                      />
-                      {errors.zip && <p className="text-red-500 text-sm mt-2">{errors.zip}</p>}
-                    </div>
-                  </div>
-  
-                  <div className="flex justify-between mt-8">
-                    <motion.button
-                      type="button"
-                      onClick={() => setCheckoutStep('summary')}
-                      className="text-emerald-600 hover:text-emerald-800 transition font-medium flex items-center"
-                      whileHover={{ scale: 1.05, x: -5 }}
-                    >
-                      <FiArrowLeft className="mr-2" /> Back to Summary
-                    </motion.button>
-                    <motion.button
-                      type="button"
-                      onClick={completeOrder}
-                      disabled={isSending}
-                      className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
-                      whileHover={{ scale: isSending ? 1 : 1.05 }}
-                      whileTap={{ scale: isSending ? 1 : 0.95 }}
-                    >
-                      {isSending ? (
-                        <>
-                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                          Processing Order...
-                        </>
-                      ) : (
-                        <>
-                          Complete Order <FiCheck className="ml-2" />
-                        </>
-                      )}
-                    </motion.button>
-                  </div>
-                </form>
-              </motion.div>
+
+  {/* Address Form Step */}
+  {checkoutStep === 'address' && (
+    <motion.div
+      key="address"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-md mx-auto bg-white p-3 sm:p-4 rounded-xl shadow-md border border-emerald-200"
+    >
+      <h2 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-3 sm:mb-4 text-center">
+        Shipping Information
+      </h2>
+      <form className="space-y-2 sm:space-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+          <div>
+            <label className="block text-gray-700 mb-1 font-semibold text-xs sm:text-sm">Full Name *</label>
+            <motion.input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleInputChange}
+              className={`w-full p-2 sm:p-3 border rounded-md bg-gray-50 focus:bg-white focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
+                errors.fullName ? 'border-red-500' : 'border-gray-200'
+              }`}
+              whileFocus={{ scale: 1.02 }}
+              placeholder="Enter your full name"
+            />
+            {errors.fullName && <p className="text-red-500 text-[8px] sm:text-xs mt-1">{errors.fullName}</p>}
+          </div>
+          <div>
+            <label className="block text-gray-700 mb-1 font-semibold text-xs sm:text-sm">Contact Number *</label>
+            <motion.input
+              type="tel"
+              name="contact"
+              value={formData.contact}
+              onChange={handleInputChange}
+              className={`w-full p-2 sm:p-3 border rounded-md bg-gray-50 focus:bg-white focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
+                errors.contact ? 'border-red-500' : 'border-gray-200'
+              }`}
+              whileFocus={{ scale: 1.02 }}
+              placeholder="10-digit mobile number"
+            />
+            {errors.contact && <p className="text-red-500 text-[8px] sm:text-xs mt-1">{errors.contact}</p>}
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-gray-700 mb-1 font-semibold text-xs sm:text-sm">Email Address *</label>
+          <motion.input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            className={`w-full p-2 sm:p-3 border rounded-md bg-gray-50 focus:bg-white focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
+              errors.email ? 'border-red-500' : 'border-gray-200'
+            }`}
+            whileFocus={{ scale: 1.02 }}
+            placeholder="your.email@example.com"
+          />
+          {errors.email && <p className="text-red-500 text-[8px] sm:text-xs mt-1">{errors.email}</p>}
+        </div>
+
+        {orderType === 'corporate' && (
+          <div>
+            <label className="block text-gray-700 mb-1 font-semibold text-xs sm:text-sm">Company Name *</label>
+            <motion.input
+              type="text"
+              name="company"
+              value={formData.company}
+              onChange={handleInputChange}
+              className={`w-full p-2 sm:p-3 border rounded-md bg-gray-50 focus:bg-white focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
+                errors.company ? 'border-red-500' : 'border-gray-200'
+              }`}
+              whileFocus={{ scale: 1.02 }}
+              placeholder="Your company name"
+            />
+            {errors.company && <p className="text-red-500 text-[8px] sm:text-xs mt-1">{errors.company}</p>}
+          </div>
+        )}
+
+        <div>
+          <label className="block text-gray-700 mb-1 font-semibold text-xs sm:text-sm">Complete Address *</label>
+          <motion.textarea
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+            rows="2"
+            className={`w-full p-2 sm:p-3 border rounded-md bg-gray-50 focus:bg-white focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 resize-none ${
+              errors.address ? 'border-red-500' : 'border-gray-200'
+            }`}
+            whileFocus={{ scale: 1.02 }}
+            placeholder="House/Flat No., Street, Area, Landmark"
+          />
+          {errors.address && <p className="text-red-500 text-[8px] sm:text-xs mt-1">{errors.address}</p>}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+          <div>
+            <label className="block text-gray-700 mb-1 font-semibold text-xs sm:text-sm">City *</label>
+            <motion.input
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleInputChange}
+              className={`w-full p-2 sm:p-3 border rounded-md bg-gray-50 focus:bg-white focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
+                errors.city ? 'border-red-500' : 'border-gray-200'
+              }`}
+              whileFocus={{ scale: 1.02 }}
+              placeholder="Your city"
+            />
+            {errors.city && <p className="text-red-500 text-[8px] sm:text-xs mt-1">{errors.city}</p>}
+          </div>
+          <div>
+            <label className="block text-gray-700 mb-1 font-semibold text-xs sm:text-sm">ZIP Code *</label>
+            <motion.input
+              type="text"
+              name="zip"
+              value={formData.zip}
+              onChange={handleInputChange}
+              className={`w-full p-2 sm:p-3 border rounded-md bg-gray-50 focus:bg-white focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-300 ${
+                errors.zip ? 'border-red-500' : 'border-gray-200'
+              }`}
+              whileFocus={{ scale: 1.02 }}
+              placeholder="PIN Code"
+            />
+            {errors.zip && <p className="text-red-500 text-[8px] sm:text-xs mt-1">{errors.zip}</p>}
+          </div>
+        </div>
+
+        <div className="flex justify-between mt-2 sm:mt-3">
+          <motion.button
+            type="button"
+            onClick={() => setCheckoutStep('summary')}
+            className="text-emerald-600 hover:text-emerald-800 transition font-medium text-xs sm:text-sm flex items-center"
+            whileHover={{ scale: 1.03, x: -3 }}
+          >
+            <FiArrowLeft className="mr-0.5" /> Back
+          </motion.button>
+          <motion.button
+            type="button"
+            onClick={completeOrder}
+            disabled={isSending}
+            className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-bold shadow-sm hover:shadow-emerald-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center text-xs sm:text-sm"
+            whileHover={{ scale: isSending ? 1 : 1.03 }}
+            whileTap={{ scale: isSending ? 1 : 0.97 }}
+          >
+            {isSending ? (
+              <>
+                <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-1"></div>
+                Processing...
+              </>
+            ) : (
+              <>
+                Complete Order <FiCheck className="ml-0.5" />
+              </>
             )}
-  
-            {/* Order Confirmation Step */}
-            {checkoutStep === 'confirmation' && (
-              <motion.div
-                key="confirmation"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="max-w-2xl mx-auto bg-gradient-to-br from-white via-emerald-50 to-green-50 p-12 rounded-3xl shadow-2xl text-center border-4 border-emerald-400"
-              >
-                <motion.div
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ type: 'spring', delay: 0.2, stiffness: 200, damping: 10 }}
-                  className="mb-8"
-                >
-                  <div className="relative inline-block">
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full blur-xl opacity-30 animate-pulse"></div>
-                    <FiCheck className="relative text-emerald-500 text-8xl mx-auto bg-white rounded-full p-4 shadow-2xl border-4 border-emerald-200" />
-                  </div>
-                </motion.div>
-                
-                <motion.h2 
-                  className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-6 sm:mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  Order Placed Successfully!
-                </motion.h2>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="space-y-4 mb-8"
-                >
-                  <p className="text-xl text-gray-700 leading-relaxed">
-                    Your eco-friendly solar lamp order has been confirmed!
-                  </p>
-                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-emerald-200 space-y-2">
-                    <p className="text-lg font-semibold text-gray-800">Order Details:</p>
-                    <p className="text-emerald-600 font-medium">Order ID: #{Date.now().toString().slice(-6)}</p>
-                    <p className="text-gray-600">We'll contact you within 24 hours for order confirmation</p>
-                    <p className="text-gray-600">Expected delivery: 8-10 business days</p>
-                  </div>
-                </motion.div>
-                
-                <motion.button
-                  onClick={() => {
-                    setFormData({ fullName: '', address: '', city: '', zip: '', contact: '', email: '', company: '' });
-                    setCheckoutStep('viewing');
-                    setQty(1);
-                    setOrderType('normal');
-                  }}
-                  className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-10 py-4 rounded-2xl font-bold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 flex items-center mx-auto"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  Continue Shopping <FiArrowRight className="ml-3" />
-                </motion.button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-  
-          {/* Floating Mobile CTA */}
-        </main>
+          </motion.button>
+        </div>
+      </form>
+    </motion.div>
+  )}
+
+  {/* Order Confirmation Step */}
+  {checkoutStep === 'confirmation' && (
+    <motion.div
+      key="confirmation"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+      className="max-w-md mx-auto bg-gradient-to-br from-white via-emerald-50 to-green-50 p-4 sm:p-6 rounded-xl shadow-md text-center border-2 border-emerald-400"
+    >
+      <motion.div
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ type: 'spring', delay: 0.2, stiffness: 200, damping: 10 }}
+        className="mb-3 sm:mb-4"
+      >
+        <div className="relative inline-block">
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full blur-sm opacity-30 animate-pulse"></div>
+          <FiCheck className="relative text-emerald-500 text-4xl sm:text-5xl mx-auto bg-white rounded-full p-2 sm:p-3 shadow-sm border border-emerald-200" />
+        </div>
+      </motion.div>
+      
+      <motion.h2 
+        className="text-lg sm:text-xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-2 sm:mb-3"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        Order Placed Successfully!
+      </motion.h2>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="space-y-2 sm:space-y-3 mb-3 sm:mb-4"
+      >
+        <p className="text-xs sm:text-sm text-gray-700 leading-tight">
+          Your eco-friendly solar lamp order has been confirmed!
+        </p>
+        <div className="bg-white p-2 sm:p-3 rounded-lg shadow-sm border border-emerald-200 space-y-1">
+          <p className="text-xs sm:text-sm font-semibold text-gray-800">Order Details:</p>
+          <p className="text-emerald-600 text-[10px] sm:text-xs font-medium">Order ID: #{Date.now().toString().slice(-6)}</p>
+          <p className="text-gray-600 text-[8px] sm:text-[10px]">We'll contact you within 24 hours for order confirmation</p>
+          <p className="text-gray-600 text-[8px] sm:text-[10px]">Expected delivery: 8-10 business days</p>
+        </div>
+      </motion.div>
+      
+      <motion.button
+        onClick={() => {
+          setFormData({ fullName: '', address: '', city: '', zip: '', contact: '', email: '', company: '' });
+          setCheckoutStep('viewing');
+          setQty(1);
+          setOrderType('normal');
+        }}
+        className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-bold shadow-sm hover:shadow-emerald-500/25 transition-all duration-300 flex items-center mx-auto text-xs sm:text-sm"
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+      >
+        Continue Shopping <FiArrowRight className="ml-0.5" />
+      </motion.button>
+    </motion.div>
+  )}
+  </AnimatePresence>
+
+  {/* Floating Mobile CTA */}
+  </main>
       </div>
     );
   };

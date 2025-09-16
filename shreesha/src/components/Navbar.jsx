@@ -190,7 +190,7 @@ const Navbar = () => {
                 <Menu size={20} />
               </button>
               <Link to="/solar-ecommerce">
-                <button className="p-2 rounded-full text-white hover:bg-white/20 transition animate-cart-attention relative">
+                <button className="p-2 rounded-full text-white hover:bg-white/20 transition animate-cart-attention-mobile relative">
                   <ShoppingCart size={20} />
                 </button>
               </Link>
@@ -445,64 +445,125 @@ const Navbar = () => {
 
       <style>
         {`
-          @keyframes cartAttention {
+          /*
+            Updated cart animation:
+            - Brighter, eye-catching glow
+            - Pops slightly out of its place (translateX/translateY)
+            - Uses a 5s animation cycle so the pop happens roughly every 5s
+            - Desktop and mobile variants (slightly different sizes)
+          */
+
+          @keyframes cartPop {
             0% {
-              transform: scale(1) translateY(0);
-              color: white;
-              background-color: transparent;
+              transform: translateY(0) translateX(0) scale(1);
               box-shadow: none;
+              filter: none;
             }
-            20% {
-              transform: scale(1.3) translateY(-4px);
-              color: #FFD700;
-              background-color: rgba(255, 215, 0, 0.2);
-              box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            6% {
+              transform: translateY(-10px) translateX(6px) scale(1.36);
+              box-shadow: 0 10px 30px rgba(255, 215, 0, 0.55);
+              filter: drop-shadow(0 8px 18px rgba(255,215,0,0.45)) saturate(1.2);
             }
-            40% {
-              transform: scale(1.3) translateY(2px);
-              color: #FFD700;
-              background-color: rgba(255, 215, 0, 0.2);
-              box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            12% {
+              transform: translateY(2px) translateX(4px) scale(1.24);
             }
-            60% {
-              transform: scale(1.3) translateY(-2px);
-              color: #FFD700;
-              background-color: rgba(255, 215, 0, 0.2);
-              box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            18% {
+              transform: translateY(-6px) translateX(6px) scale(1.28);
             }
-            80% {
-              transform: scale(1.15) translateY(0);
-              color: #FFD700;
-              background-color: rgba(255, 215, 0, 0.2);
-              box-shadow: 0 0 4px rgba(255, 215, 0, 0.3);
+            24% {
+              transform: translateY(0) translateX(2px) scale(1.12);
+            }
+            30% {
+              transform: translateY(-4px) translateX(3px) scale(1.18);
+            }
+            35% {
+              transform: translateY(0) translateX(0) scale(1);
+              box-shadow: 0 6px 18px rgba(255, 215, 0, 0.28);
             }
             100% {
-              transform: scale(1) translateY(0);
-              color: white;
-              background-color: transparent;
+              transform: translateY(0) translateX(0) scale(1);
               box-shadow: none;
+              filter: none;
             }
+          }
+
+          /* halo pulse that fades out and repeats with the same 5s rhythm */
+          @keyframes cartHalo {
+            0% { opacity: 0; transform: scale(0.6); }
+            6% { opacity: 0.9; transform: scale(1.15); }
+            20% { opacity: 0.45; transform: scale(1.4); }
+            35% { opacity: 0; transform: scale(1.8); }
+            100% { opacity: 0; transform: scale(1.8); }
           }
 
           .animate-cart-attention {
-            animation: cartAttention 1.5s ease-in-out infinite;
-            animation-delay: 1.5s;
-            animation-iteration-count: 1;
-            animation-fill-mode: forwards;
-            will-change: transform, color, background-color, box-shadow;
+            /* 5s cycle: animation plays quickly in the first ~35% then stays idle until the 5s repeats */
+            animation: cartPop 5s ease-in-out infinite;
+            will-change: transform, box-shadow, filter;
             position: relative;
             z-index: 10;
+            overflow: visible;
           }
 
-          .animate-cart-attention:hover {
-            animation: none;
+          /* Desktop halo */
+          .animate-cart-attention::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            border-radius: 999px;
+            pointer-events: none;
+            background: radial-gradient(circle at center, rgba(255,215,0,0.55) 0%, rgba(255,215,0,0.22) 25%, rgba(255,215,0,0.06) 50%, transparent 60%);
+            mix-blend-mode: screen;
+            opacity: 0;
+            animation: cartHalo 5s ease-in-out infinite;
+          }
+
+          /* Mobile variant: slightly smaller halo and adjusted timings */
+          .animate-cart-attention-mobile {
+            animation: cartPop 5s ease-in-out infinite;
+            will-change: transform, box-shadow, filter;
+            position: relative;
+            z-index: 10;
+            overflow: visible;
+          }
+
+          .animate-cart-attention-mobile::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 110%;
+            height: 110%;
+            border-radius: 999px;
+            pointer-events: none;
+            background: radial-gradient(circle at center, rgba(255,215,0,0.6) 0%, rgba(255,215,0,0.2) 25%, transparent 50%);
+            opacity: 0;
+            animation: cartHalo 5s ease-in-out infinite;
+          }
+
+          /* stop animation on hover so user can click without the icon moving */
+          .animate-cart-attention:hover,
+          .animate-cart-attention-mobile:hover {
+            animation-play-state: paused;
             transform: scale(1);
-            color: inherit;
-            background-color: rgba(255, 255, 255, 0.2);
-            box-shadow: none;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
           }
 
-         
+          /* small accessibility-friendly focus state */
+          .animate-cart-attention:focus,
+          .animate-cart-attention-mobile:focus {
+            outline: 3px solid rgba(255,215,0,0.2);
+            outline-offset: 3px;
+            animation-play-state: paused;
+          }
+
+          /* if you want the icon to 'pop out' more visually from the navbar, a tiny translate on the navbar is possible via an extra utility class (optional)
+             Example: .cart-out { transform: translateX(6px); } */
         `}
       </style>
     </>

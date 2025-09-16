@@ -25,25 +25,25 @@ import Banner4 from "../assets/Banner4.jpg";
 const solarProducts = [
   {
     id: 1,
-    name: 'Small Night Lamp',
-    url: 'solarnightlamp',
+    name: 'Solar Car Diya',
+    url: 'solarcardiya',
     price: 1998,
-    description: '3W solar-powered LED lamp with 6-hour backup, automatic dusk-to-dawn operation. Ideal for accent lighting in gardens, pathways, and patios. Energy-efficient and eco-friendly.',
-    images: [SmallNightLamp, BigNightLamp],
-    category: 'lamp',
-    rating: 4.5,
-    reviews: 128  
+    description: 'Elegant solar-powered table top lamps perfect for home decor, office spaces, or gifting. Available in three versatile designs to suit different needs and preferences.',
+    images: [SolarCarDiya1],
+    category: 'diya',
+    rating: 4.6,
+    reviews: 142
   },
   {
     id: 2,
-    name: 'Big Night Lamp',
-    url: 'biglamp',
-    price: 2798,
-    description: '5W high-lumen solar lamp with 12-hour backup, IP65 waterproof for outdoor use. Provides brilliant illumination for larger areas like driveways, backyards, and security lighting.',
-    images: [BigNightLamp, SmallNightLamp],
+    name: 'Table Tops',
+    url: 'tabletop',
+    price: 1998,
+    description: 'A unique and innovative car-shaped diya with solar-powered illumination. Perfect for vehicle worship, travel protection, and adding divine light to your journeys.',
+    images: [TableTop1],
     category: 'lamp',
-    rating: 4.7,
-    reviews: 96
+    rating: 4.6,
+    reviews: 142
   },
   {
     id: 3,
@@ -91,25 +91,25 @@ const solarProducts = [
   },
   {
     id: 7,
-    name: 'Solar Car Diya',
-    url: 'solarcardiya',
+    name: 'Small Night Lamp',
+    url: 'solarnightlamp',
     price: 1998,
-    description: 'Elegant solar-powered table top lamps perfect for home decor, office spaces, or gifting. Available in three versatile designs to suit different needs and preferences.',
-    images: [SolarCarDiya1],
-    category: 'diya',
-    rating: 4.6,
-    reviews: 142
+    description: '3W solar-powered LED lamp with 6-hour backup, automatic dusk-to-dawn operation. Ideal for accent lighting in gardens, pathways, and patios. Energy-efficient and eco-friendly.',
+    images: [SmallNightLamp, BigNightLamp],
+    category: 'lamp',
+    rating: 4.5,
+    reviews: 128 
   },
   {
     id: 8,
-    name: 'Table Tops',
-    url: 'tabletop',
-    price: 1998,
-    description: 'A unique and innovative car-shaped diya with solar-powered illumination. Perfect for vehicle worship, travel protection, and adding divine light to your journeys.',
-    images: [TableTop1],
+    name: 'Big Night Lamp',
+    url: 'biglamp',
+    price: 2798,
+    description: '5W high-lumen solar lamp with 12-hour backup, IP65 waterproof for outdoor use. Provides brilliant illumination for larger areas like driveways, backyards, and security lighting.',
+    images: [BigNightLamp, SmallNightLamp],
     category: 'lamp',
-    rating: 4.6,
-    reviews: 142
+    rating: 4.7,
+    reviews: 96
   },
   {
     id: 9,
@@ -153,7 +153,7 @@ const categories = [
 const DiscountStrip = () => {
   return (
     <div
-      className="fixed top-[60px] left-0 w-full bg-gradient-to-r from-red-600 to-pink-600 text-white text-center py-2 z-40 shadow-md flex justify-center items-center" // Changed z-50 to z-40 (below navbar if navbar z-50), top-0 to top-[60px], removed motion/AnimatePresence
+      className="fixed top-[60px] left-0 w-full bg-gradient-to-r from-green-600 to-green-600 text-black text-center py-2 z-40 shadow-md flex justify-center items-center" // Changed z-50 to z-40 (below navbar if navbar z-50), top-0 to top-[60px], removed motion/AnimatePresence
     >
       <span className="font-bold text-sm md:text-base">🎉 Festive Sale: Contact for Exclusive Offers! 🎉</span>
       {/* Removed countdown timer as it's no longer needed for constant strip */}
