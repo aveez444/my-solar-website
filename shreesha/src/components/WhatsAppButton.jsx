@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const WhatsAppButton = () => {
   const phoneNumber = "+917020986306"; // Replace with actual number
-  const message = "Hi, I want to know more about Shreesha solar panels.";
+  const message = "Hello, I'm interested in Shreesha's solar rooftop solutions and would like to understand the benefits, and installation process. Could you please share more details?";
   const encodedMessage = encodeURIComponent(message);
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
