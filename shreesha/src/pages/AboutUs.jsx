@@ -63,7 +63,7 @@ const AboutUs = () => {
   const teamMembers = [
     {
       id: 1,
-      name: 'Mr. Adheer Joshi',
+      name: 'Adheer Joshi',
       position: 'Co-Founder & Director Sales',
       image: 'https://media.licdn.com/dms/image/v2/C4D03AQE-gK2afs4Gmg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516585493122?e=1753920000&v=beta&t=aVOseNNua4uSHm9mva98v9XAzAPy17Hgy7qUMb7ste8',
       description: 'A visionary leader driving record-breaking growth in competitive markets.',

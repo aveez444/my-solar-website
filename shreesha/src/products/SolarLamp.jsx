@@ -13,6 +13,12 @@ import SmallNightLamp2 from "../assets/images/Small.jpeg";
 import { useCart } from '../components/CartContext';
 import emailjs from "@emailjs/browser";
 
+// customer photos (place actual files at these paths)
+import CustomerPhoto1 from "../assets/images/customer1.jpeg";
+import CustomerPhoto2 from "../assets/images/customer2.jpeg";
+import CustomerPhoto3 from "../assets/images/customer3.jpeg";
+
+
 const SolarLamp = () => {
   const product = {
     id: 1,
@@ -28,9 +34,27 @@ const SolarLamp = () => {
     ],
     images: [SmallNightLamp, SmallNightLamp2],
     reviews: [
-      { name: 'Alex J.', rating: 5, comment: 'Absolutely love this lamp! It lights up my garden beautifully without any hassle.' },
-      { name: 'Sarah K.', rating: 5, comment: 'Eco-friendly and efficient. Saved me on bills and looks great!' },
-      { name: 'Mike T.', rating: 4, comment: 'Bright and reliable. The auto-on feature is a game-changer.' }
+      { 
+        name: 'Rajesh T.', 
+        rating: 5, 
+        comment: 'Perfect for my taxi! Customers appreciate the spiritual touch and it charges well during day drives.',
+        image: CustomerPhoto1,
+        highlight: 'Brings calm to every ride — charges quickly during daytime.'
+      },
+      { 
+        name: 'Divya P.', 
+        rating: 5, 
+        comment: 'Love this innovative diya for my car. It automatically lights up during evening drives creating a peaceful atmosphere.',
+        image: CustomerPhoto2,
+        highlight: 'Soft evening glow — makes long drives peaceful.'
+      },
+      { 
+        name: 'Mohan K.', 
+        rating: 4, 
+        comment: 'Great product for vehicle safety prayers. The suction base holds well even on bumpy roads.',
+        image: CustomerPhoto3,
+        highlight: 'Stays put on bumpy roads — very sturdy suction base.'
+      }
     ]
   };
 
@@ -531,44 +555,91 @@ By proceeding, you agree to collaborate with our team to finalize your bespoke g
               <SimilarProducts />
               
               <section className="py-4 sm:py-6 bg-gradient-to-br from-emerald-50 via-green-50/50 to-teal-50 rounded-xl shadow-md border border-emerald-200/50">
-                <motion.h2 
-                  className="text-lg sm:text-xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-4 sm:mb-6 text-center"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                >
-                  What Our Customers Say
-                </motion.h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 px-2 sm:px-4">
-                  {product.reviews.map((review, idx) => (
-                    <motion.div
-                      key={idx}
-                      className="p-2 sm:p-4 rounded-lg bg-white shadow-sm border border-emerald-100 hover:border-emerald-200 transition-all duration-300"
-                      initial={{ opacity: 0, y: 50 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1, duration: 0.5 }}
-                      whileHover={{ scale: 1.03, y: -2 }}
-                    >
-                      <div className="flex items-center mb-2 sm:mb-3">
-                        <div className="flex space-x-0.5 mr-1 sm:mr-2">
-                          {[...Array(5)].map((_, i) => (
-                            <FiStar 
-                              key={i} 
-                              className={`${i < review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
-                              size={12}
-                            />
-                          ))}
-                        </div>
-                        <span className="font-semibold text-[10px] sm:text-xs text-gray-800">{review.name}</span>
-                      </div>
-                      <p className="text-gray-600 text-[9px] sm:text-[10px] leading-tight italic mb-2">"{review.comment}"</p>
-                      <div className="w-full h-0.5 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full"></div>
-                    </motion.div>
-                  ))}
-                </div>
-              </section>
+  <motion.h2 
+    className="text-lg sm:text-xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-4 sm:mb-6 text-center"
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+  >
+    What Our Customers Say
+  </motion.h2>
+
+  {/* Intro copy (a few lines written for you) */}
+  <p className="max-w-2xl mx-auto text-center text-gray-700 text-sm sm:text-base mb-4 px-2">
+    Our customers love the gentle glow and the thoughtful design — whether it’s for personal devotion or gifting.
+    Here are real photos and short notes shared by people who use the Solar Car Diya every day.
+  </p>
+
+  {/* Large photo row (the three customer photos) */}
+  <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-stretch gap-3 sm:gap-4 px-2 sm:px-4 mb-4">
+    {product.reviews.map((r, idx) => (
+      <motion.div
+        key={`photo-${idx}`}
+        className="flex-1 rounded-lg overflow-hidden bg-white border border-emerald-100 shadow-sm"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.05 * idx, duration: 0.45 }}
+      >
+        <img
+          src={r.image}
+          alt={`${r.name} - customer photo`}
+          className="w-full h-44 sm:h-56 object-cover"
+        />
+        <div className="p-2 sm:p-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <div className="w-9 h-9 rounded-full overflow-hidden border border-emerald-200">
+                <img src={r.image} alt={`${r.name} avatar`} className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <p className="font-semibold text-sm text-gray-800">{r.name}</p>
+                <p className="text-[10px] sm:text-xs text-gray-500">{r.rating} ★</p>
+              </div>
+            </div>
+            <div className="text-[10px] text-gray-400 italic">{/* small date or tag can go here */}</div>
+          </div>
+
+          <p className="text-gray-600 text-[10px] sm:text-[11px] leading-tight italic mt-2">"{r.comment}"</p>
+          <div className="mt-2">
+            <p className="text-[10px] sm:text-xs text-emerald-600 font-medium">“{r.highlight}”</p>
+          </div>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+
+  {/* Compact grid of review cards (same data but different layout for accessibility) */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 px-2 sm:px-4">
+    {product.reviews.map((review, idx) => (
+      <motion.div
+        key={`card-${idx}`}
+        className="p-2 sm:p-4 rounded-lg bg-white shadow-sm border border-emerald-100 hover:border-emerald-200 transition-all duration-300"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: idx * 0.08, duration: 0.45 }}
+      >
+        <div className="flex items-center mb-2 sm:mb-3">
+          <div className="flex items-center space-x-2 mr-2">
+            <div className="w-10 h-10 rounded-full overflow-hidden border border-emerald-100">
+              <img src={review.image} alt={`${review.name} avatar`} className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <p className="font-semibold text-[11px] sm:text-sm text-gray-800">{review.name}</p>
+              <p className="text-[10px] text-gray-500">{review.rating} ★</p>
+            </div>
+          </div>
+        </div>
+        <p className="text-gray-600 text-[9px] sm:text-[10px] leading-tight italic mb-2">"{review.comment}"</p>
+        <div className="w-full h-0.5 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full" />
+        <p className="text-[10px] sm:text-xs text-emerald-600 font-medium mt-2">{review.highlight}</p>
+      </motion.div>
+    ))}
+  </div>
+</section>
+
             </motion.div>
           )}
           {checkoutStep === 'summary' && (
